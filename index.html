@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AIToolVillage — The best AI tools for marketers, accountants and professionals. Curated, ranked and reviewed.">
+<meta name="keywords" content="AI tools for marketers, AI tools for accountants, best AI tools 2025, AI marketing software, AI tools directory">
+<title>AIToolVillage — AI Tools for Marketers, Accountants & Professionals</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --soil:    #1c1a14;
+  --bark:    #2d2a1e;
+  --moss:    #3d5a3e;
+  --sage:    #6b8f71;
+  --wheat:   #c8a96e;
+  --cream:   #f5f0e8;
+  --parchment: #ede7d9;
+  --stone:   #9e9585;
+  --mist:    #f9f6f0;
+  --leaf:    #4a7c59;
+  --ember:   #c0541a;
+  --border:  #ddd5c4;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--mist);
+  color: var(--soil);
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ── GRAIN OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  height: 62px;
+  background: rgba(249,246,240,0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 32px; height: 32px;
+  background: var(--moss);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+}
+
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--soil);
+  letter-spacing: -0.02em;
+}
+
+.logo-text span { color: var(--wheat); }
+
+.nav-center {
+  display: flex; gap: 6px;
+}
+
+.nav-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--stone);
+  text-decoration: none;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.nav-pill:hover {
+  color: var(--soil);
+  background: var(--parchment);
+  border-color: var(--border);
+}
+
+.nav-pill.active {
+  background: var(--soil);
+  color: var(--cream);
+  border-color: var(--soil);
+}
+
+.nav-right { display: flex; align-items: center; gap: 10px; }
+
+.btn-submit {
+  background: var(--moss);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+  border: none; cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+}
+
+.btn-submit:hover { background: var(--leaf); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  padding: 80px 48px 64px;
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--stone);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--leaf);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--soil);
+  margin-bottom: 20px;
+}
+
+h1 em {
+  font-style: italic;
+  color: var(--wheat);
+}
+
+.hero-sub {
+  font-size: 1rem;
+  color: var(--stone);
+  font-weight: 300;
+  max-width: 480px;
+  line-height: 1.75;
+  margin-bottom: 36px;
+}
+
+.search-wrap {
+  display: flex;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(28,26,20,0.08);
+  max-width: 520px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-wrap:focus-within {
+  border-color: var(--moss);
+  box-shadow: 0 4px 32px rgba(61,90,62,0.15);
+}
+
+.search-wrap input {
+  flex: 1; border: none; outline: none;
+  padding: 14px 20px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  color: var(--soil);
+  background: transparent;
+}
+
+.search-wrap input::placeholder { color: #bbb; }
+
+.search-wrap button {
+  background: var(--moss);
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.search-wrap button:hover { background: var(--leaf); }
+
+.hero-meta {
+  display: flex; gap: 28px; margin-top: 20px;
+}
+
+.hero-meta-item {
+  font-size: 0.78rem;
+  color: var(--stone);
+}
+
+.hero-meta-item strong {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--soil);
+  font-family: 'Playfair Display', serif;
+}
+
+/* HERO RIGHT — featured card stack */
+.hero-cards {
+  position: relative;
+  height: 340px;
+}
+
+.hero-card {
+  position: absolute;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  width: 260px;
+  box-shadow: 0 8px 32px rgba(28,26,20,0.08);
+  animation: floatCard 6s ease-in-out infinite;
+}
+
+.hero-card:nth-child(1) { top: 0; left: 40px; animation-delay: 0s; z-index: 3; }
+.hero-card:nth-child(2) { top: 90px; left: 0; animation-delay: 1.5s; z-index: 2; background: var(--parchment); }
+.hero-card:nth-child(3) { top: 180px; left: 80px; animation-delay: 3s; z-index: 1; }
+
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.hcard-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+
+.hcard-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.hero-card:nth-child(2) .hcard-icon { background: white; }
+
+.hcard-name { font-size: 0.9rem; font-weight: 600; color: var(--soil); }
+.hcard-type { font-size: 0.72rem; color: var(--stone); }
+.hcard-desc { font-size: 0.78rem; color: var(--stone); line-height: 1.5; margin-bottom: 12px; }
+
+.hcard-footer { display: flex; align-items: center; justify-content: space-between; }
+.hcard-tag {
+  font-size: 0.68rem; font-weight: 600;
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  color: var(--stone);
+  padding: 3px 8px; border-radius: 4px;
+}
+
+.hero-card:nth-child(2) .hcard-tag { background: white; }
+
+.hcard-rating { font-size: 0.75rem; color: var(--wheat); font-weight: 600; }
+
+/* ── VILLAGE SQUARES (CATEGORY TABS) ── */
+.village-bar {
+  background: var(--parchment);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.village-bar::-webkit-scrollbar { display: none; }
+
+.village-tabs {
+  display: flex; gap: 0;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.vtab {
+  display: flex; align-items: center; gap: 8px;
+  padding: 14px 22px;
+  font-size: 0.83rem;
+  font-weight: 500;
+  color: var(--stone);
+  cursor: pointer;
+  border-bottom: 2.5px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+  user-select: none;
+  background: none;
+  border-left: none; border-right: none; border-top: none;
+  font-family: 'Outfit', sans-serif;
+}
+
+.vtab:hover { color: var(--soil); border-bottom-color: var(--border); }
+
+.vtab.active {
+  color: var(--soil);
+  border-bottom-color: var(--moss);
+  font-weight: 600;
+}
+
+.vtab-emoji { font-size: 1rem; }
+.vtab-count {
+  background: var(--border);
+  color: var(--stone);
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.vtab.active .vtab-count { background: var(--moss); color: white; }
+
+/* ── MAIN LAYOUT ── */
+.main-wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 48px 48px;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 48px;
+  align-items: start;
+}
+
+/* ── SECTION HEADERS ── */
+.sec-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  color: var(--soil);
+}
+
+.sec-link {
+  font-size: 0.8rem;
+  color: var(--sage);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sec-link:hover { color: var(--moss); text-decoration: underline; }
+
+/* ── FEATURED STRIP ── */
+.featured-strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 48px;
+}
+
+.feat-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.22s;
+  position: relative;
+  text-decoration: none;
+  display: block;
+}
+
+.feat-card:hover {
+  border-color: var(--moss);
+  box-shadow: 0 6px 28px rgba(61,90,62,0.12);
+  transform: translateY(-2px);
+}
+
+.feat-card.gold-card {
+  background: linear-gradient(135deg, #fffbf0 0%, #fdf4de 100%);
+  border-color: #e0c87a;
+}
+
+.feat-card.gold-card:hover { border-color: var(--wheat); box-shadow: 0 6px 28px rgba(200,169,110,0.2); }
+
+.feat-badge {
+  position: absolute; top: 14px; right: 14px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--wheat);
+  color: var(--soil);
+}
+
+.feat-badge.new-badge { background: var(--moss); color: white; }
+
+.feat-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+
+.feat-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.gold-card .feat-icon { background: white; border-color: #e0c87a; }
+
+.feat-name { font-size: 0.95rem; font-weight: 600; color: var(--soil); margin-bottom: 2px; }
+.feat-cat { font-size: 0.72rem; color: var(--stone); }
+.feat-desc { font-size: 0.82rem; color: #666; line-height: 1.6; margin-bottom: 14px; }
+
+.feat-footer { display: flex; align-items: center; justify-content: space-between; }
+
+.feat-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+.feat-tag {
+  font-size: 0.68rem; font-weight: 500;
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  color: var(--stone);
+  padding: 3px 8px; border-radius: 4px;
+}
+
+.gold-card .feat-tag { background: white; border-color: #e0c87a; }
+
+.feat-price { font-size: 0.75rem; font-weight: 600; }
+.feat-price.free { color: var(--leaf); }
+.feat-price.paid { color: var(--wheat); }
+
+/* ── TOOL LIST (compact rows) ── */
+.tool-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 48px; }
+
+.tool-row {
+  display: flex; align-items: center; gap: 14px;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.tool-row:hover {
+  border-color: var(--sage);
+  box-shadow: 0 3px 14px rgba(28,26,20,0.06);
+  transform: translateX(3px);
+}
+
+.tool-row-icon {
+  width: 38px; height: 38px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.tool-row-body { flex: 1; min-width: 0; }
+.tool-row-name { font-size: 0.9rem; font-weight: 600; color: var(--soil); }
+.tool-row-desc { font-size: 0.78rem; color: var(--stone); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.tool-row-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.tool-row-tag {
+  font-size: 0.68rem; font-weight: 500;
+  background: var(--parchment); border: 1px solid var(--border);
+  color: var(--stone); padding: 3px 8px; border-radius: 4px;
+}
+
+.tool-row-price { font-size: 0.75rem; font-weight: 600; }
+.tool-row-price.free { color: var(--leaf); }
+.tool-row-price.paid { color: var(--stone); }
+
+/* ── SIDEBAR ── */
+.sidebar { position: sticky; top: 80px; display: flex; flex-direction: column; gap: 24px; }
+
+.side-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+}
+
+.side-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--soil);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Trending list */
+.trend-list { display: flex; flex-direction: column; gap: 12px; }
+
+.trend-item { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.trend-item:hover .trend-name { color: var(--moss); }
+
+.trend-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--border);
+  font-weight: 700;
+  width: 20px;
+  flex-shrink: 0;
+}
+
+.trend-icon {
+  width: 32px; height: 32px;
+  border-radius: 7px;
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.trend-name { font-size: 0.83rem; font-weight: 500; color: var(--soil); transition: color 0.2s; }
+.trend-cat { font-size: 0.7rem; color: var(--stone); }
+
+/* CTA Card */
+.cta-card {
+  background: var(--soil);
+  border-color: var(--bark);
+  padding: 24px;
+}
+
+.cta-card .side-title { color: var(--cream); border-bottom-color: rgba(255,255,255,0.1); }
+.cta-card p { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 18px; }
+.cta-card .btn-submit { display: block; text-align: center; width: 100%; }
+
+/* Category quick links */
+.cat-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+
+.cat-quick {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 12px;
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--soil);
+  transition: all 0.18s;
+}
+
+.cat-quick:hover { background: var(--moss); color: white; border-color: var(--moss); }
+.cat-quick:hover .cq-emoji { filter: none; }
+.cq-emoji { font-size: 1rem; }
+
+/* ── PROFESSION SECTIONS ── */
+.profession-section { margin-bottom: 64px; }
+
+.prof-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 24px;
+  padding: 18px 24px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
+}
+
+.prof-header.marketer { background: linear-gradient(135deg, #f0f5f1, #e8f0e9); border-color: #c0d9c2; }
+.prof-header.accountant { background: linear-gradient(135deg, #f5f3ee, #ede8de); border-color: #d9d0be; }
+
+.prof-emoji { font-size: 1.8rem; }
+.prof-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); margin-bottom: 2px; }
+.prof-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--soil); letter-spacing: -0.02em; }
+.prof-desc { font-size: 0.8rem; color: var(--stone); line-height: 1.5; margin-left: auto; max-width: 300px; text-align: right; }
+
+/* ── NEWSLETTER STRIP ── */
+.newsletter-strip {
+  background: var(--parchment);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 48px;
+  text-align: center;
+}
+
+.newsletter-strip h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  color: var(--soil);
+}
+
+.newsletter-strip h2 em { font-style: italic; color: var(--wheat); }
+.newsletter-strip p { color: var(--stone); font-size: 0.88rem; margin-bottom: 24px; }
+
+.nl-form {
+  display: flex;
+  max-width: 420px;
+  margin: 0 auto;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(28,26,20,0.06);
+}
+
+.nl-form input {
+  flex: 1; border: none; outline: none;
+  padding: 12px 18px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.875rem;
+  color: var(--soil);
+  background: transparent;
+}
+
+.nl-form input::placeholder { color: #bbb; }
+.nl-form button {
+  background: var(--soil); color: white; border: none;
+  padding: 12px 20px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem; font-weight: 600;
+  cursor: pointer; transition: background 0.2s;
+}
+.nl-form button:hover { background: var(--bark); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--soil);
+  color: rgba(255,255,255,0.5);
+  padding: 48px 48px 32px;
+}
+
+.footer-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 260px 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 28px;
+}
+
+.footer-brand .logo-text { color: var(--cream); }
+.footer-brand p { font-size: 0.8rem; line-height: 1.7; margin-top: 10px; }
+
+.footer-col h4 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 14px;
+}
+
+.footer-col a {
+  display: block;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover { color: var(--cream); }
+
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.75rem;
+}
+
+.footer-bottom a { color: rgba(255,255,255,0.35); text-decoration: none; }
+.footer-bottom a:hover { color: rgba(255,255,255,0.7); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero { animation: fadeUp 0.7s ease both; }
+.feat-card { animation: fadeUp 0.5s ease both; }
+.feat-card:nth-child(2) { animation-delay: 0.06s; }
+.feat-card:nth-child(3) { animation-delay: 0.12s; }
+.feat-card:nth-child(4) { animation-delay: 0.18s; }
+.tool-row { animation: fadeUp 0.45s ease both; }
+.tool-row:nth-child(2) { animation-delay: 0.05s; }
+.tool-row:nth-child(3) { animation-delay: 0.1s; }
+.tool-row:nth-child(4) { animation-delay: 0.15s; }
+.tool-row:nth-child(5) { animation-delay: 0.2s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-center { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 48px 20px; }
+  .hero-cards { display: none; }
+  .village-bar { padding: 0 20px; }
+  .main-wrap { grid-template-columns: 1fr; padding: 32px 20px; }
+  .sidebar { position: static; }
+  .featured-strip { grid-template-columns: 1fr; }
+  .prof-desc { display: none; }
+  footer { padding: 40px 20px 24px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .newsletter-strip { padding: 40px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-icon">🌿</div>
+    <span class="logo-text">AITool<span>Village</span></span>
+  </a>
+
+  <div class="nav-center">
+    <a href="#marketers" class="nav-pill active">Marketers</a>
+    <a href="#accountants" class="nav-pill">Accountants</a>
+    <a href="#professionals" class="nav-pill">Professionals</a>
+    <a href="comparisons.html" class="nav-pill">Compare</a>
+    <a href="guides.html" class="nav-pill">Guides</a>
+  </div>
+
+  <div class="nav-right">
+    <a href="submit.html" class="btn-submit">+ Submit a Tool</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">340+ tools curated &amp; reviewed</div>
+    <h1>Your village of<br><em>AI tools</em> for<br>professionals</h1>
+    <p class="hero-sub">The best AI tools for marketers, accountants and business professionals — hand-picked, honestly reviewed and ranked by people who actually use them.</p>
+
+    <div class="search-wrap">
+      <input type="text" placeholder="Search tools, e.g. 'AI email writer'…" id="searchInput" oninput="handleSearch()" autocomplete="off">
+      <button onclick="handleSearch()">Search</button>
+    </div>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>340+</strong>Tools Listed</div>
+      <div class="hero-meta-item"><strong>18</strong>Categories</div>
+      <div class="hero-meta-item"><strong>12k+</strong>Monthly Users</div>
+      <div class="hero-meta-item"><strong>Free</strong>Always Free to Browse</div>
+    </div>
+  </div>
+
+  <div class="hero-cards" aria-hidden="true">
+    <div class="hero-card">
+      <div class="hcard-top">
+        <div class="hcard-icon">✍️</div>
+        <div>
+          <div class="hcard-name">Jasper AI</div>
+          <div class="hcard-type">AI Writing · Marketing</div>
+        </div>
+      </div>
+      <p class="hcard-desc">Create marketing copy, blog posts and ad content at scale with AI trained on high-converting content.</p>
+      <div class="hcard-footer">
+        <span class="hcard-tag">Featured</span>
+        <span class="hcard-rating">★ 4.8</span>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hcard-top">
+        <div class="hcard-icon">📊</div>
+        <div>
+          <div class="hcard-name">Surfer SEO</div>
+          <div class="hcard-type">AI SEO · Marketing</div>
+        </div>
+      </div>
+      <p class="hcard-desc">Analyze SERPs and write content that ranks. Used by 150,000+ marketers worldwide.</p>
+      <div class="hcard-footer">
+        <span class="hcard-tag">Top Rated</span>
+        <span class="hcard-rating">★ 4.7</span>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="hcard-top">
+        <div class="hcard-icon">🧾</div>
+        <div>
+          <div class="hcard-name">FreshBooks AI</div>
+          <div class="hcard-type">AI Bookkeeping · Finance</div>
+        </div>
+      </div>
+      <p class="hcard-desc">Automated invoicing, expense tracking and financial reports powered by AI.</p>
+      <div class="hcard-footer">
+        <span class="hcard-tag">Accountants</span>
+        <span class="hcard-rating">★ 4.6</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VILLAGE TABS ── -->
+<div class="village-bar">
+  <div class="village-tabs">
+    <button class="vtab active" onclick="setTab(this,'all')"><span class="vtab-emoji">🏘️</span> All Tools <span class="vtab-count">340</span></button>
+    <button class="vtab" onclick="setTab(this,'writing')"><span class="vtab-emoji">✍️</span> Writing <span class="vtab-count">48</span></button>
+    <button class="vtab" onclick="setTab(this,'seo')"><span class="vtab-emoji">📈</span> SEO <span class="vtab-count">32</span></button>
+    <button class="vtab" onclick="setTab(this,'social')"><span class="vtab-emoji">📱</span> Social Media <span class="vtab-count">29</span></button>
+    <button class="vtab" onclick="setTab(this,'email')"><span class="vtab-emoji">📧</span> Email <span class="vtab-count">24</span></button>
+    <button class="vtab" onclick="setTab(this,'video')"><span class="vtab-emoji">🎬</span> Video <span class="vtab-count">21</span></button>
+    <button class="vtab" onclick="setTab(this,'ads')"><span class="vtab-emoji">🎯</span> Ads <span class="vtab-count">18</span></button>
+    <button class="vtab" onclick="setTab(this,'accounting')"><span class="vtab-emoji">🧾</span> Accounting <span class="vtab-count">36</span></button>
+    <button class="vtab" onclick="setTab(this,'analytics')"><span class="vtab-emoji">📊</span> Analytics <span class="vtab-count">22</span></button>
+    <button class="vtab" onclick="setTab(this,'free')"><span class="vtab-emoji">🆓</span> Free Tools <span class="vtab-count">90</span></button>
+  </div>
+</div>
+
+<!-- ── MAIN CONTENT ── -->
+<div class="main-wrap">
+  <main>
+
+    <!-- FEATURED -->
+    <div class="sec-head">
+      <h2 class="sec-title">Featured This Week</h2>
+      <a href="featured.html" class="sec-link">See all featured →</a>
+    </div>
+
+    <div class="featured-strip" id="featuredGrid">
+
+      <a href="tools/jasper-ai.html" class="feat-card gold-card" data-cat="writing">
+        <span class="feat-badge">Featured</span>
+        <div class="feat-top">
+          <div class="feat-icon">✍️</div>
+          <div>
+            <div class="feat-name">Jasper AI</div>
+            <div class="feat-cat">AI Writing · Marketers</div>
+          </div>
+        </div>
+        <p class="feat-desc">The go-to AI writing platform for marketing teams. Create blogs, ads, emails and social posts that convert — trained on top-performing marketing content.</p>
+        <div class="feat-footer">
+          <div class="feat-tags"><span class="feat-tag">Writing</span><span class="feat-tag">Marketing</span></div>
+          <span class="feat-price paid">From $49/mo</span>
+        </div>
+      </a>
+
+      <a href="tools/surfer-seo.html" class="feat-card gold-card" data-cat="seo">
+        <span class="feat-badge">Featured</span>
+        <div class="feat-top">
+          <div class="feat-icon">📈</div>
+          <div>
+            <div class="feat-name">Surfer SEO</div>
+            <div class="feat-cat">AI SEO · Marketers</div>
+          </div>
+        </div>
+        <p class="feat-desc">Write content that ranks on page one. Surfer analyses top search results and tells you exactly what to write. 150k+ marketers use it daily.</p>
+        <div class="feat-footer">
+          <div class="feat-tags"><span class="feat-tag">SEO</span><span class="feat-tag">Content</span></div>
+          <span class="feat-price paid">From $89/mo</span>
+        </div>
+      </a>
+
+      <a href="tools/copy-ai.html" class="feat-card" data-cat="writing">
+        <span class="feat-badge new-badge">New</span>
+        <div class="feat-top">
+          <div class="feat-icon">📝</div>
+          <div>
+            <div class="feat-name">Copy.ai</div>
+            <div class="feat-cat">AI Copywriting · Marketers</div>
+          </div>
+        </div>
+        <p class="feat-desc">90+ marketing templates. Generate ad copy, product descriptions, emails and social captions in seconds. Free plan available.</p>
+        <div class="feat-footer">
+          <div class="feat-tags"><span class="feat-tag">Copy</span><span class="feat-tag">Ads</span></div>
+          <span class="feat-price free">Free tier</span>
+        </div>
+      </a>
+
+      <a href="tools/freshbooks.html" class="feat-card" data-cat="accounting">
+        <div class="feat-top">
+          <div class="feat-icon">🧾</div>
+          <div>
+            <div class="feat-name">FreshBooks</div>
+            <div class="feat-cat">AI Bookkeeping · Accountants</div>
+          </div>
+        </div>
+        <p class="feat-desc">AI-powered invoicing and bookkeeping built for small businesses and their accountants. Automates expense categorisation and reporting.</p>
+        <div class="feat-footer">
+          <div class="feat-tags"><span class="feat-tag">Bookkeeping</span><span class="feat-tag">Invoicing</span></div>
+          <span class="feat-price paid">From $17/mo</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- MARKETERS SECTION -->
+    <div class="profession-section" id="marketers">
+      <div class="prof-header marketer">
+        <span class="prof-emoji">📣</span>
+        <div>
+          <div class="prof-label">For Professionals</div>
+          <div class="prof-name">AI Tools for Marketers</div>
+        </div>
+        <p class="prof-desc">From content creation to SEO to paid ads — the tools that give marketing teams an unfair advantage.</p>
+      </div>
+
+      <div class="sec-head" style="margin-bottom:16px">
+        <span style="font-size:0.8rem;color:var(--stone);font-weight:500;">Top picks · Writing & Copy</span>
+        <a href="ai-writing-tools-marketers.html" class="sec-link">View all writing tools →</a>
+      </div>
+
+      <div class="tool-list" id="toolList">
+
+        <a href="tools/jasper.html" class="tool-row" data-cat="writing">
+          <div class="tool-row-icon">✍️</div>
+          <div class="tool-row-body">
+            <div class="tool-row-name">Jasper AI</div>
+            <div class="tool-row-desc">Long-form content, ads, emails and social posts — all with brand voice control</div>
+          </div>
+          <div class="tool-row-right">
+            <span class="tool-row-tag">Writing</span>
+            <span class="tool-row-price paid">$49/mo</span>
+          </div>
+        </a>
+
+        <a href="tools/copy-ai.html" class="tool-row" data-cat="writing">
+          <div class="tool-row-icon">📝</div>
+          <div class="tool-row-body">
+            <div class="tool-row-name">Copy.ai</div>
+            <div class="tool-row-desc">90+ templates for every marketing use case. Fast, free to start</div>
+          </div>
+          <div class="tool-row-right">
+            <span class="tool-row-tag">Copy</span>
+            <span class="tool-row-price free">Free tier</span>
+          </div>
+        </a>
+
+        <a href="tools/surfer.html" class="tool-row" data-cat="seo">
+          <div class="tool-row-icon">📈</div>
+          <div class="tool-row-body">
+            <div class="tool-row-name">Surfer SEO</div>
+            <div class="tool-row-desc">AI content editor that optimises your articles to rank on Google</div>
+          </div>
+          <div class="tool-row-right">
+            <span class="tool-row-tag">SEO</span>
+            <span class="tool-row-price paid">$89/mo</span>
+          </div>
+        </a>
+
+        <a href="tools/adcreative.html" class="tool-row" data-cat="ads">
+          <div class="tool-row-icon">🎯</div>
+          <div class="tool-row-body">
+            <div class="tool-row-name">AdCreative.ai</div>
+            <div class="tool-row-desc">Generate high-converting ad creatives for Google, Facebook and Instagram in seconds</div>
+          </div>
+          <div class="tool-row-right">
+            <span class="tool-row-tag">Ads</span>
+            <span class="tool-row-price paid">$29/mo</span>
+          </div>
+        </a>
+
+        <a href="tools/pictory.html" class="tool-row" data-cat="video">
+          <div class="tool-row-icon">🎬</div>
+          <div class="tool-row-body">
+            <div class="tool-row-name">Pictory</div>
+            <div class="tool-row-desc">Turn blog posts and scripts into short marketing videos automatically</div>
+          </div>
+          <div class="tool-row-right">
+            <span class="tool-row-tag">Video</span>
+            <span class="tool-row-price paid">$23/mo</span>
+          </div>
+        </a>
+
+        <a href="tools/buffer.html" class="tool-row" data-cat="social">
+          <div class="tool-row-icon">📱</div>
+          <div class="tool-row-body">
+            <div class="tool-row-name">Buffer</div>
+            <div class="tool-row-desc">AI-assisted social media scheduling and caption writing for all platforms</div>
+          </div>
+          <div class="tool-row-right">
+            <span class="tool-row-tag">Social</span>
+            <span class="tool-row-price free">Free tier</span>
+          </div>
+        </a>
+
+      </div>
+      <div style="text-align:center;margin-bottom:8px;">
+        <a href="ai-tools-marketers.html" style="display:inline-block;padding:10px 28px;border:1.5px solid var(--border);border-radius:8px;font-size:0.83rem;font-weight:600;color:var(--soil);text-decoration:none;background:white;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--moss)';this.style.color='var(--moss)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--soil)'">View all 48 marketing tools →</a>
+      </div>
+    </div>
+
+    <!-- ACCOUNTANTS SECTION -->
+    <div class="profession-section" id="accountants">
+      <div class="prof-header accountant">
+        <span class="prof-emoji">🧾</span>
+        <div>
+          <div class="prof-label">For Professionals</div>
+          <div class="prof-name">AI Tools for Accountants</div>
+        </div>
+        <p class="prof-desc">Automate bookkeeping, tax prep and financial reporting — tools built for finance professionals.</p>
+      </div>
+
+      <div class="sec-head" style="margin-bottom:16px">
+        <span style="font-size:0.8rem;color:var(--stone);font-weight:500;">Top picks · Bookkeeping & Finance</span>
+        <a href="ai-tools-accountants.html" class="sec-link">View all accounting tools →</a>
+      </div>
+
+      <div class="tool-list">
+
+        <a href="tools/freshbooks.html" class="tool-row" data-cat="accounting">
+          <div class="tool-row-icon">🧾</div>
+          <div class="tool-row-body">
+            <div class="tool-row-name">FreshBooks</div>
+            <div class="tool-row-desc">AI-powered invoicing, expense categorisation and financial reporting for SMBs</div>
+          </div>
+          <div class="tool-row-right">
+            <span class="tool-row-tag">Bookkeeping</span>
+            <span class="tool-row-price paid">$17/mo</span>
+          </div>
+        </a>
+
+        <a href="tools/xero.html" class="tool-row" data-cat="accounting">
+          <div class="tool-row-icon">📒</div>
+          <div class="tool-row-body">
+            <div class="tool-row-name">Xero</div>
+            <div class="tool-row-desc">Cloud accounting with AI bank reconciliation, payroll and tax tools</div>
+          </div>
+          <div class="tool-row-right">
+            <span class="tool-row-tag">Accounting</span>
+            <span class="tool-row-price paid">$15/mo</span>
+          </div>
+        </a>
+
+        <a href="tools/taxjar.html" class="tool-row" data-cat="accounting">
+          <div class="tool-row-icon">📋</div>
+          <div class="tool-row-body">
+            <div class="tool-row-name">TaxJar</div>
+            <div class="tool-row-desc">Automated sales tax calculation, reporting and filing across all US states</div>
+          </div>
+          <div class="tool-row-right">
+            <span class="tool-row-tag">Tax</span>
+            <span class="tool-row-price paid">$19/mo</span>
+          </div>
+        </a>
+
+        <a href="tools/dext.html" class="tool-row" data-cat="accounting">
+          <div class="tool-row-icon">🔍</div>
+          <div class="tool-row-body">
+            <div class="tool-row-name">Dext</div>
+            <div class="tool-row-desc">AI receipt scanning, data extraction and expense management. Works with Xero & QuickBooks</div>
+          </div>
+          <div class="tool-row-right">
+            <span class="tool-row-tag">Expenses</span>
+            <span class="tool-row-price paid">$25/mo</span>
+          </div>
+        </a>
+
+      </div>
+      <div style="text-align:center;margin-bottom:8px;">
+        <a href="ai-tools-accountants.html" style="display:inline-block;padding:10px 28px;border:1.5px solid var(--border);border-radius:8px;font-size:0.83rem;font-weight:600;color:var(--soil);text-decoration:none;background:white;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--moss)';this.style.color='var(--moss)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--soil)'">View all 36 accounting tools →</a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+
+    <div class="side-card">
+      <h3 class="side-title">🔥 Trending This Week</h3>
+      <div class="trend-list">
+        <a href="tools/chatgpt.html" class="trend-item">
+          <span class="trend-num">1</span>
+          <div class="trend-icon">🤖</div>
+          <div><div class="trend-name">ChatGPT</div><div class="trend-cat">AI Assistant</div></div>
+        </a>
+        <a href="tools/midjourney.html" class="trend-item">
+          <span class="trend-num">2</span>
+          <div class="trend-icon">🎨</div>
+          <div><div class="trend-name">Midjourney</div><div class="trend-cat">Image Generation</div></div>
+        </a>
+        <a href="tools/perplexity.html" class="trend-item">
+          <span class="trend-num">3</span>
+          <div class="trend-icon">🔍</div>
+          <div><div class="trend-name">Perplexity AI</div><div class="trend-cat">Research</div></div>
+        </a>
+        <a href="tools/elevenlabs.html" class="trend-item">
+          <span class="trend-num">4</span>
+          <div class="trend-icon">🎙️</div>
+          <div><div class="trend-name">ElevenLabs</div><div class="trend-cat">Voice AI</div></div>
+        </a>
+        <a href="tools/notion-ai.html" class="trend-item">
+          <span class="trend-num">5</span>
+          <div class="trend-icon">📓</div>
+          <div><div class="trend-name">Notion AI</div><div class="trend-cat">Productivity</div></div>
+        </a>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <h3 class="side-title">Browse by Category</h3>
+      <div class="cat-grid">
+        <a href="ai-writing-tools-marketers.html" class="cat-quick"><span class="cq-emoji">✍️</span> Writing</a>
+        <a href="ai-seo-tools.html" class="cat-quick"><span class="cq-emoji">📈</span> SEO</a>
+        <a href="ai-social-media-tools.html" class="cat-quick"><span class="cq-emoji">📱</span> Social</a>
+        <a href="ai-email-marketing-tools.html" class="cat-quick"><span class="cq-emoji">📧</span> Email</a>
+        <a href="ai-video-marketing-tools.html" class="cat-quick"><span class="cq-emoji">🎬</span> Video</a>
+        <a href="ai-ads-tools.html" class="cat-quick"><span class="cq-emoji">🎯</span> Ads</a>
+        <a href="ai-tools-accountants.html" class="cat-quick"><span class="cq-emoji">🧾</span> Accounting</a>
+        <a href="free-ai-tools-marketers.html" class="cat-quick"><span class="cq-emoji">🆓</span> Free Tools</a>
+      </div>
+    </div>
+
+    <div class="side-card cta-card">
+      <h3 class="side-title">List Your AI Tool</h3>
+      <p>Reach 12,000+ marketers and professionals actively searching for AI tools every month. Free listings available.</p>
+      <a href="submit.html" class="btn-submit">+ Submit Your Tool</a>
+    </div>
+
+    <div class="side-card">
+      <h3 class="side-title">📚 Latest Guides</h3>
+      <div class="trend-list">
+        <a href="guides/how-to-use-ai-marketing.html" class="trend-item" style="align-items:flex-start">
+          <div style="flex:1"><div class="trend-name" style="font-size:0.8rem;line-height:1.4">How to Use AI for Marketing in 2025</div><div class="trend-cat">8 min read</div></div>
+        </a>
+        <a href="guides/free-ai-tools-list.html" class="trend-item" style="align-items:flex-start">
+          <div style="flex:1"><div class="trend-name" style="font-size:0.8rem;line-height:1.4">Complete List of Free AI Tools 2025</div><div class="trend-cat">12 min read</div></div>
+        </a>
+        <a href="guides/ai-tools-beginners.html" class="trend-item" style="align-items:flex-start">
+          <div style="flex:1"><div class="trend-name" style="font-size:0.8rem;line-height:1.4">Best AI Tools for Beginners — Start Here</div><div class="trend-cat">6 min read</div></div>
+        </a>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- ── NEWSLETTER ── -->
+<section class="newsletter-strip">
+  <h2>New tools, every <em>week</em></h2>
+  <p>Get the best new AI tools for marketers and professionals delivered to your inbox. No spam, unsubscribe any time.</p>
+  <div class="nl-form">
+    <input type="email" placeholder="your@email.com">
+    <button>Subscribe Free</button>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <div class="logo-icon">🌿</div>
+          <span class="logo-text">AITool<span>Village</span></span>
+        </a>
+        <p>The community directory for AI tools — curated for marketers, accountants and professionals.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>For Marketers</h4>
+        <a href="ai-writing-tools-marketers.html">AI Writing Tools</a>
+        <a href="ai-seo-tools.html">AI SEO Tools</a>
+        <a href="ai-social-media-tools.html">Social Media AI</a>
+        <a href="ai-email-marketing-tools.html">Email Marketing AI</a>
+        <a href="ai-ads-tools.html">AI Ad Tools</a>
+        <a href="free-ai-tools-marketers.html">Free Marketing Tools</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>For Accountants</h4>
+        <a href="ai-bookkeeping-tools.html">AI Bookkeeping</a>
+        <a href="ai-tax-tools.html">AI Tax Tools</a>
+        <a href="ai-financial-reporting.html">Financial Reporting</a>
+        <a href="ai-payroll-tools.html">Payroll Automation</a>
+        <a href="free-ai-tools-accountants.html">Free Accounting AI</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="comparisons.html">Tool Comparisons</a>
+        <a href="guides.html">AI Guides</a>
+        <a href="free-ai-tools-list.html">Free AI Tools List</a>
+        <a href="submit.html">Submit a Tool</a>
+        <a href="about.html">About the Village</a>
+        <a href="advertise.html">Advertise</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 AIToolVillage.com · All rights reserved</span>
+      <div style="display:flex;gap:18px">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="about.html#affiliate">Affiliate Disclosure</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Tab switching
+  function setTab(el, cat) {
+    document.querySelectorAll('.vtab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    filterByCategory(cat);
+  }
+
+  function filterByCategory(cat) {
+    const cards = document.querySelectorAll('.feat-card, .tool-row');
+    cards.forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Search
+  function handleSearch() {
+    const q = document.getElementById('searchInput').value.toLowerCase().trim();
+    if (!q) { filterByCategory('all'); return; }
+
+    const cards = document.querySelectorAll('.feat-card, .tool-row');
+    cards.forEach(card => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = text.includes(q) ? '' : 'none';
+    });
+  }
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Active nav pill on scroll
+  const sections = document.querySelectorAll('.profession-section');
+  const pills = document.querySelectorAll('.nav-pill');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 120) {
+        current = section.id;
+      }
+    });
+    pills.forEach(pill => {
+      pill.classList.remove('active');
+      if (pill.getAttribute('href') === `#${current}`) {
+        pill.classList.add('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
