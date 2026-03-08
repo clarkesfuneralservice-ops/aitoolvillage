@@ -709,7 +709,53 @@ footer {
 .footer-bottom a { color: rgba(255,255,255,0.35); text-decoration: none; }
 .footer-bottom a:hover { color: rgba(255,255,255,0.7); }
 
-/* ── ANIMATIONS ── */
+/* ── AFFILIATE CTA ON CARDS ── */
+.feat-cta {
+  display: block;
+  margin-top: 14px;
+  padding: 9px 0;
+  text-align: center;
+  background: var(--soil);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 7px;
+  transition: background 0.2s;
+  letter-spacing: 0.02em;
+}
+
+.feat-card:hover .feat-cta { background: var(--moss); }
+.gold-card .feat-cta { background: var(--wheat); color: var(--soil); }
+.gold-card:hover .feat-cta { background: #b8923e; }
+
+/* ── VISIT BUTTON ON TOOL ROWS ── */
+.tool-row-btn {
+  display: inline-block;
+  padding: 5px 12px;
+  background: var(--soil);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: background 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tool-row:hover .tool-row-btn { background: var(--moss); }
+
+/* ── SEO INTRO TEXT ── */
+.hero-seo {
+  font-size: 0.78rem;
+  color: var(--stone);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -768,7 +814,7 @@ footer {
 <!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow">340+ tools curated &amp; reviewed</div>
+    <div class="hero-eyebrow">50+ AI tools curated &amp; growing weekly</div>
     <h1>Your village of<br><em>AI tools</em> for<br>professionals</h1>
     <p class="hero-sub">The best AI tools for marketers, accountants and business professionals — hand-picked, honestly reviewed and ranked by people who actually use them.</p>
 
@@ -778,11 +824,13 @@ footer {
     </div>
 
     <div class="hero-meta">
-      <div class="hero-meta-item"><strong>340+</strong>Tools Listed</div>
-      <div class="hero-meta-item"><strong>18</strong>Categories</div>
-      <div class="hero-meta-item"><strong>12k+</strong>Monthly Users</div>
+      <div class="hero-meta-item"><strong>50+</strong>Tools Listed</div>
+      <div class="hero-meta-item"><strong>8</strong>Categories</div>
+      <div class="hero-meta-item"><strong>Growing</strong>New Tools Weekly</div>
       <div class="hero-meta-item"><strong>Free</strong>Always Free to Browse</div>
     </div>
+
+    <p class="hero-seo">Discover the best AI tools for marketing, writing, accounting, productivity and business. AIToolVillage curates and reviews the most powerful AI tools used by professionals worldwide — organised by category, use case and profession so you find exactly what you need, fast.</p>
   </div>
 
   <div class="hero-cards" aria-hidden="true">
@@ -836,16 +884,16 @@ footer {
 <!-- ── VILLAGE TABS ── -->
 <div class="village-bar">
   <div class="village-tabs">
-    <button class="vtab active" onclick="setTab(this,'all')"><span class="vtab-emoji">🏘️</span> All Tools <span class="vtab-count">340</span></button>
-    <button class="vtab" onclick="setTab(this,'writing')"><span class="vtab-emoji">✍️</span> Writing <span class="vtab-count">48</span></button>
-    <button class="vtab" onclick="setTab(this,'seo')"><span class="vtab-emoji">📈</span> SEO <span class="vtab-count">32</span></button>
-    <button class="vtab" onclick="setTab(this,'social')"><span class="vtab-emoji">📱</span> Social Media <span class="vtab-count">29</span></button>
-    <button class="vtab" onclick="setTab(this,'email')"><span class="vtab-emoji">📧</span> Email <span class="vtab-count">24</span></button>
-    <button class="vtab" onclick="setTab(this,'video')"><span class="vtab-emoji">🎬</span> Video <span class="vtab-count">21</span></button>
-    <button class="vtab" onclick="setTab(this,'ads')"><span class="vtab-emoji">🎯</span> Ads <span class="vtab-count">18</span></button>
-    <button class="vtab" onclick="setTab(this,'accounting')"><span class="vtab-emoji">🧾</span> Accounting <span class="vtab-count">36</span></button>
-    <button class="vtab" onclick="setTab(this,'analytics')"><span class="vtab-emoji">📊</span> Analytics <span class="vtab-count">22</span></button>
-    <button class="vtab" onclick="setTab(this,'free')"><span class="vtab-emoji">🆓</span> Free Tools <span class="vtab-count">90</span></button>
+    <button class="vtab active" onclick="setTab(this,'all')"><span class="vtab-emoji">🏘️</span> All Tools <span class="vtab-count">50+</span></button>
+    <button class="vtab" onclick="setTab(this,'writing')"><span class="vtab-emoji">✍️</span> Writing <span class="vtab-count">12</span></button>
+    <button class="vtab" onclick="setTab(this,'seo')"><span class="vtab-emoji">📈</span> SEO <span class="vtab-count">8</span></button>
+    <button class="vtab" onclick="setTab(this,'social')"><span class="vtab-emoji">📱</span> Social Media <span class="vtab-count">7</span></button>
+    <button class="vtab" onclick="setTab(this,'email')"><span class="vtab-emoji">📧</span> Email <span class="vtab-count">6</span></button>
+    <button class="vtab" onclick="setTab(this,'video')"><span class="vtab-emoji">🎬</span> Video <span class="vtab-count">5</span></button>
+    <button class="vtab" onclick="setTab(this,'ads')"><span class="vtab-emoji">🎯</span> Ads <span class="vtab-count">4</span></button>
+    <button class="vtab" onclick="setTab(this,'accounting')"><span class="vtab-emoji">🧾</span> Accounting <span class="vtab-count">8</span></button>
+    <button class="vtab" onclick="setTab(this,'analytics')"><span class="vtab-emoji">📊</span> Analytics <span class="vtab-count">5</span></button>
+    <button class="vtab" onclick="setTab(this,'free')"><span class="vtab-emoji">🆓</span> Free Tools <span class="vtab-count">20+</span></button>
   </div>
 </div>
 
@@ -875,6 +923,7 @@ footer {
           <div class="feat-tags"><span class="feat-tag">Writing</span><span class="feat-tag">Marketing</span></div>
           <span class="feat-price paid">From $49/mo</span>
         </div>
+        <div class="feat-cta">Try Jasper Free →</div>
       </a>
 
       <a href="tools/surfer-seo.html" class="feat-card gold-card" data-cat="seo">
@@ -891,6 +940,7 @@ footer {
           <div class="feat-tags"><span class="feat-tag">SEO</span><span class="feat-tag">Content</span></div>
           <span class="feat-price paid">From $89/mo</span>
         </div>
+        <div class="feat-cta">Try Surfer Free →</div>
       </a>
 
       <a href="tools/copy-ai.html" class="feat-card" data-cat="writing">
@@ -907,6 +957,7 @@ footer {
           <div class="feat-tags"><span class="feat-tag">Copy</span><span class="feat-tag">Ads</span></div>
           <span class="feat-price free">Free tier</span>
         </div>
+        <div class="feat-cta">Start Free →</div>
       </a>
 
       <a href="tools/freshbooks.html" class="feat-card" data-cat="accounting">
@@ -922,6 +973,7 @@ footer {
           <div class="feat-tags"><span class="feat-tag">Bookkeeping</span><span class="feat-tag">Invoicing</span></div>
           <span class="feat-price paid">From $17/mo</span>
         </div>
+        <div class="feat-cta">Try FreshBooks →</div>
       </a>
 
     </div>
@@ -953,6 +1005,7 @@ footer {
           <div class="tool-row-right">
             <span class="tool-row-tag">Writing</span>
             <span class="tool-row-price paid">$49/mo</span>
+            <span class="tool-row-btn">Try Free →</span>
           </div>
         </a>
 
@@ -965,6 +1018,7 @@ footer {
           <div class="tool-row-right">
             <span class="tool-row-tag">Copy</span>
             <span class="tool-row-price free">Free tier</span>
+            <span class="tool-row-btn">Start Free →</span>
           </div>
         </a>
 
@@ -977,6 +1031,7 @@ footer {
           <div class="tool-row-right">
             <span class="tool-row-tag">SEO</span>
             <span class="tool-row-price paid">$89/mo</span>
+            <span class="tool-row-btn">Try Surfer →</span>
           </div>
         </a>
 
@@ -989,6 +1044,7 @@ footer {
           <div class="tool-row-right">
             <span class="tool-row-tag">Ads</span>
             <span class="tool-row-price paid">$29/mo</span>
+            <span class="tool-row-btn">Visit Site →</span>
           </div>
         </a>
 
@@ -1001,6 +1057,7 @@ footer {
           <div class="tool-row-right">
             <span class="tool-row-tag">Video</span>
             <span class="tool-row-price paid">$23/mo</span>
+            <span class="tool-row-btn">Try Pictory →</span>
           </div>
         </a>
 
@@ -1013,6 +1070,7 @@ footer {
           <div class="tool-row-right">
             <span class="tool-row-tag">Social</span>
             <span class="tool-row-price free">Free tier</span>
+            <span class="tool-row-btn">Start Free →</span>
           </div>
         </a>
 
@@ -1049,6 +1107,7 @@ footer {
           <div class="tool-row-right">
             <span class="tool-row-tag">Bookkeeping</span>
             <span class="tool-row-price paid">$17/mo</span>
+            <span class="tool-row-btn">Try Free →</span>
           </div>
         </a>
 
@@ -1061,6 +1120,7 @@ footer {
           <div class="tool-row-right">
             <span class="tool-row-tag">Accounting</span>
             <span class="tool-row-price paid">$15/mo</span>
+            <span class="tool-row-btn">Try Xero →</span>
           </div>
         </a>
 
@@ -1073,6 +1133,7 @@ footer {
           <div class="tool-row-right">
             <span class="tool-row-tag">Tax</span>
             <span class="tool-row-price paid">$19/mo</span>
+            <span class="tool-row-btn">Visit Site →</span>
           </div>
         </a>
 
@@ -1085,6 +1146,7 @@ footer {
           <div class="tool-row-right">
             <span class="tool-row-tag">Expenses</span>
             <span class="tool-row-price paid">$25/mo</span>
+            <span class="tool-row-btn">Try Dext →</span>
           </div>
         </a>
 
