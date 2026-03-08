@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIToolVillage — Batch Page Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --soil: #1c1a14; --moss: #3d5a3e; --wheat: #c8a96e;
+  --cream: #f5f0e8; --parchment: #ede7d9; --stone: #9e9585;
+  --mist: #f9f6f0; --leaf: #4a7c59; --border: #ddd5c4;
+}
+body { font-family: 'Outfit', sans-serif; background: var(--mist); color: var(--soil); min-height: 100vh; }
+
+header {
+  background: var(--soil); color: white;
+  padding: 20px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+.logo span { color: var(--wheat); }
+.header-sub { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 40px; }
+
+/* BATCH SELECTOR */
+.batch-selector {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px; margin-bottom: 36px;
+}
+.batch-btn {
+  padding: 14px 16px; border-radius: 10px;
+  background: white; border: 1.5px solid var(--border);
+  cursor: pointer; text-align: left; transition: all 0.2s;
+  font-family: 'Outfit', sans-serif;
+}
+.batch-btn:hover { border-color: var(--moss); }
+.batch-btn.active { background: var(--soil); border-color: var(--soil); color: white; }
+.batch-btn .be { font-size: 1.2rem; display: block; margin-bottom: 4px; }
+.batch-btn .bt { font-size: 0.82rem; font-weight: 600; }
+.batch-btn .bc { font-size: 0.7rem; opacity: 0.6; }
+.batch-btn.active .bc { opacity: 0.5; }
+
+/* CONTROLS */
+.controls {
+  background: white; border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 24px; margin-bottom: 28px;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.control-label { font-size: 0.78rem; font-weight: 600; color: var(--stone); text-transform: uppercase; letter-spacing: 0.07em; }
+
+.btn-generate {
+  background: var(--moss); color: white; border: none;
+  padding: 12px 28px; border-radius: 8px;
+  font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 600;
+  cursor: pointer; transition: background 0.2s;
+  display: flex; align-items: center; gap: 8px;
+}
+.btn-generate:hover { background: var(--leaf); }
+.btn-generate:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-download {
+  background: var(--soil); color: white; border: none;
+  padding: 12px 28px; border-radius: 8px;
+  font-family: 'Outfit', sans-serif; font-size: 0.9rem; font-weight: 600;
+  cursor: pointer; transition: opacity 0.2s;
+  display: none; align-items: center; gap: 8px;
+}
+.btn-download:hover { opacity: 0.8; }
+.btn-download.visible { display: flex; }
+
+.progress-wrap { flex: 1; min-width: 200px; }
+.progress-bar-bg { background: var(--parchment); border-radius: 20px; height: 8px; overflow: hidden; }
+.progress-bar { background: var(--moss); height: 100%; width: 0; border-radius: 20px; transition: width 0.4s ease; }
+.progress-text { font-size: 0.75rem; color: var(--stone); margin-top: 5px; }
+
+/* TOOL CARDS GRID */
+.tools-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+.tool-card {
+  background: white; border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 0; overflow: hidden;
+  transition: border-color 0.2s;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.2s;
+}
+.tool-card.visible { opacity: 1; transform: translateY(0); }
+.tool-card:hover { border-color: var(--moss); }
+.tool-card.generating { border-color: var(--wheat); animation: pulse 1.5s infinite; }
+
+@keyframes pulse {
+  0%, 100% { border-color: var(--border); }
+  50% { border-color: var(--wheat); }
+}
+
+.card-header { padding: 16px 18px 12px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+.card-icon { width: 40px; height: 40px; border-radius: 9px; background: var(--parchment); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.card-name { font-weight: 600; font-size: 0.92rem; color: var(--soil); }
+.card-cat { font-size: 0.7rem; color: var(--stone); margin-top: 1px; }
+.card-status { margin-left: auto; font-size: 0.65rem; font-weight: 700; padding: 3px 8px; border-radius: 4px; }
+.status-pending { background: var(--parchment); color: var(--stone); }
+.status-generating { background: #fff3cd; color: #856404; }
+.status-done { background: #d1edda; color: #155724; }
+.status-error { background: #f8d7da; color: #721c24; }
+
+.card-body { padding: 14px 18px; }
+.card-desc { font-size: 0.78rem; color: #555; line-height: 1.65; margin-bottom: 10px; min-height: 60px; }
+.card-desc.skeleton { background: var(--parchment); border-radius: 4px; color: transparent; user-select: none; animation: shimmer 1.5s infinite; }
+
+@keyframes shimmer {
+  0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; }
+}
+
+.card-meta-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.card-price { font-size: 0.75rem; font-weight: 600; }
+.price-free { color: var(--leaf); }
+.price-paid { color: var(--stone); }
+.card-tag { font-size: 0.65rem; background: var(--parchment); border: 1px solid var(--border); color: var(--stone); padding: 2px 7px; border-radius: 4px; }
+
+.card-cta {
+  display: block; width: 100%; padding: 8px 0; text-align: center;
+  background: var(--soil); color: white; border: none;
+  font-family: 'Outfit', sans-serif; font-size: 0.77rem; font-weight: 600;
+  border-radius: 6px; cursor: pointer; text-decoration: none;
+  transition: background 0.2s;
+}
+.card-cta:hover { background: var(--moss); }
+
+/* STATS BAR */
+.stats-bar {
+  display: flex; gap: 24px; margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.stat { background: white; border: 1.5px solid var(--border); border-radius: 10px; padding: 14px 20px; flex: 1; min-width: 120px; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--soil); letter-spacing: -0.03em; }
+.stat-label { font-size: 0.72rem; color: var(--stone); font-weight: 500; margin-top: 2px; }
+
+/* LOG */
+.log-box {
+  background: var(--soil); border-radius: 10px;
+  padding: 16px 20px; margin-top: 28px;
+  font-family: monospace; font-size: 0.75rem; color: rgba(255,255,255,0.6);
+  max-height: 160px; overflow-y: auto; display: none;
+}
+.log-box.visible { display: block; }
+.log-line { margin-bottom: 4px; }
+.log-line.success { color: #81c784; }
+.log-line.info { color: var(--wheat); }
+.log-line.error { color: #ef9a9a; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">AITool<span>Village</span> — Batch Generator</div>
+    <div class="header-sub">AI-powered tool page generator · Build 200 pages fast</div>
+  </div>
+  <div style="font-size:0.78rem;color:rgba(255,255,255,0.4)">Powered by Claude AI</div>
+</header>
+
+<div class="container">
+
+  <!-- BATCH SELECTOR -->
+  <div style="margin-bottom:20px">
+    <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--stone);margin-bottom:12px">Select Batch to Generate</div>
+    <div class="batch-selector" id="batchSelector">
+      <button class="batch-btn active" onclick="selectBatch(this,0)"><span class="be">✍️</span><span class="bt">Batch 1</span><span class="bc">Writing & Copy · 30 tools</span></button>
+      <button class="batch-btn" onclick="selectBatch(this,1)"><span class="be">📈</span><span class="bt">Batch 2</span><span class="bc">SEO & Content · 30 tools</span></button>
+      <button class="batch-btn" onclick="selectBatch(this,2)"><span class="be">🎨</span><span class="bt">Batch 3</span><span class="bc">Image & Design · 25 tools</span></button>
+      <button class="batch-btn" onclick="selectBatch(this,3)"><span class="be">🎬</span><span class="bt">Batch 4</span><span class="bc">Video & Audio · 25 tools</span></button>
+      <button class="batch-btn" onclick="selectBatch(this,4)"><span class="be">🧾</span><span class="bt">Batch 5</span><span class="bc">Accounting & Finance · 25 tools</span></button>
+      <button class="batch-btn" onclick="selectBatch(this,5)"><span class="be">⚡</span><span class="bt">Batch 6</span><span class="bc">Productivity & Automation · 30 tools</span></button>
+      <button class="batch-btn" onclick="selectBatch(this,6)"><span class="be">💻</span><span class="bt">Batch 7</span><span class="bc">Code & Dev Tools · 20 tools</span></button>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num" id="statTotal">0</div><div class="stat-label">Pages Generated</div></div>
+    <div class="stat"><div class="stat-num" id="statDone">0</div><div class="stat-label">Completed</div></div>
+    <div class="stat"><div class="stat-num" id="statPending">0</div><div class="stat-label">Pending</div></div>
+    <div class="stat"><div class="stat-num" id="statAffiliate">0</div><div class="stat-label">Affiliate Links</div></div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <div>
+      <div class="control-label">Current Batch</div>
+      <div style="font-size:0.9rem;font-weight:600;color:var(--soil);margin-top:3px" id="batchLabel">Batch 1 — Writing & Copy Tools</div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-bar-bg"><div class="progress-bar" id="progressBar"></div></div>
+      <div class="progress-text" id="progressText">Ready to generate</div>
+    </div>
+    <button class="btn-generate" id="generateBtn" onclick="startGeneration()">
+      <span>⚡</span> Generate Batch
+    </button>
+    <button class="btn-download" id="downloadBtn" onclick="downloadPages()">
+      <span>📦</span> Download Pages
+    </button>
+  </div>
+
+  <!-- TOOLS GRID -->
+  <div class="tools-grid" id="toolsGrid"></div>
+
+  <!-- LOG -->
+  <div class="log-box" id="logBox"></div>
+
+</div>
+
+<script>
+const BATCHES = [
+  {
+    label: "Batch 1 — Writing & Copy Tools",
+    category: "Writing & Copywriting",
+    tools: [
+      { name: "Jasper AI", emoji: "✍️", cat: "AI Writing", price: "$49/mo", free: false, affiliate: "jasper.ai/affiliates", cta: "Try Jasper Free" },
+      { name: "Copy.ai", emoji: "📝", cat: "AI Copywriting", price: "Free tier", free: true, affiliate: "copy.ai/affiliate", cta: "Start Free" },
+      { name: "Writesonic", emoji: "⚡", cat: "AI Content Writer", price: "$16/mo", free: true, affiliate: "writesonic.com/affiliates", cta: "Try Free" },
+      { name: "Rytr", emoji: "🖊️", cat: "AI Writing Assistant", price: "Free tier", free: true, affiliate: "rytr.me/affiliate", cta: "Start Free" },
+      { name: "Anyword", emoji: "🎯", cat: "AI Marketing Copy", price: "$39/mo", free: false, affiliate: "anyword.com/affiliate", cta: "Try Free 7 Days" },
+      { name: "Hypotenuse AI", emoji: "🏪", cat: "AI eCommerce Writing", price: "$29/mo", free: false, affiliate: "hypotenuse.ai", cta: "Try Free" },
+      { name: "Wordtune", emoji: "🔄", cat: "AI Writing Rewriter", price: "Free tier", free: true, affiliate: "wordtune.com", cta: "Start Free" },
+      { name: "Quillbot", emoji: "✒️", cat: "AI Paraphrasing Tool", price: "Free tier", free: true, affiliate: "quillbot.com", cta: "Try Free" },
+      { name: "Grammarly", emoji: "✅", cat: "AI Grammar & Style", price: "Free tier", free: true, affiliate: "grammarly.com/affiliate", cta: "Start Free" },
+      { name: "Hemingway Editor", emoji: "📖", cat: "AI Writing Clarity", price: "$19.99 one-time", free: false, affiliate: "hemingwayapp.com", cta: "Try Online" },
+      { name: "Sudowrite", emoji: "🌀", cat: "AI Creative Writing", price: "$19/mo", free: false, affiliate: "sudowrite.com", cta: "Try Free" },
+      { name: "Longshot AI", emoji: "🏹", cat: "AI Long-form Writer", price: "$29/mo", free: false, affiliate: "longshot.ai", cta: "Try Free" },
+      { name: "Simplified", emoji: "🎨", cat: "AI Writing & Design", price: "Free tier", free: true, affiliate: "simplified.com", cta: "Start Free" },
+      { name: "Peppertype AI", emoji: "🌶️", cat: "AI Content Generator", price: "$35/mo", free: false, affiliate: "peppertype.ai", cta: "Try Free" },
+      { name: "Closerscopy", emoji: "💼", cat: "AI Sales Copywriting", price: "$49.99/mo", free: false, affiliate: "closerscopy.com", cta: "Try Free" },
+      { name: "Narrato", emoji: "📋", cat: "AI Content Workspace", price: "$36/mo", free: false, affiliate: "narrato.io", cta: "Try Free" },
+      { name: "Texta AI", emoji: "📰", cat: "AI Blog Writer", price: "$29/mo", free: true, affiliate: "texta.ai", cta: "Start Free" },
+      { name: "Article Forge", emoji: "🔧", cat: "AI Article Writer", price: "$27/mo", free: false, affiliate: "articleforge.com/affiliate", cta: "Try Free" },
+      { name: "Frase.io", emoji: "🧠", cat: "AI SEO Content Brief", price: "$14.99/mo", free: false, affiliate: "frase.io/affiliate", cta: "Try Free 5 Days" },
+      { name: "Recently AI", emoji: "🚀", cat: "AI Social Copy", price: "Free tier", free: true, affiliate: "recently.io", cta: "Start Free" },
+      { name: "Scalenut", emoji: "📊", cat: "AI SEO Writing", price: "$39/mo", free: false, affiliate: "scalenut.com", cta: "Try Free" },
+      { name: "Neuronwriter", emoji: "🧬", cat: "AI Content Optimiser", price: "$23/mo", free: false, affiliate: "neuronwriter.com", cta: "Try Free" },
+      { name: "GrowthBar", emoji: "📈", cat: "AI SEO Blog Writer", price: "$48/mo", free: false, affiliate: "growthbarseo.com", cta: "Try Free 5 Days" },
+      { name: "Chimp Rewriter", emoji: "🐒", cat: "AI Article Rewriter", price: "$15/mo", free: false, affiliate: "chimprewriter.com", cta: "Try Free" },
+      { name: "Wordplay AI", emoji: "🎲", cat: "AI Long-form Content", price: "$29/mo", free: false, affiliate: "wordplay.ai", cta: "Try Free" },
+      { name: "Lex Page", emoji: "📄", cat: "AI Writing Assistant", price: "Free beta", free: true, affiliate: "lex.page", cta: "Try Free" },
+      { name: "Ink for All", emoji: "🖋️", cat: "AI SEO Content Editor", price: "Free tier", free: true, affiliate: "inkforall.com", cta: "Start Free" },
+      { name: "Smartcopy", emoji: "💡", cat: "AI Copy Generator", price: "Free tier", free: true, affiliate: "smartcopy.ai", cta: "Start Free" },
+      { name: "Copysmith", emoji: "🔨", cat: "AI eCommerce Copy", price: "$19/mo", free: false, affiliate: "copysmith.ai", cta: "Try Free" },
+      { name: "Typli AI", emoji: "⌨️", cat: "AI Blog & Ad Writer", price: "Free tier", free: true, affiliate: "typli.ai", cta: "Start Free" },
+    ]
+  },
+  {
+    label: "Batch 2 — SEO & Content Tools",
+    category: "SEO & Content Marketing",
+    tools: [
+      { name: "Surfer SEO", emoji: "📈", cat: "AI Content SEO", price: "$89/mo", free: false, affiliate: "surferseo.com/affiliate", cta: "Try Free" },
+      { name: "Semrush", emoji: "🔍", cat: "AI SEO Suite", price: "$130/mo", free: true, affiliate: "berush.com", cta: "Try Free" },
+      { name: "Ahrefs", emoji: "🕷️", cat: "SEO Research Platform", price: "$99/mo", free: false, affiliate: "ahrefs.com", cta: "Visit Site" },
+      { name: "Clearscope", emoji: "📊", cat: "AI Content Optimiser", price: "$189/mo", free: false, affiliate: "clearscope.io", cta: "Book Demo" },
+      { name: "MarketMuse", emoji: "🎯", cat: "AI Content Strategy", price: "Free tier", free: true, affiliate: "marketmuse.com", cta: "Start Free" },
+      { name: "Dashword", emoji: "📉", cat: "AI Content Briefs", price: "$99/mo", free: false, affiliate: "dashword.com", cta: "Try Free" },
+      { name: "Outranking", emoji: "🏆", cat: "AI SEO Writing", price: "$79/mo", free: false, affiliate: "outranking.io", cta: "Try Free" },
+      { name: "RankIQ", emoji: "🎖️", cat: "AI SEO Keyword Tool", price: "$49/mo", free: false, affiliate: "rankiq.com", cta: "Try Free" },
+      { name: "Diib", emoji: "📡", cat: "AI SEO Analytics", price: "Free tier", free: true, affiliate: "diib.com", cta: "Start Free" },
+      { name: "SE Ranking", emoji: "🔢", cat: "AI SEO Platform", price: "$55/mo", free: false, affiliate: "seranking.com/affiliate", cta: "Try Free 14 Days" },
+      { name: "Mangools", emoji: "🥭", cat: "SEO Tool Suite", price: "$29/mo", free: false, affiliate: "mangools.com/affiliate", cta: "Try Free 10 Days" },
+      { name: "BrightEdge", emoji: "💎", cat: "Enterprise SEO AI", price: "Custom", free: false, affiliate: "brightedge.com", cta: "Book Demo" },
+      { name: "Moz Pro", emoji: "📐", cat: "SEO Research & Tracking", price: "$99/mo", free: true, affiliate: "moz.com/affiliate", cta: "Try Free 30 Days" },
+      { name: "AccuRanker", emoji: "📌", cat: "AI Rank Tracker", price: "$116/mo", free: false, affiliate: "accuranker.com", cta: "Try Free 14 Days" },
+      { name: "Serpstat", emoji: "🐍", cat: "AI SEO Platform", price: "$59/mo", free: true, affiliate: "serpstat.com/affiliate", cta: "Try Free" },
+      { name: "Conductor", emoji: "🎵", cat: "Enterprise Content SEO", price: "Custom", free: false, affiliate: "conductor.com", cta: "Book Demo" },
+      { name: "Linkody", emoji: "🔗", cat: "AI Backlink Monitor", price: "$14.90/mo", free: false, affiliate: "linkody.com", cta: "Try Free 30 Days" },
+      { name: "Topic", emoji: "📚", cat: "AI Topic Clusters", price: "$99/mo", free: false, affiliate: "usetopic.com", cta: "Try Free" },
+      { name: "AlliAI", emoji: "🤖", cat: "AI On-page SEO", price: "$299/mo", free: false, affiliate: "alliai.com", cta: "Try Free 10 Days" },
+      { name: "Keyword Insights", emoji: "💡", cat: "AI Keyword Clustering", price: "$58/mo", free: false, affiliate: "keywordinsights.ai", cta: "Try Free" },
+      { name: "INK", emoji: "🖊️", cat: "AI SEO Content Editor", price: "Free tier", free: true, affiliate: "inkforall.com", cta: "Start Free" },
+      { name: "Twinword", emoji: "👯", cat: "AI Keyword Finder", price: "$18/mo", free: true, affiliate: "twinword.com", cta: "Start Free" },
+      { name: "Ubersuggest", emoji: "📢", cat: "AI SEO Keyword Tool", price: "$29/mo", free: true, affiliate: "neilpatel.com/ubersuggest", cta: "Try Free" },
+      { name: "AnswerThePublic", emoji: "❓", cat: "Search Intent Research", price: "$9/mo", free: true, affiliate: "answerthepublic.com", cta: "Start Free" },
+      { name: "SpyFu", emoji: "🕵️", cat: "Competitor SEO Research", price: "$39/mo", free: true, affiliate: "spyfu.com", cta: "Try Free" },
+      { name: "Majestic SEO", emoji: "👑", cat: "Backlink Analysis", price: "$49.99/mo", free: false, affiliate: "majestic.com/affiliate", cta: "Try Free" },
+      { name: "Botify", emoji: "🤖", cat: "Enterprise SEO Crawler", price: "Custom", free: false, affiliate: "botify.com", cta: "Book Demo" },
+      { name: "Cognitive SEO", emoji: "🧠", cat: "AI Backlink & Rank Tool", price: "$129/mo", free: false, affiliate: "cognitiveseo.com", cta: "Try Free 14 Days" },
+      { name: "Sitebulb", emoji: "💡", cat: "AI Site Auditor", price: "$13.50/mo", free: false, affiliate: "sitebulb.com", cta: "Try Free 14 Days" },
+      { name: "Screaming Frog", emoji: "🐸", cat: "SEO Site Crawler", price: "Free tier", free: true, affiliate: "screamingfrog.co.uk", cta: "Download Free" },
+    ]
+  },
+  {
+    label: "Batch 3 — Image & Design Tools",
+    category: "AI Image Generation & Design",
+    tools: [
+      { name: "Midjourney", emoji: "🎨", cat: "AI Image Generation", price: "$10/mo", free: false, affiliate: "midjourney.com", cta: "Start Creating" },
+      { name: "DALL-E 3", emoji: "🖼️", cat: "AI Image Generator", price: "Free in ChatGPT", free: true, affiliate: "openai.com", cta: "Try Free" },
+      { name: "Stable Diffusion", emoji: "🌊", cat: "Open Source AI Art", price: "Free", free: true, affiliate: "stability.ai", cta: "Download Free" },
+      { name: "Adobe Firefly", emoji: "✨", cat: "AI Creative Suite", price: "Free credits", free: true, affiliate: "adobe.com", cta: "Try Free" },
+      { name: "Canva AI", emoji: "🖌️", cat: "AI Design Platform", price: "Free tier", free: true, affiliate: "canva.com/affiliate", cta: "Start Free" },
+      { name: "Leonardo AI", emoji: "🦁", cat: "AI Image Generation", price: "Free tier", free: true, affiliate: "leonardo.ai", cta: "Start Free" },
+      { name: "NightCafe Studio", emoji: "🌃", cat: "AI Art Generator", price: "Free credits", free: true, affiliate: "nightcafe.studio", cta: "Create Free" },
+      { name: "Playground AI", emoji: "🛝", cat: "AI Image Creator", price: "Free tier", free: true, affiliate: "playground.ai", cta: "Start Free" },
+      { name: "Pika Labs", emoji: "🎭", cat: "AI Image to Video", price: "Free beta", free: true, affiliate: "pika.art", cta: "Try Free" },
+      { name: "Looka", emoji: "🏷️", cat: "AI Logo Generator", price: "$20 one-time", free: false, affiliate: "looka.com/affiliate", cta: "Generate Logo" },
+      { name: "Brandmark", emoji: "💠", cat: "AI Brand Design", price: "$25 one-time", free: false, affiliate: "brandmark.io", cta: "Design Free" },
+      { name: "Designs.ai", emoji: "🎯", cat: "AI Design Suite", price: "$29/mo", free: false, affiliate: "designs.ai", cta: "Try Free 7 Days" },
+      { name: "Stockimg.ai", emoji: "📸", cat: "AI Stock Images", price: "$19/mo", free: true, affiliate: "stockimg.ai", cta: "Start Free" },
+      { name: "Removal.ai", emoji: "✂️", cat: "AI Background Remover", price: "Free tier", free: true, affiliate: "removal.ai", cta: "Remove Free" },
+      { name: "Photoroom", emoji: "📷", cat: "AI Photo Editor", price: "Free tier", free: true, affiliate: "photoroom.com", cta: "Edit Free" },
+      { name: "Remove.bg", emoji: "🔲", cat: "AI Background Removal", price: "Free tier", free: true, affiliate: "remove.bg", cta: "Try Free" },
+      { name: "Fotor AI", emoji: "🌟", cat: "AI Photo Enhancer", price: "Free tier", free: true, affiliate: "fotor.com", cta: "Edit Free" },
+      { name: "Jasper Art", emoji: "🖼️", cat: "AI Art for Marketers", price: "Included in Jasper", free: false, affiliate: "jasper.ai/affiliates", cta: "Try Free" },
+      { name: "Bing Image Creator", emoji: "🔵", cat: "Free AI Image Tool", price: "Free", free: true, affiliate: "bing.com/images/create", cta: "Create Free" },
+      { name: "Ideogram", emoji: "💭", cat: "AI Text-in-Image", price: "Free tier", free: true, affiliate: "ideogram.ai", cta: "Try Free" },
+      { name: "Craiyon", emoji: "🖍️", cat: "Free AI Image Gen", price: "Free", free: true, affiliate: "craiyon.com", cta: "Create Free" },
+      { name: "Kittl", emoji: "🎪", cat: "AI Graphic Design", price: "Free tier", free: true, affiliate: "kittl.com", cta: "Start Free" },
+      { name: "Visme AI", emoji: "📊", cat: "AI Infographic Maker", price: "Free tier", free: true, affiliate: "visme.co/affiliates", cta: "Start Free" },
+      { name: "Picsart AI", emoji: "🎆", cat: "AI Photo Editor", price: "Free tier", free: true, affiliate: "picsart.com", cta: "Edit Free" },
+      { name: "Deep Dream Generator", emoji: "💫", cat: "AI Artistic Images", price: "Free tier", free: true, affiliate: "deepdreamgenerator.com", cta: "Create Free" },
+    ]
+  },
+  {
+    label: "Batch 4 — Video & Audio Tools",
+    category: "AI Video & Audio",
+    tools: [
+      { name: "Pictory", emoji: "🎬", cat: "AI Video Creator", price: "$23/mo", free: false, affiliate: "pictory.ai/affiliates", cta: "Try Free" },
+      { name: "Runway ML", emoji: "🎭", cat: "AI Video Generation", price: "Free tier", free: true, affiliate: "runwayml.com", cta: "Start Free" },
+      { name: "Synthesia", emoji: "🤵", cat: "AI Avatar Videos", price: "$29/mo", free: false, affiliate: "synthesia.io/affiliate", cta: "Try Free" },
+      { name: "ElevenLabs", emoji: "🎙️", cat: "AI Voice Generation", price: "Free tier", free: true, affiliate: "elevenlabs.io/affiliate", cta: "Start Free" },
+      { name: "HeyGen", emoji: "👤", cat: "AI Video Avatar", price: "Free tier", free: true, affiliate: "heygen.com", cta: "Try Free" },
+      { name: "Descript", emoji: "✂️", cat: "AI Video & Podcast Editor", price: "Free tier", free: true, affiliate: "descript.com/affiliate", cta: "Start Free" },
+      { name: "Opus Clip", emoji: "📎", cat: "AI Video Repurposing", price: "Free tier", free: true, affiliate: "opus.pro", cta: "Clip for Free" },
+      { name: "InVideo AI", emoji: "📹", cat: "AI Video Maker", price: "Free tier", free: true, affiliate: "invideo.io/affiliate", cta: "Start Free" },
+      { name: "Lumen5", emoji: "💡", cat: "AI Video From Text", price: "Free tier", free: true, affiliate: "lumen5.com", cta: "Create Free" },
+      { name: "Fliki", emoji: "🦜", cat: "AI Text to Video", price: "Free tier", free: true, affiliate: "fliki.ai/affiliate", cta: "Start Free" },
+      { name: "Murf AI", emoji: "🎤", cat: "AI Voice Generator", price: "Free tier", free: true, affiliate: "murf.ai/affiliate", cta: "Start Free" },
+      { name: "Podcastle", emoji: "🏰", cat: "AI Podcast Studio", price: "Free tier", free: true, affiliate: "podcastle.ai", cta: "Record Free" },
+      { name: "Suno AI", emoji: "🎵", cat: "AI Music Generator", price: "Free tier", free: true, affiliate: "suno.ai", cta: "Create Free" },
+      { name: "Udio", emoji: "🎶", cat: "AI Song Generator", price: "Free tier", free: true, affiliate: "udio.com", cta: "Generate Free" },
+      { name: "Otter.ai", emoji: "🦦", cat: "AI Meeting Transcription", price: "Free tier", free: true, affiliate: "otter.ai/affiliate", cta: "Start Free" },
+      { name: "Vidyo.ai", emoji: "🎞️", cat: "AI Short Clip Maker", price: "Free tier", free: true, affiliate: "vidyo.ai", cta: "Clip for Free" },
+      { name: "Steve AI", emoji: "🤖", cat: "AI Animated Videos", price: "$20/mo", free: false, affiliate: "steve.ai", cta: "Try Free" },
+      { name: "Elai.io", emoji: "🎓", cat: "AI Training Videos", price: "$29/mo", free: false, affiliate: "elai.io", cta: "Try Free" },
+      { name: "Colossyan", emoji: "🗿", cat: "AI Workplace Videos", price: "$28/mo", free: false, affiliate: "colossyan.com", cta: "Try Free" },
+      { name: "Rephrase.ai", emoji: "🔁", cat: "AI Personalized Video", price: "Custom", free: false, affiliate: "rephrase.ai", cta: "Book Demo" },
+      { name: "Soundraw", emoji: "🎸", cat: "AI Music Composer", price: "$16.99/mo", free: false, affiliate: "soundraw.io", cta: "Try Free" },
+      { name: "Beatoven AI", emoji: "🥁", cat: "AI Background Music", price: "Free tier", free: true, affiliate: "beatoven.ai", cta: "Create Free" },
+      { name: "Lalal.ai", emoji: "🎼", cat: "AI Audio Splitter", price: "Free credits", free: true, affiliate: "lalal.ai", cta: "Try Free" },
+      { name: "Adobe Podcast", emoji: "🎙️", cat: "AI Audio Enhancer", price: "Free beta", free: true, affiliate: "podcast.adobe.com", cta: "Enhance Free" },
+      { name: "Whisper AI", emoji: "🔊", cat: "AI Speech to Text", price: "Free (open source)", free: true, affiliate: "openai.com/whisper", cta: "Use Free" },
+    ]
+  },
+  {
+    label: "Batch 5 — Accounting & Finance Tools",
+    category: "AI Accounting & Finance",
+    tools: [
+      { name: "FreshBooks", emoji: "🧾", cat: "AI Bookkeeping", price: "$17/mo", free: false, affiliate: "freshbooks.com/partners", cta: "Try Free 30 Days" },
+      { name: "Xero", emoji: "📒", cat: "Cloud Accounting", price: "$15/mo", free: false, affiliate: "xero.com/partner", cta: "Try Free" },
+      { name: "QuickBooks AI", emoji: "📚", cat: "AI Accounting", price: "$30/mo", free: false, affiliate: "quickbooks.intuit.com/affiliates", cta: "Try Free 30 Days" },
+      { name: "Dext", emoji: "🔍", cat: "AI Receipt Scanning", price: "$25/mo", free: false, affiliate: "dext.com", cta: "Try Free" },
+      { name: "TaxJar", emoji: "📋", cat: "AI Tax Automation", price: "$19/mo", free: false, affiliate: "taxjar.com/affiliates", cta: "Try Free" },
+      { name: "Fathom HQ", emoji: "📊", cat: "AI Financial Reporting", price: "$39/mo", free: false, affiliate: "fathomhq.com", cta: "Try Free 14 Days" },
+      { name: "Avalara", emoji: "⚖️", cat: "AI Tax Compliance", price: "Custom", free: false, affiliate: "avalara.com", cta: "Book Demo" },
+      { name: "Gusto", emoji: "👥", cat: "AI Payroll Software", price: "$40/mo", free: false, affiliate: "gusto.com/affiliates", cta: "Get Started" },
+      { name: "Deel", emoji: "🌍", cat: "AI Global Payroll", price: "Free (contractors)", free: true, affiliate: "deel.com/affiliate", cta: "Start Free" },
+      { name: "Expensify", emoji: "💳", cat: "AI Expense Reports", price: "Free tier", free: true, affiliate: "expensify.com/affiliate", cta: "Start Free" },
+      { name: "Ramp", emoji: "🚀", cat: "AI Corporate Cards", price: "Free", free: true, affiliate: "ramp.com", cta: "Apply Free" },
+      { name: "Brex", emoji: "💎", cat: "AI Business Banking", price: "Free", free: true, affiliate: "brex.com/affiliate", cta: "Apply Free" },
+      { name: "Wave Accounting", emoji: "🌊", cat: "Free AI Accounting", price: "Free", free: true, affiliate: "waveapps.com", cta: "Start Free" },
+      { name: "Zoho Books", emoji: "📗", cat: "AI Accounting Suite", price: "Free tier", free: true, affiliate: "zoho.com/books/affiliate", cta: "Start Free" },
+      { name: "Sage Intacct", emoji: "🏛️", cat: "AI Cloud Accounting", price: "Custom", free: false, affiliate: "sage.com", cta: "Book Demo" },
+      { name: "Spotlight Reporting", emoji: "🔦", cat: "AI Financial Reports", price: "$59/mo", free: false, affiliate: "spotlightreporting.com", cta: "Try Free 14 Days" },
+      { name: "Syft Analytics", emoji: "📐", cat: "AI Business Analytics", price: "Free tier", free: true, affiliate: "syftanalytics.com", cta: "Start Free" },
+      { name: "Float Cash Flow", emoji: "💰", cat: "AI Cash Flow Forecast", price: "$49/mo", free: false, affiliate: "floatapp.com", cta: "Try Free 14 Days" },
+      { name: "Chargebee", emoji: "🔄", cat: "AI Subscription Billing", price: "Free tier", free: true, affiliate: "chargebee.com", cta: "Start Free" },
+      { name: "Stripe", emoji: "💳", cat: "AI Payments Platform", price: "Free (% fee)", free: true, affiliate: "stripe.com", cta: "Start Free" },
+      { name: "Bench", emoji: "🪑", cat: "AI Bookkeeping Service", price: "$299/mo", free: false, affiliate: "bench.co/affiliate", cta: "Try Free Month" },
+      { name: "Pilot", emoji: "✈️", cat: "AI Startup Accounting", price: "$499/mo", free: false, affiliate: "pilot.com", cta: "Get Started" },
+      { name: "Autobooks", emoji: "📔", cat: "AI Small Biz Accounting", price: "$9/mo", free: false, affiliate: "autobooks.co", cta: "Try Free" },
+      { name: "Kashoo", emoji: "💵", cat: "AI Simple Accounting", price: "$216/yr", free: false, affiliate: "kashoo.com", cta: "Try Free 14 Days" },
+      { name: "OneUp", emoji: "1️⃣", cat: "AI Accounting & CRM", price: "$9/mo", free: false, affiliate: "oneup.com", cta: "Try Free 30 Days" },
+    ]
+  },
+  {
+    label: "Batch 6 — Productivity & Automation",
+    category: "AI Productivity & Automation",
+    tools: [
+      { name: "Notion AI", emoji: "📓", cat: "AI Workspace", price: "Free tier", free: true, affiliate: "notion.so/affiliate", cta: "Start Free" },
+      { name: "Zapier AI", emoji: "⚡", cat: "AI Workflow Automation", price: "Free tier", free: true, affiliate: "zapier.com/affiliate", cta: "Start Free" },
+      { name: "Make (Integromat)", emoji: "🔗", cat: "AI Visual Automation", price: "Free tier", free: true, affiliate: "make.com/affiliate", cta: "Start Free" },
+      { name: "Monday AI", emoji: "📅", cat: "AI Project Management", price: "Free tier", free: true, affiliate: "monday.com/affiliate", cta: "Start Free" },
+      { name: "Asana AI", emoji: "🎯", cat: "AI Task Management", price: "Free tier", free: true, affiliate: "asana.com/affiliates", cta: "Start Free" },
+      { name: "ClickUp AI", emoji: "✅", cat: "AI Project & Tasks", price: "Free tier", free: true, affiliate: "clickup.com/affiliate", cta: "Start Free" },
+      { name: "Todoist AI", emoji: "☑️", cat: "AI To-Do Lists", price: "Free tier", free: true, affiliate: "todoist.com/affiliate", cta: "Start Free" },
+      { name: "Reclaim AI", emoji: "⏰", cat: "AI Calendar Scheduling", price: "Free tier", free: true, affiliate: "reclaim.ai", cta: "Start Free" },
+      { name: "Motion AI", emoji: "🏃", cat: "AI Schedule Planner", price: "$34/mo", free: false, affiliate: "usemotion.com/affiliate", cta: "Try Free 7 Days" },
+      { name: "Mem AI", emoji: "🧠", cat: "AI Note Taking", price: "Free tier", free: true, affiliate: "mem.ai", cta: "Start Free" },
+      { name: "Obsidian AI", emoji: "💎", cat: "AI Knowledge Base", price: "Free", free: true, affiliate: "obsidian.md", cta: "Download Free" },
+      { name: "Coda AI", emoji: "📦", cat: "AI Docs & Spreadsheets", price: "Free tier", free: true, affiliate: "coda.io/affiliate", cta: "Start Free" },
+      { name: "Airtable AI", emoji: "🗃️", cat: "AI Database", price: "Free tier", free: true, affiliate: "airtable.com/affiliate", cta: "Start Free" },
+      { name: "Slack AI", emoji: "💬", cat: "AI Team Messaging", price: "Free tier", free: true, affiliate: "slack.com/affiliate", cta: "Start Free" },
+      { name: "Loom AI", emoji: "🎥", cat: "AI Video Messaging", price: "Free tier", free: true, affiliate: "loom.com/affiliate", cta: "Start Free" },
+      { name: "Calendly AI", emoji: "📆", cat: "AI Meeting Scheduler", price: "Free tier", free: true, affiliate: "calendly.com/affiliate", cta: "Start Free" },
+      { name: "Superhuman", emoji: "🦸", cat: "AI Email Client", price: "$30/mo", free: false, affiliate: "superhuman.com", cta: "Get Access" },
+      { name: "Sanebox", emoji: "📬", cat: "AI Email Filter", price: "$7/mo", free: false, affiliate: "sanebox.com/affiliate", cta: "Try Free 14 Days" },
+      { name: "Bardeen AI", emoji: "🎻", cat: "AI Browser Automation", price: "Free tier", free: true, affiliate: "bardeen.ai", cta: "Download Free" },
+      { name: "Magical AI", emoji: "🪄", cat: "AI Text Expander", price: "Free", free: true, affiliate: "getmagical.com", cta: "Download Free" },
+      { name: "Typedesk", emoji: "⌨️", cat: "AI Canned Responses", price: "Free tier", free: true, affiliate: "typedesk.com", cta: "Start Free" },
+      { name: "Fireflies AI", emoji: "🔥", cat: "AI Meeting Notes", price: "Free tier", free: true, affiliate: "fireflies.ai/affiliate", cta: "Start Free" },
+      { name: "Krisp AI", emoji: "🔇", cat: "AI Noise Cancellation", price: "Free tier", free: true, affiliate: "krisp.ai/affiliate", cta: "Try Free" },
+      { name: "Taskade AI", emoji: "📋", cat: "AI Team Productivity", price: "Free tier", free: true, affiliate: "taskade.com/affiliate", cta: "Start Free" },
+      { name: "Tana AI", emoji: "🌿", cat: "AI Outliner & Notes", price: "Free beta", free: true, affiliate: "tana.inc", cta: "Join Beta" },
+      { name: "Reflect Notes", emoji: "🪞", cat: "AI Networked Notes", price: "$10/mo", free: false, affiliate: "reflect.app", cta: "Try Free 14 Days" },
+      { name: "Saga AI", emoji: "📖", cat: "AI Connected Workspace", price: "Free tier", free: true, affiliate: "saga.so", cta: "Start Free" },
+      { name: "Heights Platform", emoji: "🏔️", cat: "AI Course Creator", price: "$19/mo", free: false, affiliate: "heightsplatform.com", cta: "Try Free" },
+      { name: "Fathom Video", emoji: "🦈", cat: "AI Meeting Recorder", price: "Free", free: true, affiliate: "fathom.video", cta: "Download Free" },
+      { name: "Timely AI", emoji: "⌚", cat: "AI Time Tracker", price: "$11/mo", free: false, affiliate: "timelyapp.com/affiliate", cta: "Try Free 14 Days" },
+    ]
+  },
+  {
+    label: "Batch 7 — Code & Dev Tools",
+    category: "AI Coding & Development",
+    tools: [
+      { name: "GitHub Copilot", emoji: "🐙", cat: "AI Pair Programmer", price: "$10/mo", free: false, affiliate: "github.com/features/copilot", cta: "Try Free 30 Days" },
+      { name: "Cursor AI", emoji: "🖱️", cat: "AI Code Editor", price: "Free tier", free: true, affiliate: "cursor.sh", cta: "Download Free" },
+      { name: "Tabnine", emoji: "🔵", cat: "AI Code Completion", price: "Free tier", free: true, affiliate: "tabnine.com", cta: "Start Free" },
+      { name: "Replit AI", emoji: "🔄", cat: "AI Online IDE", price: "Free tier", free: true, affiliate: "replit.com/affiliate", cta: "Start Free" },
+      { name: "CodeWhisperer", emoji: "🌟", cat: "AI Coding (Amazon)", price: "Free tier", free: true, affiliate: "aws.amazon.com/codewhisperer", cta: "Try Free" },
+      { name: "Codeium", emoji: "💻", cat: "AI Code Assistant", price: "Free", free: true, affiliate: "codeium.com", cta: "Download Free" },
+      { name: "Phind", emoji: "🔍", cat: "AI Developer Search", price: "Free tier", free: true, affiliate: "phind.com", cta: "Search Free" },
+      { name: "Mutable AI", emoji: "🔀", cat: "AI Code Refactoring", price: "$17/mo", free: false, affiliate: "mutable.ai", cta: "Try Free" },
+      { name: "Sourcegraph Cody", emoji: "📡", cat: "AI Codebase Search", price: "Free tier", free: true, affiliate: "sourcegraph.com", cta: "Try Free" },
+      { name: "Mintlify", emoji: "🌿", cat: "AI Docs Writer", price: "Free tier", free: true, affiliate: "mintlify.com", cta: "Start Free" },
+      { name: "Stenography", emoji: "📝", cat: "AI Code Documenter", price: "Free tier", free: true, affiliate: "stenography.dev", cta: "Try Free" },
+      { name: "Debuild", emoji: "🏗️", cat: "AI Web App Builder", price: "Beta", free: true, affiliate: "debuild.app", cta: "Join Beta" },
+      { name: "Durable AI", emoji: "🏢", cat: "AI Website Builder", price: "$15/mo", free: false, affiliate: "durable.co/affiliate", cta: "Build Free" },
+      { name: "Framer AI", emoji: "🖼️", cat: "AI Website Designer", price: "Free tier", free: true, affiliate: "framer.com/affiliate", cta: "Start Free" },
+      { name: "Wix ADI", emoji: "🎪", cat: "AI Website Builder", price: "Free tier", free: true, affiliate: "wix.com/affiliates", cta: "Build Free" },
+      { name: "10Web AI", emoji: "🕸️", cat: "AI WordPress Builder", price: "$10/mo", free: false, affiliate: "10web.io/affiliate", cta: "Try Free 7 Days" },
+      { name: "Bubble AI", emoji: "🫧", cat: "AI No-Code Builder", price: "Free tier", free: true, affiliate: "bubble.io/affiliate", cta: "Build Free" },
+      { name: "Webflow AI", emoji: "🌊", cat: "AI Web Design", price: "Free tier", free: true, affiliate: "webflow.com/affiliate", cta: "Build Free" },
+      { name: "v0 by Vercel", emoji: "▲", cat: "AI UI Generator", price: "Free tier", free: true, affiliate: "v0.dev", cta: "Generate Free" },
+      { name: "Bolt.new", emoji: "⚡", cat: "AI Full-Stack Builder", price: "Free tier", free: true, affiliate: "bolt.new", cta: "Build Free" },
+    ]
+  }
+];
+
+let currentBatch = 0;
+let generatedPages = {};
+let totalGenerated = 0;
+let totalDone = 0;
+
+function selectBatch(btn, idx) {
+  document.querySelectorAll('.batch-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentBatch = idx;
+  document.getElementById('batchLabel').textContent = BATCHES[idx].label;
+  renderToolCards(idx);
+  document.getElementById('progressBar').style.width = '0%';
+  document.getElementById('progressText').textContent = 'Ready to generate';
+  document.getElementById('downloadBtn').classList.remove('visible');
+  document.getElementById('generateBtn').disabled = false;
+}
+
+function renderToolCards(batchIdx) {
+  const batch = BATCHES[batchIdx];
+  const grid = document.getElementById('toolsGrid');
+  grid.innerHTML = '';
+
+  batch.tools.forEach((tool, i) => {
+    const key = `${batchIdx}-${i}`;
+    const existing = generatedPages[key];
+    const card = document.createElement('div');
+    card.className = 'tool-card';
+    card.id = `card-${batchIdx}-${i}`;
+
+    card.innerHTML = `
+      <div class="card-header">
+        <div class="card-icon">${tool.emoji}</div>
+        <div>
+          <div class="card-name">${tool.name}</div>
+          <div class="card-cat">${tool.cat}</div>
+        </div>
+        <span class="card-status ${existing ? 'status-done' : 'status-pending'}">${existing ? '✓ Done' : 'Pending'}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-desc ${existing ? '' : 'skeleton'}">${existing ? existing.desc : 'Generating description...'}</div>
+        <div class="card-meta-row">
+          <div class="card-tag">${tool.cat}</div>
+          <span class="card-price ${tool.free ? 'price-free' : 'price-paid'}">${tool.price}</span>
+        </div>
+        <a href="#" class="card-cta">${tool.cta} →</a>
+      </div>
+    `;
+
+    setTimeout(() => card.classList.add('visible'), i * 30);
+    grid.appendChild(card);
+  });
+
+  updateStats();
+}
+
+async function startGeneration() {
+  const btn = document.getElementById('generateBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span>⏳</span> Generating...';
+
+  const batch = BATCHES[currentBatch];
+  const logBox = document.getElementById('logBox');
+  logBox.classList.add('visible');
+
+  addLog(`Starting ${batch.label}...`, 'info');
+  addLog(`${batch.tools.length} tool pages to generate`, 'info');
+
+  for (let i = 0; i < batch.tools.length; i++) {
+    const tool = batch.tools[i];
+    const key = `${currentBatch}-${i}`;
+
+    if (generatedPages[key]) {
+      addLog(`⏭ Skipping ${tool.name} (already generated)`, 'info');
+      continue;
+    }
+
+    const card = document.getElementById(`card-${currentBatch}-${i}`);
+    card.classList.add('generating');
+    card.querySelector('.card-status').className = 'card-status status-generating';
+    card.querySelector('.card-status').textContent = '⚡ Generating';
+
+    addLog(`Generating: ${tool.name}...`);
+
+    const progress = Math.round(((i + 1) / batch.tools.length) * 100);
+    document.getElementById('progressBar').style.width = `${progress}%`;
+    document.getElementById('progressText').textContent = `${i + 1} of ${batch.tools.length} — ${tool.name}`;
+
+    try {
+      const desc = await generateToolDescription(tool, batch.category);
+      generatedPages[key] = { ...tool, desc, batchCategory: batch.category };
+
+      card.classList.remove('generating');
+      card.classList.add('visible');
+      card.querySelector('.card-status').className = 'card-status status-done';
+      card.querySelector('.card-status').textContent = '✓ Done';
+      const descEl = card.querySelector('.card-desc');
+      descEl.classList.remove('skeleton');
+      descEl.textContent = desc;
+
+      totalGenerated++;
+      totalDone++;
+      updateStats();
+      addLog(`✓ ${tool.name} — done`, 'success');
+
+    } catch (err) {
+      card.classList.remove('generating');
+      card.querySelector('.card-status').className = 'card-status status-error';
+      card.querySelector('.card-status').textContent = '✗ Error';
+      addLog(`✗ ${tool.name} failed: ${err.message}`, 'error');
+    }
+
+    await delay(400);
+  }
+
+  btn.innerHTML = '<span>✓</span> Batch Complete';
+  addLog(`\n✅ ${batch.label} complete! ${batch.tools.length} pages generated.`, 'success');
+  document.getElementById('downloadBtn').classList.add('visible');
+  updateStats();
+}
+
+async function generateToolDescription(tool, category) {
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      system: `You are writing SEO-optimised tool descriptions for AIToolVillage.com — a directory of AI tools for marketers, accountants and professionals. 
+      
+Write in a direct, helpful, honest tone. No hype. No filler.
+
+Respond ONLY with a valid JSON object in this exact format, no markdown, no explanation:
+{
+  "tagline": "one line, under 12 words",
+  "description": "2-3 sentences, 60-90 words, SEO-friendly, mentions the tool name naturally",
+  "pros": ["pro 1", "pro 2", "pro 3"],
+  "cons": ["con 1", "con 2"],
+  "best_for": "who benefits most from this tool in 8 words or less",
+  "seo_title": "SEO page title under 60 chars",
+  "meta_desc": "Meta description 140-155 chars"
+}`,
+      messages: [{
+        role: 'user',
+        content: `Generate content for this AI tool:
+Name: ${tool.name}
+Category: ${tool.cat} (part of ${category})
+Pricing: ${tool.price}
+Has free tier: ${tool.free}`
+      }]
+    })
+  });
+
+  const data = await response.json();
+  const raw = data.content[0].text;
+  const clean = raw.replace(/```json|```/g, '').trim();
+  const parsed = JSON.parse(clean);
+  return parsed.description;
+}
+
+function generateHTML(tool, data, batchCategory) {
+  const slug = tool.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="${data.meta_desc || `${tool.name} review — ${tool.cat}. ${tool.price}. See pros, cons and alternatives on AIToolVillage.`}">
+<title>${data.seo_title || `${tool.name} Review (2026) — ${tool.cat} | AIToolVillage`}</title>
+<link rel="canonical" href="https://aitoolvillage.com/tools/${slug}">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--soil:#1c1a14;--moss:#3d5a3e;--wheat:#c8a96e;--cream:#f5f0e8;--parchment:#ede7d9;--stone:#9e9585;--mist:#f9f6f0;--leaf:#4a7c59;--border:#ddd5c4}
+body{font-family:'Outfit',sans-serif;background:var(--mist);color:var(--soil);font-size:15px;line-height:1.65}
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:60px;background:rgba(249,246,240,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--soil);text-decoration:none}.logo span{color:var(--wheat)}
+.breadcrumb{max-width:900px;margin:0 auto;padding:16px 40px 0;font-size:.75rem;color:var(--stone);display:flex;align-items:center;gap:6px}
+.breadcrumb a{color:var(--stone);text-decoration:none}.breadcrumb a:hover{color:var(--moss)}
+.page{max-width:900px;margin:0 auto;padding:32px 40px 60px;display:grid;grid-template-columns:1fr 280px;gap:40px;align-items:start}
+.main-col{}
+.tool-hero{background:white;border:1.5px solid var(--border);border-radius:14px;padding:28px;margin-bottom:24px}
+.tool-top{display:flex;align-items:flex-start;gap:16px;margin-bottom:16px}
+.tool-icon{width:52px;height:52px;border-radius:12px;background:var(--parchment);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.tool-name{font-family:'Playfair Display',serif;font-size:1.8rem;letter-spacing:-.03em;color:var(--soil);margin-bottom:4px}
+.tool-cat{font-size:.78rem;color:var(--stone)}
+.tool-tagline{font-size:1rem;color:#555;line-height:1.7;margin-bottom:16px;font-weight:300}
+.tool-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:.78rem;padding-top:14px;border-top:1px solid var(--border)}
+.tool-meta span strong{color:var(--soil);font-weight:600}
+.section-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--soil);margin:24px 0 12px;letter-spacing:-.02em}
+.desc-block{background:white;border:1.5px solid var(--border);border-radius:12px;padding:22px;margin-bottom:16px;font-size:.88rem;color:#444;line-height:1.8}
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.pros,.cons{background:white;border:1.5px solid var(--border);border-radius:12px;padding:18px}
+.pros{border-color:#c0d9c2}.cons{border-color:#f0c4c4}
+.pc-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.pros .pc-title{color:var(--leaf)}.cons .pc-title{color:#c0541a}
+.pc-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.pc-list li{font-size:.82rem;color:#444;display:flex;align-items:flex-start;gap:7px;line-height:1.5}
+.pc-list li::before{flex-shrink:0;margin-top:2px}
+.pros .pc-list li::before{content:'✓';color:var(--leaf);font-weight:700}
+.cons .pc-list li::before{content:'✗';color:#c0541a;font-weight:700}
+.sidebar{position:sticky;top:80px;display:flex;flex-direction:column;gap:16px}
+.side-card{background:white;border:1.5px solid var(--border);border-radius:12px;padding:20px}
+.side-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--stone);margin-bottom:14px}
+.cta-card{background:var(--soil);border-color:var(--soil)}
+.cta-card .side-title{color:rgba(255,255,255,.5)}
+.cta-card p{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.65;margin-bottom:16px}
+.btn-cta{display:block;width:100%;padding:12px;text-align:center;background:var(--moss);color:white;border:none;border-radius:8px;font-family:'Outfit',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s}
+.btn-cta:hover{background:var(--leaf)}
+.price-badge{display:inline-block;padding:5px 12px;border-radius:6px;font-size:.78rem;font-weight:600;margin-bottom:12px}
+.badge-free{background:#d1edda;color:#155724}.badge-paid{background:var(--parchment);color:var(--stone)}
+footer{background:var(--soil);color:rgba(255,255,255,.5);padding:28px 40px;text-align:center;font-size:.75rem}
+footer a{color:rgba(255,255,255,.35);text-decoration:none;margin:0 10px}
+@media(max-width:700px){.page{grid-template-columns:1fr}.sidebar{position:static}.pros-cons{grid-template-columns:1fr}.breadcrumb,.page{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="logo">AITool<span>Village</span></a>
+  <a href="../best-ai-tools.html" style="font-size:.82rem;color:var(--stone);text-decoration:none">← Best AI Tools</a>
+</nav>
+<div class="breadcrumb">
+  <a href="../index.html">Home</a> <span>›</span>
+  <a href="../best-ai-tools.html">Best AI Tools</a> <span>›</span>
+  <strong style="color:var(--soil)">${tool.name}</strong>
+</div>
+<div class="page">
+  <div class="main-col">
+    <div class="tool-hero">
+      <div class="tool-top">
+        <div class="tool-icon">${tool.emoji}</div>
+        <div>
+          <div class="tool-name">${tool.name}</div>
+          <div class="tool-cat">${tool.cat} · ${batchCategory}</div>
+        </div>
+      </div>
+      <p class="tool-tagline">${data.tagline || tool.cat}</p>
+      <span class="price-badge ${tool.free ? 'badge-free' : 'badge-paid'}">${tool.price}</span>
+      <div class="tool-meta">
+        <span><strong>Category:</strong> ${tool.cat}</span>
+        <span><strong>Free plan:</strong> ${tool.free ? 'Yes' : 'No'}</span>
+        <span><strong>Best for:</strong> ${data.best_for || 'Professionals'}</span>
+      </div>
+    </div>
+
+    <h2 class="section-title">What is ${tool.name}?</h2>
+    <div class="desc-block">${data.description || tool.cat + ' tool with AI-powered features.'}</div>
+
+    <div class="pros-cons">
+      <div class="pros">
+        <div class="pc-title">✓ Pros</div>
+        <ul class="pc-list">
+          ${(data.pros || ['Easy to use', 'AI-powered', 'Saves time']).map(p => `<li>${p}</li>`).join('')}
+        </ul>
+      </div>
+      <div class="cons">
+        <div class="pc-title">✗ Cons</div>
+        <ul class="pc-list">
+          ${(data.cons || ['Learning curve', 'Premium features cost extra']).map(c => `<li>${c}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="side-card cta-card">
+      <div class="side-title">Get Started</div>
+      <p>Try ${tool.name} and see if it's the right tool for your workflow.</p>
+      <a href="https://${tool.affiliate}" target="_blank" rel="noopener" class="btn-cta">${tool.cta} →</a>
+    </div>
+    <div class="side-card">
+      <div class="side-title">Quick Facts</div>
+      <div style="font-size:.8rem;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--stone)">Price</span><strong>${tool.price}</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--stone)">Free Tier</span><strong>${tool.free ? '✓ Yes' : '✗ No'}</strong></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--stone)">Category</span><strong>${tool.cat}</strong></div>
+      </div>
+    </div>
+  </aside>
+</div>
+<footer>
+  © 2026 AIToolVillage.com · <a href="../privacy.html">Privacy</a><a href="../about.html#affiliate">Affiliate Disclosure</a>
+</footer>
+</body>
+</html>`;
+}
+
+function downloadPages() {
+  const batch = BATCHES[currentBatch];
+  let filesGenerated = 0;
+
+  batch.tools.forEach((tool, i) => {
+    const key = `${currentBatch}-${i}`;
+    const pageData = generatedPages[key];
+    if (!pageData) return;
+
+    const slug = tool.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+    // Parse full data from stored desc — reconstruct for HTML
+    const mockData = {
+      description: pageData.desc,
+      tagline: tool.cat,
+      pros: ['AI-powered features', 'Easy to integrate', 'Saves significant time'],
+      cons: ['Premium features require paid plan', 'Learning curve for beginners'],
+      best_for: 'Marketers and professionals',
+      seo_title: `${tool.name} Review (2026) — ${tool.cat}`,
+      meta_desc: `${tool.name} review and pricing. Is ${tool.name} worth it? See pros, cons and alternatives. ${tool.price}.`
+    };
+
+    const html = generateHTML(tool, mockData, batch.category);
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${slug}.html`;
+
+    setTimeout(() => {
+      a.click();
+      URL.revokeObjectURL(url);
+    }, filesGenerated * 200);
+
+    filesGenerated++;
+  });
+
+  addLog(`📦 Downloading ${filesGenerated} HTML files...`, 'success');
+}
+
+function updateStats() {
+  const total = Object.keys(generatedPages).length;
+  const pending = BATCHES[currentBatch].tools.length - Object.keys(generatedPages).filter(k => k.startsWith(`${currentBatch}-`)).length;
+  const done = Object.keys(generatedPages).filter(k => k.startsWith(`${currentBatch}-`)).length;
+  const affiliates = Object.values(generatedPages).filter(p => !p.free).length;
+
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statDone').textContent = done;
+  document.getElementById('statPending').textContent = Math.max(0, pending);
+  document.getElementById('statAffiliate').textContent = affiliates;
+}
+
+function addLog(msg, type = '') {
+  const log = document.getElementById('logBox');
+  const line = document.createElement('div');
+  line.className = `log-line ${type}`;
+  line.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+  log.appendChild(line);
+  log.scrollTop = log.scrollHeight;
+}
+
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// Init
+renderToolCards(0);
+</script>
+</body>
+</html>
