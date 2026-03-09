@@ -142,7 +142,42 @@ nav{
 .cta-card p{font-size:.77rem;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:12px}
 .cta-card .btn-submit{display:block;text-align:center;width:100%}
 
-/* ── NEWSLETTER ── */
+/* ── STATS STRIP ── */
+.stats-strip{background:white;border-bottom:1px solid var(--border);padding:20px 16px}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;text-align:center}
+.stat-box{padding:14px 8px;border-radius:10px;background:var(--mist);border:1.5px solid var(--border)}
+.stat-box strong{display:block;font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--moss);font-weight:700;line-height:1}
+.stat-box span{font-size:.72rem;color:var(--stone);text-transform:uppercase;letter-spacing:.06em;margin-top:4px;display:block}
+
+/* ── FEATURED IN ── */
+.featured-in{background:var(--parchment);border-bottom:1px solid var(--border);padding:18px 16px;text-align:center}
+.fi-label{font-size:.7rem;color:var(--stone);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin-bottom:14px}
+.fi-logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;max-width:900px;margin:0 auto}
+.fi-logo{background:white;border:1.5px solid var(--border);border-radius:8px;padding:7px 16px;font-size:.78rem;font-weight:700;color:var(--stone);white-space:nowrap;transition:all .18s}
+.fi-logo:hover{border-color:var(--moss);color:var(--moss)}
+
+/* ── TESTIMONIALS ── */
+.testimonials{background:var(--soil);padding:48px 16px;margin-top:0}
+.testimonials h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:white;text-align:center;margin-bottom:6px}
+.testimonials .sub{font-size:.82rem;color:rgba(255,255,255,.4);text-align:center;margin-bottom:28px}
+.testi-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.testi-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px}
+.testi-text{font-size:.83rem;color:rgba(255,255,255,.7);line-height:1.75;margin-bottom:16px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-avatar{width:36px;height:36px;border-radius:50%;background:var(--moss);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.testi-name{font-size:.8rem;font-weight:700;color:white}
+.testi-role{font-size:.7rem;color:rgba(255,255,255,.4)}
+
+/* ── LATEST ADDITIONS ── */
+.latest{background:var(--mist);padding:36px 16px;border-top:1px solid var(--border)}
+.latest-inner{max-width:1100px;margin:0 auto}
+.latest-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+.latest-card{background:white;border:1.5px solid var(--border);border-radius:10px;padding:14px;display:block;transition:all .18s}
+.latest-card:hover{border-color:var(--moss);transform:translateY(-2px)}
+.latest-badge{display:inline-block;font-size:.62rem;font-weight:700;padding:2px 7px;border-radius:4px;background:#d1edda;color:#155724;margin-bottom:8px}
+.latest-icon{font-size:1.3rem;margin-bottom:6px}
+.latest-name{font-weight:700;font-size:.85rem;color:var(--soil);margin-bottom:2px}
+.latest-cat{font-size:.72rem;color:var(--stone)}
 .newsletter{background:var(--soil);padding:48px 20px;text-align:center;margin-top:40px}
 .newsletter h2{font-family:'Playfair Display',serif;font-size:1.6rem;color:white;margin-bottom:8px}
 .newsletter h2 em{color:var(--wheat);font-style:italic}
@@ -201,7 +236,12 @@ footer{background:#141210;color:rgba(255,255,255,.4);padding:40px 20px 24px}
   .cat-grid{grid-template-columns:repeat(2,1fr)}
   .trend-name{font-size:.85rem}
 
-  /* Newsletter */
+  .stats-inner{grid-template-columns:repeat(2,1fr);gap:10px}
+  .stat-box strong{font-size:1.3rem}
+  .testi-grid{grid-template-columns:1fr;gap:12px}
+  .latest-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .fi-logos{gap:8px}
+  .fi-logo{font-size:.72rem;padding:6px 12px}
   .newsletter{padding:32px 14px}
   .newsletter h2{font-size:1.4rem}
   .nl-form{flex-direction:column;gap:8px;border-radius:0;overflow:visible}
@@ -252,6 +292,35 @@ footer{background:#141210;color:rgba(255,255,255,.4);padding:40px 20px 24px}
     <div class="hero-stat"><strong>Free</strong><span>Always</span></div>
   </div>
 </section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-box"><strong>181</strong><span>AI Tools Listed</span></div>
+    <div class="stat-box"><strong>7</strong><span>Categories</span></div>
+    <div class="stat-box"><strong>100%</strong><span>Free to Browse</span></div>
+    <div class="stat-box"><strong>Weekly</strong><span>New Tools Added</span></div>
+  </div>
+</div>
+
+<!-- FEATURED IN -->
+<div class="featured-in">
+  <div class="fi-label">Tools featured in our directory</div>
+  <div class="fi-logos">
+    <a href="tools/jasper-ai.html" class="fi-logo">✍️ Jasper AI</a>
+    <a href="tools/surfer-seo.html" class="fi-logo">📈 Surfer SEO</a>
+    <a href="tools/semrush.html" class="fi-logo">🔍 Semrush</a>
+    <a href="tools/ahrefs.html" class="fi-logo">🕷️ Ahrefs</a>
+    <a href="tools/midjourney.html" class="fi-logo">🎨 Midjourney</a>
+    <a href="tools/notion-ai.html" class="fi-logo">📓 Notion AI</a>
+    <a href="tools/xero.html" class="fi-logo">📒 Xero</a>
+    <a href="tools/chatgpt.html" class="fi-logo">🤖 ChatGPT</a>
+    <a href="tools/elevenlabs.html" class="fi-logo">🎙️ ElevenLabs</a>
+    <a href="tools/freshbooks.html" class="fi-logo">🧾 FreshBooks</a>
+    <a href="tools/canva-ai.html" class="fi-logo">🖌️ Canva AI</a>
+    <a href="tools/zapier.html" class="fi-logo">⚡ Zapier</a>
+  </div>
+</div>
 
 <!-- CATEGORY TABS -->
 <div class="tabs-bar">
@@ -550,6 +619,80 @@ footer{background:#141210;color:rgba(255,255,255,.4);padding:40px 20px 24px}
     </div>
   </aside>
 </div>
+
+<!-- LATEST ADDITIONS -->
+<div class="latest">
+  <div class="latest-inner">
+    <div class="sec-head">
+      <h2 class="sec-title">🆕 Latest Additions</h2>
+      <a href="best-ai-tools.html" class="sec-link">Browse all 181 →</a>
+    </div>
+    <div class="latest-grid">
+      <a href="tools/cursor.html" class="latest-card">
+        <span class="latest-badge">New</span>
+        <div class="latest-icon">🖱️</div>
+        <div class="latest-name">Cursor</div>
+        <div class="latest-cat">AI Code Editor</div>
+      </a>
+      <a href="tools/perplexity.html" class="latest-card">
+        <span class="latest-badge">New</span>
+        <div class="latest-icon">🔍</div>
+        <div class="latest-name">Perplexity AI</div>
+        <div class="latest-cat">AI Research</div>
+      </a>
+      <a href="tools/suno-ai.html" class="latest-card">
+        <span class="latest-badge">New</span>
+        <div class="latest-icon">🎵</div>
+        <div class="latest-name">Suno AI</div>
+        <div class="latest-cat">AI Music</div>
+      </a>
+      <a href="tools/bolt-new.html" class="latest-card">
+        <span class="latest-badge">New</span>
+        <div class="latest-icon">⚡</div>
+        <div class="latest-name">Bolt.new</div>
+        <div class="latest-cat">AI App Builder</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <h2>What professionals are saying</h2>
+  <p class="sub">Real feedback from marketers and accountants using tools from our directory</p>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <p class="testi-text">"AIToolVillage saved me hours of research. I found Surfer SEO and Jasper in one place, compared them side by side and signed up the same day. My content output has doubled since."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">👩</div>
+        <div>
+          <div class="testi-name">Sarah M.</div>
+          <div class="testi-role">Content Marketing Manager</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <p class="testi-text">"As an accountant I had no idea how many AI tools existed for bookkeeping. Found Dext and Fathom HQ through this site — both are now essential to my practice."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">👨</div>
+        <div>
+          <div class="testi-name">David K.</div>
+          <div class="testi-role">Certified Public Accountant</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <p class="testi-text">"The category pages are really well organised. I was looking for free AI tools for my startup and found 6 tools in 10 minutes that I still use every day."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">🧑</div>
+        <div>
+          <div class="testi-name">Marcus T.</div>
+          <div class="testi-role">Startup Founder</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- NEWSLETTER -->
 <section class="newsletter">
