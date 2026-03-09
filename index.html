@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<meta charset="UTF-8"><meta name="google-site-verification" content="u1vvQCa6I2uXpQ1S1mtTNQx3WtsmiB3fdSWwbXA9ZxU" />
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="AIToolVillage — The best AI tools for marketers, accountants and professionals. Curated, ranked and reviewed.">
 <meta name="keywords" content="AI tools for marketers, AI tools for accountants, best AI tools 2025, AI marketing software, AI tools directory">
@@ -26,7 +25,10 @@
   --border:  #ddd5c4;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
 
 body {
   font-family: 'Outfit', sans-serif;
@@ -35,6 +37,7 @@ body {
   font-size: 15px;
   line-height: 1.65;
   overflow-x: hidden;
+  width: 100%;
 }
 
 /* ── GRAIN OVERLAY ── */
@@ -774,19 +777,98 @@ footer {
 .tool-row:nth-child(5) { animation-delay: 0.2s; }
 
 /* ── RESPONSIVE ── */
+/* ── TABLET ── */
 @media (max-width: 900px) {
-  nav { padding: 0 20px; }
+  nav { padding: 0 16px; }
   .nav-center { display: none; }
-  .hero { grid-template-columns: 1fr; padding: 48px 20px; }
+  .hero { grid-template-columns: 1fr; padding: 36px 16px; }
   .hero-cards { display: none; }
-  .village-bar { padding: 0 20px; }
-  .main-wrap { grid-template-columns: 1fr; padding: 32px 20px; }
+  .village-bar { padding: 0 16px; }
+  .main-wrap { grid-template-columns: 1fr; padding: 24px 16px; }
   .sidebar { position: static; }
   .featured-strip { grid-template-columns: 1fr; }
   .prof-desc { display: none; }
-  footer { padding: 40px 20px 24px; }
-  .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
-  .newsletter-strip { padding: 40px 20px; }
+  footer { padding: 40px 16px 24px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .newsletter-strip { padding: 40px 16px; }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 600px) {
+  /* Prevent ALL horizontal overflow */
+  html, body { overflow-x: hidden; max-width: 100%; }
+  *, *::before, *::after { max-width: 100%; }
+
+  /* Nav */
+  nav {
+    padding: 0 14px;
+    height: 52px;
+  }
+  .nav-center { display: none; }
+  .nav-right .btn-submit { font-size: 0.72rem; padding: 6px 12px; }
+  .logo-text { font-size: 0.95rem; }
+
+  /* Hero */
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 28px 16px 24px;
+    gap: 0;
+  }
+  .hero h1 { font-size: 1.8rem; line-height: 1.25; }
+  .hero-sub { font-size: 0.82rem; }
+  .hero-cards { display: none; }
+  .hero-cta { flex-direction: column; gap: 10px; }
+  .hero-cta a { width: 100%; text-align: center; }
+
+  /* Village tab bar */
+  .village-bar { padding: 0 14px; gap: 6px; overflow-x: auto; }
+  .vtab { font-size: 0.75rem; padding: 7px 12px; white-space: nowrap; }
+
+  /* Main content */
+  .main-wrap {
+    grid-template-columns: 1fr;
+    padding: 16px 14px 40px;
+    gap: 20px;
+  }
+
+  /* Featured strip — single column */
+  .featured-strip {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .feat-card { padding: 14px; }
+
+  /* Tool rows */
+  .tool-row { padding: 12px 14px; }
+  .tool-row-desc { display: none; }
+  .tool-price { font-size: 0.7rem; }
+
+  /* Section headers */
+  .prof-header { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .prof-desc { display: none; }
+  .sec-title { font-size: 1.1rem; }
+
+  /* Sidebar — stack below content */
+  .sidebar { position: static; margin-top: 0; }
+  .side-card { padding: 16px; }
+  .cat-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .cat-quick { font-size: 0.72rem; padding: 8px 6px; }
+
+  /* Search bar */
+  .search-wrap { padding: 16px 14px; }
+  .search-wrap input { font-size: 0.85rem; }
+
+  /* Newsletter */
+  .newsletter-strip { padding: 32px 16px; }
+  .newsletter-strip h2 { font-size: 1.3rem; }
+  .nl-form { flex-direction: column; gap: 10px; }
+  .nl-form input, .nl-form button { width: 100%; border-radius: 8px; }
+
+  /* Footer */
+  footer { padding: 32px 14px 20px; }
+  .footer-top { grid-template-columns: 1fr; gap: 24px; }
+  .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+  .footer-bottom div { flex-wrap: wrap; justify-content: center; gap: 12px; }
 }
 </style>
 </head>
