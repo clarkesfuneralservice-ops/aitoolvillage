@@ -1,0 +1,8 @@
+# AIToolVillage.com - robots.txt
+# Block GitHub's raw repo URLs from being indexed - only index the custom domain
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://aitoolvillage.com/sitemap.xml
