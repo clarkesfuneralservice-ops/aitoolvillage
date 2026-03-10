@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The best AI tools for YouTube in 2026 — thumbnail creators, script writers, SEO tools and video editors to grow your channel faster.">
+<title>12 Best AI Tools for YouTube (2026) | AIToolVillage</title>
+<link rel="canonical" href="https://aitoolvillage.com/ai-tools-for-youtube.html">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Outfit:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Outfit',sans-serif,system-ui;background:#f9f6f0;color:#1c1a14;font-size:15px;line-height:1.65;overflow-x:hidden;width:100%}
+a{color:inherit;text-decoration:none}
+:root{--soil:#1c1a14;--moss:#3d5a3e;--wheat:#c8a96e;--parchment:#ede7d9;--stone:#9e9585;--mist:#f9f6f0;--leaf:#4a7c59;--border:#ddd5c4;--free:#155724;--free-bg:#d1edda}
+
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:52px;background:rgba(249,246,240,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);width:100%}
+.logo{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--soil);white-space:nowrap}
+.logo span{color:var(--wheat)}
+.nav-links{display:flex;gap:20px}
+.nav-links a{font-size:.8rem;color:var(--stone);font-weight:500}
+.nav-links a:hover{color:var(--moss)}
+.btn-nav{background:var(--moss);color:white;padding:7px 14px;border-radius:6px;font-size:.77rem;font-weight:600;white-space:nowrap}
+
+.hero{background:linear-gradient(160deg,#1c1a14 0%,#2d3a1e 100%);padding:40px 16px 36px;text-align:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;color:var(--wheat);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;background:rgba(255,255,255,.07);padding:5px 14px;border-radius:20px}
+.hero h1{font-family:'Playfair Display',serif;font-size:2.1rem;color:white;line-height:1.2;margin-bottom:12px;letter-spacing:-.02em;word-wrap:break-word;max-width:700px;margin-left:auto;margin-right:auto}
+.hero h1 em{color:var(--wheat);font-style:italic}
+.hero-sub{font-size:.88rem;color:rgba(255,255,255,.6);max-width:520px;margin:0 auto 24px;line-height:1.75}
+.hero-pills{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.hero-pill{background:rgba(255,255,255,.08);border-radius:20px;padding:5px 14px;font-size:.75rem;color:rgba(255,255,255,.6)}
+.hero-pill strong{color:white}
+
+.page-wrap{max-width:960px;margin:0 auto;padding:32px 16px 60px;display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:28px;align-items:start}
+main{min-width:0}
+
+.sec-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--soil);margin-bottom:16px}
+.intro-text{font-size:.88rem;color:#444;line-height:1.8;margin-bottom:24px}
+
+.tool-list{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.tool-card{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:white;border:1.5px solid var(--border);border-radius:12px;transition:all .18s;gap:12px}
+.tool-card:hover{border-color:var(--moss);transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.tool-card-left{display:flex;align-items:center;gap:12px;flex:1;min-width:0}
+.tool-num{font-size:.7rem;font-weight:700;color:var(--stone);width:20px;flex-shrink:0}
+.tool-emoji{font-size:1.4rem;flex-shrink:0}
+.tool-info{flex:1;min-width:0}
+.tool-name{font-weight:700;font-size:.92rem;color:var(--soil);margin-bottom:2px}
+.tool-desc{font-size:.78rem;color:var(--stone);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tool-card-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.tool-price{font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:5px}
+.tool-price.free{background:var(--free-bg);color:var(--free)}
+.tool-price.paid{background:var(--parchment);color:var(--stone)}
+.tool-arrow{font-size:.85rem;color:var(--moss);font-weight:700}
+
+.tip-box{background:linear-gradient(135deg,#edf5ee,#f9f6f0);border:1.5px solid #b8d9c0;border-radius:12px;padding:18px;margin-bottom:28px;display:flex;gap:12px}
+.tip-icon{font-size:1.3rem;flex-shrink:0}
+.tip-title{font-weight:700;font-size:.85rem;color:var(--moss);margin-bottom:4px}
+.tip-text{font-size:.82rem;color:#444;line-height:1.65}
+
+.faq-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.faq-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.faq-q{font-weight:700;font-size:.85rem;color:var(--soil);margin-bottom:5px}
+.faq-a{font-size:.8rem;color:#555;line-height:1.65}
+
+.sidebar{display:flex;flex-direction:column;gap:14px;position:sticky;top:70px}
+.side-card{background:white;border:1.5px solid var(--border);border-radius:12px;padding:16px}
+.side-title{font-size:.75rem;font-weight:700;color:var(--soil);margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em}
+.cta-card{background:var(--soil)}
+.cta-card .side-title{color:rgba(255,255,255,.5)}
+.cta-card p{font-size:.77rem;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:12px}
+.cta-btn{display:block;width:100%;text-align:center;padding:10px;background:var(--moss);color:white;border-radius:8px;font-weight:600;font-size:.82rem}
+.rel-link{display:block;font-size:.8rem;color:var(--moss);font-weight:600;padding:6px 0;border-bottom:1px solid var(--border)}
+.rel-link:last-child{border-bottom:none}
+.cat-links{display:flex;flex-direction:column;gap:4px}
+.cat-link{font-size:.8rem;color:var(--soil);padding:7px 10px;border-radius:7px;border:1px solid var(--border);transition:all .18s}
+.cat-link:hover{border-color:var(--moss);color:var(--moss)}
+
+footer{background:#141210;color:rgba(255,255,255,.4);padding:32px 16px 20px}
+.footer-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.75rem}
+.footer-inner a{color:rgba(255,255,255,.35);margin-left:14px}
+.footer-inner a:hover{color:rgba(255,255,255,.7)}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero h1{font-size:1.7rem}
+  .page-wrap{grid-template-columns:1fr;padding:16px 14px 40px;gap:20px}
+  .sidebar{position:static}
+  .tool-desc{white-space:normal}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">🌿 AITool<span>Village</span></a>
+  <div class="nav-links">
+    <a href="ai-tools-marketers.html">Marketers</a>
+    <a href="ai-tools-accountants.html">Accountants</a>
+    <a href="best-ai-tools.html">Best Tools</a>
+    <a href="free-ai-tools-list.html">Free Tools</a>
+  </div>
+  <a href="submit.html" class="btn-nav">+ Submit Tool</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">▶️ YouTube AI</div>
+  <h1>12 Best AI Tools for <em>YouTube</em> (2026)</h1>
+  <p class="hero-sub">AI tools that write scripts, create thumbnails, optimise titles for SEO, repurpose videos into Shorts and help you grow your channel faster.</p>
+  <div class="hero-pills">
+    <span class="hero-pill">✅ <strong>12 tools</strong> listed</span>
+    <span class="hero-pill">🆓 <strong>Free options</strong> included</span>
+    <span class="hero-pill">📅 <strong>Updated</strong> March 2026</span>
+  </div>
+</section>
+
+<div class="page-wrap">
+  <main>
+
+    <p class="intro-text">Growing a YouTube channel in 2026 is significantly easier with AI. The right tools research trending topics, write scripts, generate thumbnail concepts, optimise titles and descriptions for search, and repurpose long videos into YouTube Shorts automatically. Here are the 12 best AI tools for YouTube creators.</p>
+
+    <div class="tip-box">
+      <span class="tip-icon">💡</span>
+      <div>
+        <div class="tip-title">The #1 YouTube growth hack with AI</div>
+        <div class="tip-text">Use Opus Clip to automatically turn every long video into 5–10 YouTube Shorts. Shorts drive massive subscriber growth and the free plan (60 mins/month) is enough for most creators. More content published = faster channel growth.</div>
+      </div>
+    </div>
+
+    <h2 class="sec-title">Best AI Tools for YouTube Creators</h2>
+    <div class="tool-list">
+        <a href="tools/opus-clip.html" class="tool-card">
+          <div class="tool-card-left">
+            <span class="tool-num">01</span>
+            <span class="tool-emoji">📎</span>
+            <div class="tool-info">
+              <div class="tool-name">Opus Clip</div>
+              <div class="tool-desc">Auto-generate YouTube Shorts from long videos</div>
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <span class="tool-price free">Free</span>
+            <span class="tool-arrow">→</span>
+          </div>
+        </a>
+        <a href="tools/chatgpt.html" class="tool-card">
+          <div class="tool-card-left">
+            <span class="tool-num">02</span>
+            <span class="tool-emoji">🤖</span>
+            <div class="tool-info">
+              <div class="tool-name">ChatGPT</div>
+              <div class="tool-desc">Video scripts, titles, descriptions and ideas</div>
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <span class="tool-price free">Free</span>
+            <span class="tool-arrow">→</span>
+          </div>
+        </a>
+        <a href="tools/canva-ai.html" class="tool-card">
+          <div class="tool-card-left">
+            <span class="tool-num">03</span>
+            <span class="tool-emoji">🖌️</span>
+            <div class="tool-info">
+              <div class="tool-name">Canva AI</div>
+              <div class="tool-desc">YouTube thumbnails with AI image generation</div>
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <span class="tool-price free">Free</span>
+            <span class="tool-arrow">→</span>
+          </div>
+        </a>
+        <a href="tools/midjourney.html" class="tool-card">
+          <div class="tool-card-left">
+            <span class="tool-num">04</span>
+            <span class="tool-emoji">🎨</span>
+            <div class="tool-info">
+              <div class="tool-name">Midjourney</div>
+              <div class="tool-desc">High-quality custom thumbnail images</div>
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <span class="tool-price paid">From $10/mo</span>
+            <span class="tool-arrow">→</span>
+          </div>
+        </a>
+        <a href="tools/descript.html" class="tool-card">
+          <div class="tool-card-left">
+            <span class="tool-num">05</span>
+            <span class="tool-emoji">🎵</span>
+            <div class="tool-info">
+              <div class="tool-name">Descript</div>
+              <div class="tool-desc">Edit YouTube videos by editing the transcript</div>
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <span class="tool-price free">Free</span>
+            <span class="tool-arrow">→</span>
+          </div>
+        </a>
+        <a href="tools/elevenlabs.html" class="tool-card">
+          <div class="tool-card-left">
+            <span class="tool-num">06</span>
+            <span class="tool-emoji">🎙️</span>
+            <div class="tool-info">
+              <div class="tool-name">ElevenLabs</div>
+              <div class="tool-desc">AI voiceovers and voice cloning for videos</div>
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <span class="tool-price free">Free</span>
+            <span class="tool-arrow">→</span>
+          </div>
+        </a>
+        <a href="tools/pictory.html" class="tool-card">
+          <div class="tool-card-left">
+            <span class="tool-num">07</span>
+            <span class="tool-emoji">🎬</span>
+            <div class="tool-info">
+              <div class="tool-name">Pictory</div>
+              <div class="tool-desc">Turn scripts into videos with stock footage</div>
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <span class="tool-price paid">From $23/mo</span>
+            <span class="tool-arrow">→</span>
+          </div>
+        </a>
+        <a href="tools/murf-ai.html" class="tool-card">
+          <div class="tool-card-left">
+            <span class="tool-num">08</span>
+            <span class="tool-emoji">🔊</span>
+            <div class="tool-info">
+              <div class="tool-name">Murf AI</div>
+              <div class="tool-desc">Professional voiceovers in 120+ languages</div>
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <span class="tool-price free">Free</span>
+            <span class="tool-arrow">→</span>
+          </div>
+        </a>
+        <a href="tools/surfer-seo.html" class="tool-card">
+          <div class="tool-card-left">
+            <span class="tool-num">09</span>
+            <span class="tool-emoji">📈</span>
+            <div class="tool-info">
+              <div class="tool-name">Surfer SEO</div>
+              <div class="tool-desc">Optimise video titles and descriptions for search</div>
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <span class="tool-price paid">From $89/mo</span>
+            <span class="tool-arrow">→</span>
+          </div>
+        </a>
+        <a href="tools/copy-ai.html" class="tool-card">
+          <div class="tool-card-left">
+            <span class="tool-num">10</span>
+            <span class="tool-emoji">📝</span>
+            <div class="tool-info">
+              <div class="tool-name">Copy.ai</div>
+              <div class="tool-desc">YouTube descriptions and community post templates</div>
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <span class="tool-price free">Free</span>
+            <span class="tool-arrow">→</span>
+          </div>
+        </a>
+        <a href="tools/otter-ai.html" class="tool-card">
+          <div class="tool-card-left">
+            <span class="tool-num">11</span>
+            <span class="tool-emoji">🦦</span>
+            <div class="tool-info">
+              <div class="tool-name">Otter.ai</div>
+              <div class="tool-desc">Transcribe videos for captions and repurposing</div>
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <span class="tool-price free">Free</span>
+            <span class="tool-arrow">→</span>
+          </div>
+        </a>
+        <a href="tools/perplexity.html" class="tool-card">
+          <div class="tool-card-left">
+            <span class="tool-num">12</span>
+            <span class="tool-emoji">🔍</span>
+            <div class="tool-info">
+              <div class="tool-name">Perplexity AI</div>
+              <div class="tool-desc">Research video topics and find trending questions</div>
+            </div>
+          </div>
+          <div class="tool-card-right">
+            <span class="tool-price free">Free</span>
+            <span class="tool-arrow">→</span>
+          </div>
+        </a></div>
+
+    <h2 class="sec-title">Frequently Asked Questions</h2>
+    
+      <div class="faq-item">
+        <div class="faq-q">What AI tools help grow a YouTube channel?</div>
+        <div class="faq-a">The most impactful AI tools for YouTube growth are Opus Clip (Shorts generation), ChatGPT (scripts and titles), Canva AI (thumbnails) and Surfer SEO (title optimisation). Focus on Shorts generation first — it's the fastest current growth lever on YouTube.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can AI write YouTube scripts?</div>
+        <div class="faq-a">Yes — ChatGPT writes complete YouTube scripts when given a topic, target audience and video length. Prompt it with: 'Write a 10-minute YouTube script about [topic] for [audience] in a [tone] style.' Edit for your personality before recording.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is the best AI thumbnail maker for YouTube?</div>
+        <div class="faq-a">Canva AI is the best free option — it has YouTube thumbnail templates with AI image generation built in. Midjourney produces higher quality custom images but costs $10/mo minimum. Most top YouTubers use both.</div>
+      </div>
+
+  </main>
+
+  <aside class="sidebar">
+    <div class="side-card cta-card">
+      <div class="side-title">Browse All Tools</div>
+      <p>See our full directory of 200+ AI tools — reviewed and ranked for professionals.</p>
+      <a href="best-ai-tools.html" class="cta-btn">View All Tools →</a>
+    </div>
+
+    <div class="side-card">
+      <div class="side-title">Related Pages</div>
+      <a href="ai-video-marketing-tools.html" class="rel-link">AI Video Tools →</a><a href="ai-tools-for-content-creators.html" class="rel-link">AI Tools for Content Creators →</a><a href="best-ai-tools.html" class="rel-link">AI Image Tools →</a><a href="free-ai-tools-list.html" class="rel-link">Free AI Tools →</a>
+    </div>
+
+    <div class="side-card">
+      <div class="side-title">Browse by Category</div>
+      <div class="cat-links">
+        <a href="ai-tools-marketers.html" class="cat-link">📣 AI Tools for Marketers</a>
+        <a href="ai-tools-accountants.html" class="cat-link">🧾 AI Tools for Accountants</a>
+        <a href="free-ai-tools-list.html" class="cat-link">🆓 Free AI Tools</a>
+        <a href="ai-writing-tools-marketers.html" class="cat-link">✍️ AI Writing Tools</a>
+        <a href="ai-seo-tools.html" class="cat-link">📈 AI SEO Tools</a>
+        <a href="ai-bookkeeping-tools.html" class="cat-link">📒 AI Bookkeeping Tools</a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 AIToolVillage.com · <a href="about.html#affiliate">Affiliate Disclosure</a></span>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="best-ai-tools.html">All Tools</a>
+      <a href="free-ai-tools-list.html">Free Tools</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
