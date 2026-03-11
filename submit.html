@@ -289,12 +289,14 @@ function selectPrice(el, val){
   el.classList.add('selected');
   selectedPrice = val;
 }
-function submitForm(){
+async function submitForm(){
   const name = document.getElementById('toolName').value.trim();
   const url = document.getElementById('toolUrl').value.trim();
   const cat = document.getElementById('toolCategory').value;
   const desc = document.getElementById('toolDesc').value.trim();
+  const price = document.getElementById('toolPrice').value.trim();
   const email = document.getElementById('submitterEmail').value.trim();
+  const affiliate = document.getElementById('affiliateUrl').value.trim();
   const agree1 = document.getElementById('agreeGuidelines').checked;
   const agree2 = document.getElementById('agreeNotCrypto').checked;
   if(!name){alert('Please enter your tool name.');return;}
@@ -304,12 +306,40 @@ function submitForm(){
   if(!selectedPrice){alert('Please select a pricing model.');return;}
   if(!email||!email.includes('@')){alert('Please enter a valid email address.');return;}
   if(!agree1||!agree2){alert('Please confirm both checkboxes before submitting.');return;}
-  // Show success
-  document.getElementById('successMsg').style.display='block';
-  document.querySelector('.btn-submit-form').disabled=true;
-  document.querySelector('.btn-submit-form').textContent='Submission Received ✓';
-  document.querySelector('.btn-submit-form').style.background='#6a9e6b';
-  window.scrollTo({top:document.getElementById('successMsg').offsetTop-100,behavior:'smooth'});
+  const btn = document.querySelector('.btn-submit-form');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  try {
+    const res = await fetch('https://formspree.io/f/xkoqrrby', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+      body: JSON.stringify({
+        _subject: '🌿 New Tool Submission: ' + name,
+        tool_name: name,
+        tool_url: url,
+        category: cat,
+        description: desc,
+        pricing_model: selectedPrice,
+        starting_price: price || 'Not provided',
+        submitter_email: email,
+        affiliate_url: affiliate || 'None',
+      })
+    });
+    if(res.ok){
+      document.getElementById('successMsg').style.display='block';
+      btn.textContent = 'Submission Received ✓';
+      btn.style.background = '#6a9e6b';
+      window.scrollTo({top:document.getElementById('successMsg').offsetTop-100,behavior:'smooth'});
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Submit My AI Tool (Free)';
+      alert('Something went wrong. Please try again or email hello@aitoolvillage.com');
+    }
+  } catch(e){
+    btn.disabled = false;
+    btn.textContent = 'Submit My AI Tool (Free)';
+    alert('Something went wrong. Please try again or email hello@aitoolvillage.com');
+  }
 }
 </script>
 </body>
