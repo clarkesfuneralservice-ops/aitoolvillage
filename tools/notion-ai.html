@@ -24,8 +24,6 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .nav-links a{font-size:.8rem;color:var(--stone);font-weight:500}
 .nav-links a:hover{color:var(--moss)}
 .btn-submit{background:var(--moss);color:white;padding:7px 14px;border-radius:6px;font-size:.77rem;font-weight:600;white-space:nowrap}
-
-/* HERO */
 .tool-hero{background:linear-gradient(160deg,#1c1a14 0%,#2d3a1e 100%);padding:36px 16px 32px;width:100%}
 .hero-inner{max-width:900px;margin:0 auto}
 .breadcrumb{font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:16px}
@@ -44,8 +42,6 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .btn-primary{background:var(--moss);color:white;padding:11px 22px;border-radius:8px;font-weight:600;font-size:.88rem;transition:all .18s}
 .btn-primary:hover{background:var(--leaf)}
 .btn-secondary{background:rgba(255,255,255,.08);color:white;padding:11px 22px;border-radius:8px;font-weight:600;font-size:.88rem;border:1px solid rgba(255,255,255,.15)}
-
-/* RATING */
 .rating-strip{background:white;border-bottom:1px solid var(--border);padding:16px}
 .rating-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
 .rating-score{display:flex;align-items:baseline;gap:4px}
@@ -59,13 +55,9 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .rbar-track{flex:1;height:6px;background:var(--parchment);border-radius:3px;overflow:hidden}
 .rbar-fill{height:100%;background:var(--moss);border-radius:3px}
 .rbar-score{width:28px;text-align:right;color:var(--soil);font-weight:600}
-
-/* LAYOUT */
 .page-wrap{max-width:900px;margin:0 auto;padding:28px 16px 60px;display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:28px;align-items:start}
 .sec-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--soil);margin-bottom:14px}
 section{margin-bottom:32px}
-
-/* PROS CONS */
 .pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:32px}
 .pros-box,.cons-box{background:white;border:1.5px solid var(--border);border-radius:12px;padding:16px}
 .pros-box{border-top:3px solid #4caf50}
@@ -75,8 +67,6 @@ section{margin-bottom:32px}
 .cons-box .box-title{color:#c62828}
 .pros-box ul,.cons-box ul{list-style:none;display:flex;flex-direction:column;gap:7px}
 .pros-box li,.cons-box li{font-size:.82rem;line-height:1.55;color:#444}
-
-/* PRICING */
 .pricing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:8px}
 .price-card{background:white;border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center}
 .price-card.highlight{border-color:var(--moss);background:linear-gradient(135deg,#f0f8f1,white)}
@@ -84,22 +74,16 @@ section{margin-bottom:32px}
 .price-amount{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--soil);margin-bottom:2px}
 .price-period{font-size:.7rem;color:var(--stone)}
 .price-features{margin-top:10px;font-size:.75rem;color:#555;line-height:1.6;text-align:left}
-
-/* ALTERNATIVES */
 .alt-list{display:flex;flex-direction:column;gap:8px}
 .alt-item{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:white;border:1.5px solid var(--border);border-radius:10px;font-size:.82rem;transition:all .18s}
 .alt-item:hover{border-color:var(--moss)}
 .alt-name{font-weight:700;color:var(--soil)}
 .alt-desc{color:var(--stone);font-size:.77rem}
 .alt-link{color:var(--moss);font-weight:600;font-size:.78rem;flex-shrink:0}
-
-/* FAQ */
 .faq-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)}
 .faq-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
 .faq-q{font-weight:700;font-size:.85rem;color:var(--soil);margin-bottom:5px}
 .faq-a{font-size:.8rem;color:#555;line-height:1.65}
-
-/* SIDEBAR */
 .sidebar{display:flex;flex-direction:column;gap:14px;position:sticky;top:70px}
 .side-card{background:white;border:1.5px solid var(--border);border-radius:12px;padding:16px}
 .side-title{font-size:.75rem;font-weight:700;color:var(--soil);margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em}
@@ -114,15 +98,11 @@ section{margin-bottom:32px}
 .cta-btn{display:block;width:100%;text-align:center;padding:11px;background:var(--moss);color:white;border-radius:8px;font-weight:600;font-size:.83rem}
 .tag-list{display:flex;flex-wrap:wrap;gap:6px}
 .tag{background:var(--parchment);color:var(--stone);font-size:.7rem;padding:3px 9px;border-radius:4px;font-weight:500}
-
-/* FOOTER */
 footer{background:#141210;color:rgba(255,255,255,.4);padding:32px 16px 20px}
 .footer-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .footer-inner a{font-size:.77rem;color:rgba(255,255,255,.35);margin-left:14px}
 .footer-inner a:hover{color:rgba(255,255,255,.7)}
 .footer-copy{font-size:.75rem}
-
-/* MOBILE */
 @media(max-width:768px){
   .nav-links{display:none}
   .tool-title h1{font-size:1.5rem}
@@ -204,18 +184,22 @@ footer{background:#141210;color:rgba(255,255,255,.4);padding:32px 16px 20px}
     <div class="pros-cons">
       <div class="pros-box">
         <div class="box-title">👍 Pros</div>
-        <ul><li>✅ Free workspace is extremely generous</li>
-<li>✅ AI searches across your entire workspace</li>
-<li>✅ Excellent for organising content strategy and briefs</li>
-<li>✅ Database and project management built in</li>
-<li>✅ Strong integrations with Slack, GitHub, Figma</li></ul>
+        <ul>
+          <li>✅ Free workspace is extremely generous</li>
+          <li>✅ AI searches across your entire workspace</li>
+          <li>✅ Excellent for organising content strategy and briefs</li>
+          <li>✅ Database and project management built in</li>
+          <li>✅ Strong integrations with Slack, GitHub, Figma</li>
+        </ul>
       </div>
       <div class="cons-box">
         <div class="box-title">👎 Cons</div>
-        <ul><li>❌ AI features cost extra ($10/mo add-on)</li>
-<li>❌ Can be overwhelming for new users</li>
-<li>❌ Offline mode is limited</li>
-<li>❌ AI quality is below ChatGPT for complex writing</li></ul>
+        <ul>
+          <li>❌ AI features cost extra ($10/mo add-on)</li>
+          <li>❌ Can be overwhelming for new users</li>
+          <li>❌ Offline mode is limited</li>
+          <li>❌ AI quality is below ChatGPT for complex writing</li>
+        </ul>
       </div>
     </div>
 
@@ -227,17 +211,20 @@ footer{background:#141210;color:rgba(255,255,255,.4);padding:32px 16px 20px}
           <div class="price-amount">$0</div>
           <div class="price-period">forever</div>
           <div class="price-features">Unlimited pages · Basic blocks · 10 guests</div>
-        </div><div class="price-card">
+        </div>
+        <div class="price-card">
           <div class="price-name">Plus</div>
           <div class="price-amount">$10</div>
           <div class="price-period">per month</div>
           <div class="price-features">Unlimited guests · File uploads · 30-day history</div>
-        </div><div class="price-card  highlight">
+        </div>
+        <div class="price-card highlight">
           <div class="price-name">AI Add-on</div>
           <div class="price-amount">$10</div>
           <div class="price-period">per user/mo</div>
           <div class="price-features">AI writing · Summarisation · Q&A on docs</div>
-        </div><div class="price-card">
+        </div>
+        <div class="price-card">
           <div class="price-name">Business</div>
           <div class="price-amount">$15</div>
           <div class="price-period">per user/mo</div>
@@ -250,25 +237,31 @@ footer{background:#141210;color:rgba(255,255,255,.4);padding:32px 16px 20px}
     <section>
       <h2 class="sec-title">Best Alternatives to Notion AI</h2>
       <div class="alt-list">
-        <li><div class="alt-item"><div><div class="alt-name">Obsidian</div><div class="alt-desc">Better for personal knowledge management</div></div><a href="#" class="alt-link">View →</a></div></li>
-<li><div class="alt-item"><div><div class="alt-name">ClickUp</div><div class="alt-desc">Better project management features</div></div><a href="clickup.html" class="alt-link">View →</a></div></li>
-<li><div class="alt-item"><div><div class="alt-name">Coda</div><div class="alt-desc">More powerful databases and automations</div></div><a href="#" class="alt-link">View →</a></div></li>
+        <div class="alt-item">
+          <div><div class="alt-name">Obsidian</div><div class="alt-desc">Better for personal knowledge management</div></div>
+          <a href="obsidian.html" class="alt-link">View →</a>
+        </div>
+        <div class="alt-item">
+          <div><div class="alt-name">ClickUp</div><div class="alt-desc">Better project management features</div></div>
+          <a href="clickup.html" class="alt-link">View →</a>
+        </div>
+        <div class="alt-item">
+          <div><div class="alt-name">Coda</div><div class="alt-desc">More powerful databases and automations</div></div>
+          <a href="coda-ai.html" class="alt-link">View →</a>
+        </div>
       </div>
     </section>
 
     <section>
       <h2 class="sec-title">Frequently Asked Questions</h2>
-      
       <div class="faq-item">
         <div class="faq-q">Is Notion free?</div>
         <div class="faq-a">Yes — Notion's core workspace is free forever with unlimited pages. The AI features are a $10/mo add-on per user, on top of any paid workspace plan.</div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q">What can Notion AI do?</div>
         <div class="faq-a">Notion AI can write and edit content, summarise pages, translate text, extract action items from meeting notes, answer questions about your documents and generate structured content like tables and lists.</div>
       </div>
-
       <div class="faq-item">
         <div class="faq-q">Is Notion AI better than ChatGPT?</div>
         <div class="faq-a">For tasks inside your Notion workspace — yes, because it can access your documents directly. For general writing and research, ChatGPT is more capable. They're best used together.</div>
@@ -283,7 +276,6 @@ footer{background:#141210;color:rgba(255,255,255,.4);padding:32px 16px 20px}
       <p>Start free — no credit card needed. Add the AI features later when you're ready for $10/mo.</p>
       <a href="https://notion.so" class="cta-btn" rel="nofollow noopener" target="_blank">Visit Notion AI →</a>
     </div>
-
     <div class="side-card">
       <div class="side-title">Quick Facts</div>
       <div class="info-row"><span class="info-label">Free plan</span><span class="free-val">Yes — workspace free, AI is add-on</span></div>
@@ -292,17 +284,18 @@ footer{background:#141210;color:rgba(255,255,255,.4);padding:32px 16px 20px}
       <div class="info-row"><span class="info-label">Category</span><span class="info-value">AI Workspace</span></div>
       <div class="info-row"><span class="info-label">Our rating</span><span class="info-value">4.5/5 ⭐</span></div>
     </div>
-
     <div class="side-card">
       <div class="side-title">Tags</div>
       <div class="tag-list">
         <span class="tag">Productivity</span><span class="tag">AI Writing</span><span class="tag">Notes</span><span class="tag">Workspace</span><span class="tag">Collaboration</span><span class="tag">Free Plan</span>
       </div>
     </div>
-
     <div class="side-card">
       <div class="side-title">Related Tools</div>
-      <a href="clickup.html" style="display:block;font-size:.8rem;color:var(--moss);font-weight:600;padding:5px 0;border-bottom:1px solid var(--border)">ClickUp →</a><a href="chatgpt.html" style="display:block;font-size:.8rem;color:var(--moss);font-weight:600;padding:5px 0;border-bottom:1px solid var(--border)">ChatGPT →</a><a href="zapier.html" style="display:block;font-size:.8rem;color:var(--moss);font-weight:600;padding:5px 0;border-bottom:1px solid var(--border)">Zapier →</a><a href="fathom-video.html" style="display:block;font-size:.8rem;color:var(--moss);font-weight:600;padding:5px 0;border-bottom:1px solid var(--border)">Fathom Video →</a>
+      <a href="clickup.html" style="display:block;font-size:.8rem;color:var(--moss);font-weight:600;padding:5px 0;border-bottom:1px solid var(--border)">ClickUp →</a>
+      <a href="chatgpt.html" style="display:block;font-size:.8rem;color:var(--moss);font-weight:600;padding:5px 0;border-bottom:1px solid var(--border)">ChatGPT →</a>
+      <a href="zapier.html" style="display:block;font-size:.8rem;color:var(--moss);font-weight:600;padding:5px 0;border-bottom:1px solid var(--border)">Zapier →</a>
+      <a href="fathom-video.html" style="display:block;font-size:.8rem;color:var(--moss);font-weight:600;padding:5px 0;border-bottom:1px solid var(--border)">Fathom Video →</a>
     </div>
   </aside>
 </div>
