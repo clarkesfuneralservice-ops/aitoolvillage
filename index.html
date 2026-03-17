@@ -1,358 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AIToolVillage — Your village of AI tools for professionals. Browse 250+ AI tools for marketers, accountants and business owners. Reviews, comparisons and guides.">
-<title>AIToolVillage — Best AI Tools Directory for Professionals (2026)</title>
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="canonical" href="https://aitoolvillage.com/">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
-<meta name="impact-site-verification" value="f50dff8b-62a2-4a7f-92a4-2a9014c6c94c">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"AIToolVillage","url":"https://aitoolvillage.com","description":"AI tools directory for professionals","potentialAction":{"@type":"SearchAction","target":"https://aitoolvillage.com/best-ai-tools.html?q={search_term_string}","query-input":"required name=search_term_string"}}
-</script>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:'Outfit',sans-serif;background:#f8f5ef;color:#1a1814;font-size:15px;line-height:1.65}
-a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:rgba(58,92,59,.15);tap-highlight-color:rgba(58,92,59,.15)}
-:root{--soil:#1a1814;--moss:#3a5c3b;--wheat:#c4a45e;--parchment:#f8f5ef;--cream:#fffdf9;--stone:#8a8070;--leaf:#4a7c59;--border:#ddd5c0;--border-light:#ede8dc}
-nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:58px;background:rgba(26,24,20,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.08)}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:white;display:flex;align-items:center;gap:8px;white-space:nowrap}
-.nav-logo .leaf{color:var(--wheat)}
-.nav-center{display:flex;align-items:center;gap:4px;flex:1;justify-content:center}
-.nav-center a{font-size:.78rem;color:rgba(255,255,255,.55);font-weight:500;padding:5px 10px;border-radius:5px;transition:color .15s}
-.nav-center a:hover{color:white}
-.nav-right{display:flex;align-items:center;gap:8px}
-.btn-submit{background:transparent;border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);padding:6px 14px;border-radius:6px;font-size:.76rem;font-weight:600;transition:all .15s}
-.btn-submit:hover{border-color:var(--wheat);color:var(--wheat)}
-.btn-advertise{background:var(--wheat);color:var(--soil);padding:7px 16px;border-radius:6px;font-size:.76rem;font-weight:700;transition:background .15s}
-.btn-advertise:hover{background:#d4b46e}
-.hero{background:#1a1814;padding:64px 32px 56px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(58,92,59,0.35) 0%,transparent 70%);pointer-events:none}
-.hero-inner{position:relative;z-index:1;max-width:760px;margin:0 auto}
-.hero-badge{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;color:var(--wheat);font-weight:600;text-transform:uppercase;letter-spacing:.1em;background:rgba(196,164,94,.12);border:1px solid rgba(196,164,94,.25);padding:5px 14px;border-radius:20px;margin-bottom:22px}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,6vw,4rem);font-weight:900;color:white;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px}
-.hero h1 em{color:var(--wheat);font-style:italic}
-.hero-sub{font-size:1rem;color:rgba(255,255,255,.5);max-width:500px;margin:0 auto 32px;line-height:1.6}
-.hero-stats{display:flex;align-items:center;justify-content:center;gap:28px;margin-bottom:36px;flex-wrap:wrap}
-.stat{text-align:center}
-.stat-num{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--wheat);font-weight:700;line-height:1}
-.stat-label{font-size:.72rem;color:rgba(255,255,255,.35);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
-.stat-divider{width:1px;height:36px;background:rgba(255,255,255,.1)}
-.search-wrap{max-width:560px;margin:0 auto;position:relative}
-.search-bar{width:100%;padding:16px 56px 16px 20px;font-family:'Outfit',sans-serif;font-size:.95rem;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.15);border-radius:12px;color:white;outline:none;transition:all .2s}
-.search-bar::placeholder{color:rgba(255,255,255,.3)}
-.search-bar:focus{background:rgba(255,255,255,.1);border-color:var(--wheat)}
-.search-btn{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:var(--wheat);color:var(--soil);border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:.88rem;font-weight:700;transition:background .15s;touch-action:manipulation}
-.search-btn:hover{background:#d4b46e}
-.search-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}
-.stag{font-size:.73rem;color:rgba(255,255,255,.45);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:4px 11px;border-radius:20px;cursor:pointer;transition:all .15s;touch-action:manipulation}
-.stag:hover{color:white;border-color:rgba(255,255,255,.3)}
-.section-wrap{max-width:1100px;margin:0 auto}
-.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px}
-.section-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--stone);margin-bottom:5px}
-.section-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--soil);font-weight:700}
-.section-link{font-size:.8rem;color:var(--moss);font-weight:600}
-.section-link:hover{text-decoration:underline}
-.featured-section{background:white;padding:52px 32px 48px;border-bottom:1px solid var(--border)}
-.featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.feat-card{border:1.5px solid var(--border);border-radius:14px;overflow:hidden;background:var(--parchment);transition:all .2s;cursor:pointer;display:flex;flex-direction:column;touch-action:manipulation}
-.feat-card:hover{border-color:var(--moss);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.08)}
-.feat-card-img{height:170px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center}
-.feat-sponsored{position:absolute;top:10px;right:10px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--wheat);color:var(--soil);padding:3px 8px;border-radius:4px}
-.feat-card-body{padding:16px 18px 18px;flex:1;display:flex;flex-direction:column}
-.feat-tag{display:inline-block;font-size:.68rem;font-weight:600;color:var(--moss);background:#eef5ee;padding:3px 9px;border-radius:4px;margin-bottom:8px}
-.feat-name{font-size:1.05rem;font-weight:700;color:var(--soil);margin-bottom:5px}
-.feat-desc{font-size:.81rem;color:#555;line-height:1.55;flex:1;margin-bottom:14px}
-.feat-footer{display:flex;align-items:center;justify-content:space-between}
-.feat-price{font-size:.76rem;color:var(--stone)}
-.feat-btn{background:var(--moss);color:white;padding:7px 14px;border-radius:7px;font-size:.76rem;font-weight:600;transition:background .15s}
-.feat-btn:hover{background:var(--leaf)}
-.categories-section{padding:52px 32px 48px;background:var(--parchment)}
-.categories-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.cat-card{background:white;border:1.5px solid var(--border);border-radius:12px;padding:18px 16px;display:flex;align-items:center;gap:12px;transition:all .18s;cursor:pointer;touch-action:manipulation}
-.cat-card:hover{border-color:var(--moss);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06)}
-.cat-icon{font-size:1.6rem;flex-shrink:0}
-.cat-name{font-size:.88rem;font-weight:700;color:var(--soil);margin-bottom:2px}
-.cat-count{font-size:.73rem;color:var(--stone)}
-.tools-section{padding:52px 32px 48px;background:white;border-top:1px solid var(--border)}
-.tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.tool-card{background:var(--parchment);border:1.5px solid var(--border);border-radius:12px;padding:16px;transition:all .18s;touch-action:manipulation}
-.tool-card:hover{border-color:var(--moss);transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.06)}
-.tool-card-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.tool-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--moss),var(--leaf));display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
-.tool-card-name{font-size:.9rem;font-weight:700;color:var(--soil)}
-.tool-card-cat{font-size:.72rem;color:var(--stone)}
-.tool-card-desc{font-size:.79rem;color:#555;line-height:1.5;margin-bottom:12px}
-.tool-card-footer{display:flex;align-items:center;justify-content:space-between}
-.tool-rating{font-size:.75rem;color:var(--wheat);font-weight:600}
-.tool-price{font-size:.73rem;color:var(--stone)}
-.aifx-section{padding:52px 32px 48px;background:var(--parchment);border-top:1px solid var(--border)}
-.aifx-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.aifx-card{background:white;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;font-size:.84rem;font-weight:600;color:var(--soil);transition:all .18s;touch-action:manipulation;min-height:54px}
-.aifx-card:hover{border-color:var(--moss);color:var(--moss);transform:translateY(-1px)}
-.aifx-arrow{color:var(--wheat);font-size:.9rem;flex-shrink:0;margin-left:8px}
-.professions-section{padding:52px 32px 48px;background:white;border-top:1px solid var(--border)}
-.prof-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.prof-card{background:linear-gradient(160deg,#1a1814,#2d3a1e);border-radius:12px;padding:20px 16px;text-align:center;cursor:pointer;transition:all .18s;touch-action:manipulation}
-.prof-card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.2)}
-.prof-emoji{font-size:1.8rem;margin-bottom:8px}
-.prof-name{font-size:.84rem;font-weight:600;color:white;margin-bottom:3px}
-.prof-count{font-size:.7rem;color:rgba(255,255,255,.4)}
-.cta-section{background:linear-gradient(135deg,#1a1814 0%,#2d3a1e 50%,#1a1814 100%);padding:64px 32px;text-align:center}
-.cta-section h2{font-family:'Playfair Display',serif;font-size:2rem;color:white;margin-bottom:12px}
-.cta-section h2 em{color:var(--wheat);font-style:italic}
-.cta-section p{font-size:.9rem;color:rgba(255,255,255,.45);margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto}
-.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.cta-primary{background:var(--wheat);color:var(--soil);font-weight:700;padding:13px 28px;border-radius:9px;font-size:.92rem;transition:background .15s;touch-action:manipulation}
-.cta-primary:hover{background:#d4b46e}
-.cta-secondary{background:transparent;border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.7);font-weight:600;padding:13px 28px;border-radius:9px;font-size:.92rem;transition:all .15s;touch-action:manipulation}
-.cta-secondary:hover{border-color:white;color:white}
-footer{background:#111009;padding:48px 32px 28px;border-top:1px solid rgba(255,255,255,.06)}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1100px;margin:0 auto 36px}
-.footer-brand .logo-text{font-family:'Playfair Display',serif;font-size:1.1rem;color:white;margin-bottom:10px}
-.footer-brand p{font-size:.8rem;color:rgba(255,255,255,.3);line-height:1.6;max-width:260px}
-.footer-col h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);margin-bottom:14px}
-.footer-col a{display:block;font-size:.8rem;color:rgba(255,255,255,.35);margin-bottom:8px;transition:color .15s}
-.footer-col a:hover{color:rgba(255,255,255,.7)}
-.footer-bottom{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);font-size:.75rem;color:rgba(255,255,255,.2);flex-wrap:wrap;gap:10px}
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.hero-inner>*{animation:fadeUp .5s ease both}
-.hero-badge{animation-delay:.05s}.hero h1{animation-delay:.12s}.hero-sub{animation-delay:.18s}.hero-stats{animation-delay:.24s}.search-wrap{animation-delay:.3s}.search-tags{animation-delay:.36s}
-@media(max-width:1024px){.featured-grid{grid-template-columns:repeat(2,1fr)}.categories-grid{grid-template-columns:repeat(3,1fr)}.tools-grid{grid-template-columns:repeat(3,1fr)}.prof-grid{grid-template-columns:repeat(3,1fr)}.footer-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:768px){nav{padding:0 16px}.nav-center{display:none}.hero{padding:44px 20px 40px}.hero h1{font-size:2rem}.featured-section,.categories-section,.tools-section,.aifx-section,.professions-section,.cta-section{padding:36px 20px}.featured-grid{grid-template-columns:1fr}.categories-grid{grid-template-columns:repeat(2,1fr)}.tools-grid{grid-template-columns:repeat(2,1fr)}.aifx-grid{grid-template-columns:repeat(2,1fr)}.prof-grid{grid-template-columns:repeat(2,1fr)}.hero-stats{gap:16px}.stat-divider{display:none}}
-@media(max-width:480px){.tools-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>100+ Best AI Tools (2026) – Free & Paid AI Tools for Work, Business & Creators</title>
+
+  <meta name="description" content="Discover 250+ of the best AI tools for writing, marketing, design and automation. Compare free & paid AI tools and find the perfect tool for your workflow.">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      color: #222;
+    }
+
+    header {
+      background: #1f2937;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: white;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 15px auto;
+      color: #555;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 22px;
+      background: #2563eb;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .section {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .section p {
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: left;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    footer {
+      background: #1f2937;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+    }
+  </style>
 </head>
+
 <body>
-<nav>
-  <a href="/" class="nav-logo">🌿 AITool<span class="leaf">Village</span></a>
-  <div class="nav-center">
-    <a href="/best-ai-tools.html">Best Tools</a>
-    <a href="/ai-tools-marketers.html">Marketers</a>
-    <a href="/ai-tools-accountants.html">Accountants</a>
-    <a href="/comparisons.html">Compare</a>
-    <a href="/free-ai-tools-list.html">Free Tools</a>
-  </div>
-  <div class="nav-right">
-    <a href="/submit.html" class="btn-submit">Submit Tool</a>
-    <a href="/advertise.html" class="btn-advertise">Advertise</a>
-  </div>
-</nav>
+
+<header>
+  <h1>AIToolVillage</h1>
+</header>
+
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge">🌿 Your AI Tools Village · Est. 2025</div>
-    <h1>The Best <em>AI Tools</em><br>for Professionals</h1>
-    <p class="hero-sub">Browse 250+ hand-picked AI tools for marketers, accountants and business owners. Reviews, comparisons and guides — all in one place.</p>
-    <div class="hero-stats">
-      <div class="stat"><div class="stat-num">250+</div><div class="stat-label">AI Tools</div></div>
-      <div class="stat-divider"></div>
-      <div class="stat"><div class="stat-num">24</div><div class="stat-label">Categories</div></div>
-      <div class="stat-divider"></div>
-      <div class="stat"><div class="stat-num">344</div><div class="stat-label">Pages</div></div>
-      <div class="stat-divider"></div>
-      <div class="stat"><div class="stat-num">Free</div><div class="stat-label">To Browse</div></div>
+  <h1>Discover the Best AI Tools for Work, Business & Creativity</h1>
+  <p>
+    Explore 250+ powerful AI tools for writing, marketing, design, automation and more. 
+    Compare features, pricing and use cases — all in one place.
+  </p>
+  <a href="/best-ai-tools.html" class="btn">Browse Best AI Tools</a>
+</section>
+
+<section class="section">
+  <h2>Find the Best AI Tools in One Place</h2>
+  <p>
+    AIToolVillage is a curated directory of the best AI tools for professionals, creators and businesses. 
+    Whether you need AI tools for writing, SEO, marketing, design or automation, you can explore hundreds 
+    of tools and find the right solution for your workflow.
+  </p>
+  <p>
+    From free AI tools to advanced premium software, discover the latest tools powered by artificial intelligence 
+    and stay ahead in your industry.
+  </p>
+</section>
+
+<section class="section">
+  <h2>Free AI Tools You Can Start Using Today</h2>
+  <p>
+    Looking for free AI tools? Browse a growing collection of powerful tools for writing, design, automation and more — no subscription required.
+  </p>
+  <a href="/free-ai-tools-list.html" class="btn">Browse Free AI Tools</a>
+</section>
+
+<section class="section">
+  <h2>Popular AI Tool Categories</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>AI Writing Tools</h3>
+      <p>Create blog posts, emails, ads and content in seconds.</p>
+      <a href="/ai-writing-tools.html">Explore →</a>
     </div>
-    <div class="search-wrap">
-      <input class="search-bar" type="text" placeholder="Search AI tools, categories or use cases…" id="searchInput" onkeydown="if(event.key==='Enter')doSearch()">
-      <button class="search-btn" onclick="doSearch()">Search →</button>
+
+    <div class="card">
+      <h3>AI Image Generators</h3>
+      <p>Generate stunning images and artwork using AI.</p>
+      <a href="/ai-image-tools.html">Explore →</a>
     </div>
-    <div class="search-tags">
-      <span class="stag" onclick="goSearch('AI writing')">AI Writing</span>
-      <span class="stag" onclick="goSearch('SEO tools')">SEO Tools</span>
-      <span class="stag" onclick="goSearch('video')">Video</span>
-      <span class="stag" onclick="goSearch('accounting')">Accounting</span>
-      <span class="stag" onclick="goSearch('image generation')">Image AI</span>
-      <span class="stag" onclick="goSearch('free')">Free Tools</span>
-      <span class="stag" onclick="goSearch('chatgpt')">ChatGPT</span>
+
+    <div class="card">
+      <h3>AI Marketing Tools</h3>
+      <p>Boost your business with AI-powered marketing tools.</p>
+      <a href="/ai-marketing-tools.html">Explore →</a>
+    </div>
+
+    <div class="card">
+      <h3>AI Automation Tools</h3>
+      <p>Automate repetitive tasks and save hours every day.</p>
+      <a href="/ai-automation-tools.html">Explore →</a>
     </div>
   </div>
 </section>
-<section class="featured-section">
-  <div class="section-wrap">
-    <div class="section-header">
-      <div><div class="section-label">Editor's Picks</div><div class="section-title">Featured AI Tools</div></div>
-      <a href="/best-ai-tools.html" class="section-link">View all tools →</a>
+
+<section class="section">
+  <h2>Why Use AIToolVillage?</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>✔ Curated Tools</h3>
+      <p>Only the best AI tools — no clutter or low-quality listings.</p>
     </div>
-    <div class="featured-grid">
-      <a href="https://pictory.ai?ref=simon43" target="_blank" rel="noopener" class="feat-card">
-        <div class="feat-card-img" style="background:linear-gradient(135deg,#0f1923,#1a3a2a)">
-          <div style="text-align:center"><div style="font-size:3.5rem">🎬</div><div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:white;font-weight:700;margin-top:8px">Pictory AI</div><div style="font-size:.74rem;color:rgba(255,255,255,.4);margin-top:4px">AI Video Creation</div></div>
-          <span class="feat-sponsored">Featured</span>
-        </div>
-        <div class="feat-card-body">
-          <span class="feat-tag">AI Video</span>
-          <div class="feat-name">Pictory AI</div>
-          <div class="feat-desc">Turn scripts, blog posts and text into professional videos automatically. No editing skills needed — just paste your content and Pictory does the rest.</div>
-          <div class="feat-footer"><span class="feat-price">From $25/mo · Free trial</span><span class="feat-btn">Try Free →</span></div>
-        </div>
-      </a>
-      <a href="https://writesonic.com?ref=aitoolvillage" target="_blank" rel="noopener" class="feat-card">
-        <div class="feat-card-img" style="background:linear-gradient(135deg,#0d1f2d,#1a3547)">
-          <div style="text-align:center"><div style="font-size:3.5rem">⚡</div><div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:white;font-weight:700;margin-top:8px">Writesonic</div><div style="font-size:.74rem;color:rgba(255,255,255,.4);margin-top:4px">AI Writing Platform</div></div>
-          <span class="feat-sponsored">Top Rated</span>
-        </div>
-        <div class="feat-card-body">
-          <span class="feat-tag">AI Writing</span>
-          <div class="feat-name">Writesonic</div>
-          <div class="feat-desc">GPT-4 powered AI writer for blog posts, ads, emails and landing pages. 10,000 free words every month — the best value AI writing tool available.</div>
-          <div class="feat-footer"><span class="feat-price">Free · From $16/mo</span><span class="feat-btn">Try Free →</span></div>
-        </div>
-      </a>
-      <a href="/tools/surfer-seo.html" class="feat-card">
-        <div class="feat-card-img" style="background:linear-gradient(135deg,#1a1a0d,#2d3a0e)">
-          <div style="text-align:center"><div style="font-size:3.5rem">📈</div><div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:white;font-weight:700;margin-top:8px">Surfer SEO</div><div style="font-size:.74rem;color:rgba(255,255,255,.4);margin-top:4px">AI SEO Platform</div></div>
-          <span class="feat-sponsored">Best for SEO</span>
-        </div>
-        <div class="feat-card-body">
-          <span class="feat-tag">SEO</span>
-          <div class="feat-name">Surfer SEO</div>
-          <div class="feat-desc">Write and optimise content for Google rankings simultaneously. Tells you exactly what to include to outrank competitors — the #1 AI SEO tool for content teams.</div>
-          <div class="feat-footer"><span class="feat-price">From $89/mo · Free trial</span><span class="feat-btn">View Review →</span></div>
-        </div>
-      </a>
+
+    <div class="card">
+      <h3>✔ Save Time</h3>
+      <p>Quickly compare tools, features and pricing in one place.</p>
+    </div>
+
+    <div class="card">
+      <h3>✔ Free & Paid Options</h3>
+      <p>Find both free AI tools and premium solutions for any budget.</p>
+    </div>
+
+    <div class="card">
+      <h3>✔ Built for Professionals</h3>
+      <p>Designed for marketers, business owners, creators and teams.</p>
     </div>
   </div>
 </section>
-<section class="categories-section">
-  <div class="section-wrap">
-    <div class="section-header">
-      <div><div class="section-label">Browse by category</div><div class="section-title">Explore AI Tool Categories</div></div>
-      <a href="/best-ai-tools.html" class="section-link">All categories →</a>
-    </div>
-    <div class="categories-grid">
-      <a href="/ai-writing-tools-marketers.html" class="cat-card"><div class="cat-icon">✍️</div><div><div class="cat-name">AI Writing</div><div class="cat-count">30+ tools</div></div></a>
-      <a href="/ai-seo-tools.html" class="cat-card"><div class="cat-icon">📈</div><div><div class="cat-name">SEO Tools</div><div class="cat-count">30+ tools</div></div></a>
-      <a href="/ai-video-marketing-tools.html" class="cat-card"><div class="cat-icon">🎬</div><div><div class="cat-name">Video & Audio</div><div class="cat-count">25+ tools</div></div></a>
-      <a href="/ai-social-media-tools.html" class="cat-card"><div class="cat-icon">📱</div><div><div class="cat-name">Social Media</div><div class="cat-count">20+ tools</div></div></a>
-      <a href="/ai-bookkeeping-tools.html" class="cat-card"><div class="cat-icon">📊</div><div><div class="cat-name">Accounting</div><div class="cat-count">24+ tools</div></div></a>
-      <a href="/ai-ads-tools.html" class="cat-card"><div class="cat-icon">🎯</div><div><div class="cat-name">Advertising</div><div class="cat-count">15+ tools</div></div></a>
-      <a href="/ai-for-coding.html" class="cat-card"><div class="cat-icon">💻</div><div><div class="cat-name">Code & Dev</div><div class="cat-count">20+ tools</div></div></a>
-      <a href="/ai-tools-for-content-creators.html" class="cat-card"><div class="cat-icon">🎨</div><div><div class="cat-name">Image & Design</div><div class="cat-count">24+ tools</div></div></a>
-      <a href="/ai-tools-for-project-managers.html" class="cat-card"><div class="cat-icon">📋</div><div><div class="cat-name">Productivity</div><div class="cat-count">28+ tools</div></div></a>
-      <a href="/ai-tools-for-hr-teams.html" class="cat-card"><div class="cat-icon">👥</div><div><div class="cat-name">HR & Recruiting</div><div class="cat-count">12+ tools</div></div></a>
-      <a href="/ai-tools-for-ecommerce.html" class="cat-card"><div class="cat-icon">🛒</div><div><div class="cat-name">Ecommerce</div><div class="cat-count">12+ tools</div></div></a>
-      <a href="/ai-tools-for-lawyers.html" class="cat-card"><div class="cat-icon">⚖️</div><div><div class="cat-name">Legal</div><div class="cat-count">7+ tools</div></div></a>
-    </div>
-  </div>
-</section>
-<section class="tools-section">
-  <div class="section-wrap">
-    <div class="section-header">
-      <div><div class="section-label">Most reviewed</div><div class="section-title">Popular AI Tools</div></div>
-      <a href="/best-ai-tools.html" class="section-link">Browse all 250+ →</a>
-    </div>
-    <div class="tools-grid">
-      <a href="/tools/chatgpt.html" class="tool-card"><div class="tool-card-head"><div class="tool-icon">🧠</div><div><div class="tool-card-name">ChatGPT</div><div class="tool-card-cat">AI Assistant</div></div></div><div class="tool-card-desc">The world's most popular AI chatbot for writing, coding, research and problem-solving.</div><div class="tool-card-footer"><span class="tool-rating">★★★★★ 4.9</span><span class="tool-price">Free / $20/mo</span></div></a>
-      <a href="/tools/jasper-ai.html" class="tool-card"><div class="tool-card-head"><div class="tool-icon">✍️</div><div><div class="tool-card-name">Jasper AI</div><div class="tool-card-cat">AI Writing</div></div></div><div class="tool-card-desc">AI marketing copy platform used by 100,000+ teams — brand voice, campaigns and long-form content.</div><div class="tool-card-footer"><span class="tool-rating">★★★★½ 4.6</span><span class="tool-price">From $49/mo</span></div></a>
-      <a href="/tools/midjourney.html" class="tool-card"><div class="tool-card-head"><div class="tool-icon">🎨</div><div><div class="tool-card-name">Midjourney</div><div class="tool-card-cat">AI Image</div></div></div><div class="tool-card-desc">The most artistic AI image generator — create stunning visuals from text prompts in seconds.</div><div class="tool-card-footer"><span class="tool-rating">★★★★½ 4.8</span><span class="tool-price">From $10/mo</span></div></a>
-      <a href="/tools/grammarly.html" class="tool-card"><div class="tool-card-head"><div class="tool-icon">📗</div><div><div class="tool-card-name">Grammarly</div><div class="tool-card-cat">Writing Quality</div></div></div><div class="tool-card-desc">AI grammar, clarity and tone checking for all your professional writing and emails.</div><div class="tool-card-footer"><span class="tool-rating">★★★★½ 4.7</span><span class="tool-price">Free / $12/mo</span></div></a>
-      <a href="/tools/notion-ai.html" class="tool-card"><div class="tool-card-head"><div class="tool-icon">📓</div><div><div class="tool-card-name">Notion AI</div><div class="tool-card-cat">Productivity</div></div></div><div class="tool-card-desc">AI-powered workspace for notes, docs, projects and knowledge management all in one place.</div><div class="tool-card-footer"><span class="tool-rating">★★★★½ 4.6</span><span class="tool-price">Free / $10/mo</span></div></a>
-      <a href="/tools/surfer-seo.html" class="tool-card"><div class="tool-card-head"><div class="tool-icon">📈</div><div><div class="tool-card-name">Surfer SEO</div><div class="tool-card-cat">SEO</div></div></div><div class="tool-card-desc">Write and optimise content for Google rankings in one powerful AI tool used by top agencies.</div><div class="tool-card-footer"><span class="tool-rating">★★★★½ 4.7</span><span class="tool-price">From $89/mo</span></div></a>
-      <a href="/tools/elevenlabs.html" class="tool-card"><div class="tool-card-head"><div class="tool-icon">🎙️</div><div><div class="tool-card-name">ElevenLabs</div><div class="tool-card-cat">AI Voice</div></div></div><div class="tool-card-desc">The most realistic AI voice generator — natural, emotional text-to-speech for any content.</div><div class="tool-card-footer"><span class="tool-rating">★★★★★ 4.8</span><span class="tool-price">Free / $5/mo</span></div></a>
-      <a href="/tools/zapier.html" class="tool-card"><div class="tool-card-head"><div class="tool-icon">⚙️</div><div><div class="tool-card-name">Zapier</div><div class="tool-card-cat">Automation</div></div></div><div class="tool-card-desc">Connect your apps and automate workflows without coding — 6,000+ integrations available.</div><div class="tool-card-footer"><span class="tool-rating">★★★★½ 4.6</span><span class="tool-price">Free / $20/mo</span></div></a>
-    </div>
-  </div>
-</section>
-<section class="aifx-section">
-  <div class="section-wrap">
-    <div class="section-header">
-      <div><div class="section-label">Task-based search</div><div class="section-title">Find AI for Any Task</div></div>
-      <a href="/best-ai-tools.html" class="section-link">Browse all →</a>
-    </div>
-    <div class="aifx-grid">
-      <a href="/ai-for-writing-emails.html" class="aifx-card">AI for Writing Emails <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-writing-blog-posts.html" class="aifx-card">AI for Blog Posts <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-seo.html" class="aifx-card">AI for SEO <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-social-media-captions.html" class="aifx-card">AI for Social Media <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-video-editing.html" class="aifx-card">AI for Video Editing <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-image-generation.html" class="aifx-card">AI for Image Generation <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-coding.html" class="aifx-card">AI for Coding <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-resume-writing.html" class="aifx-card">AI for Resume Writing <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-invoicing.html" class="aifx-card">AI for Invoicing <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-presentations.html" class="aifx-card">AI for Presentations <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-customer-service.html" class="aifx-card">AI for Customer Service <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-lead-generation.html" class="aifx-card">AI for Lead Generation <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-logo-design.html" class="aifx-card">AI for Logo Design <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-translations.html" class="aifx-card">AI for Translations <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-ad-copy.html" class="aifx-card">AI for Ad Copy <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-voiceovers.html" class="aifx-card">AI for Voiceovers <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-data-analysis.html" class="aifx-card">AI for Data Analysis <span class="aifx-arrow">→</span></a>
-      <a href="/ai-for-hiring.html" class="aifx-card">AI for Hiring <span class="aifx-arrow">→</span></a>
-    </div>
-  </div>
-</section>
-<section class="professions-section">
-  <div class="section-wrap">
-    <div class="section-header">
-      <div><div class="section-label">By profession</div><div class="section-title">AI Tools for Your Industry</div></div>
-      <a href="/best-ai-tools.html" class="section-link">All industries →</a>
-    </div>
-    <div class="prof-grid">
-      <a href="/ai-tools-marketers.html" class="prof-card"><div class="prof-emoji">📣</div><div class="prof-name">Marketers</div><div class="prof-count">50+ tools</div></a>
-      <a href="/ai-tools-accountants.html" class="prof-card"><div class="prof-emoji">💼</div><div class="prof-name">Accountants</div><div class="prof-count">24+ tools</div></a>
-      <a href="/ai-tools-for-freelancers.html" class="prof-card"><div class="prof-emoji">🧑‍💻</div><div class="prof-name">Freelancers</div><div class="prof-count">30+ tools</div></a>
-      <a href="/ai-tools-for-ecommerce.html" class="prof-card"><div class="prof-emoji">🛒</div><div class="prof-name">Ecommerce</div><div class="prof-count">12+ tools</div></a>
-      <a href="/ai-tools-for-lawyers.html" class="prof-card"><div class="prof-emoji">⚖️</div><div class="prof-name">Legal</div><div class="prof-count">10+ tools</div></a>
-      <a href="/ai-tools-for-real-estate.html" class="prof-card"><div class="prof-emoji">🏠</div><div class="prof-name">Real Estate</div><div class="prof-count">10+ tools</div></a>
-      <a href="/ai-tools-for-hr-teams.html" class="prof-card"><div class="prof-emoji">👥</div><div class="prof-name">HR Teams</div><div class="prof-count">10+ tools</div></a>
-      <a href="/ai-tools-for-coaches.html" class="prof-card"><div class="prof-emoji">🎯</div><div class="prof-name">Coaches</div><div class="prof-count">10+ tools</div></a>
-      <a href="/ai-tools-for-startups.html" class="prof-card"><div class="prof-emoji">🚀</div><div class="prof-name">Startups</div><div class="prof-count">20+ tools</div></a>
-      <a href="/ai-tools-for-nonprofits.html" class="prof-card"><div class="prof-emoji">❤️</div><div class="prof-name">Nonprofits</div><div class="prof-count">10+ tools</div></a>
-    </div>
-  </div>
-</section>
-<section class="cta-section">
-  <h2>Find Your Next <em>AI Tool</em> Today</h2>
-  <p>250+ tools reviewed and ranked. Free to browse. No signup required.</p>
-  <div class="cta-btns">
-    <a href="/best-ai-tools.html" class="cta-primary">Browse All Tools →</a>
-    <a href="/free-ai-tools-list.html" class="cta-secondary">Free Tools Only</a>
-  </div>
-</section>
+
 <footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="logo-text">🌿 AIToolVillage</div>
-      <p>Your village of AI tools for professionals. 250+ tools reviewed, ranked and ready to use.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Top Tools</h4>
-      <a href="/tools/chatgpt.html">ChatGPT</a>
-      <a href="/tools/jasper-ai.html">Jasper AI</a>
-      <a href="/tools/writesonic.html">Writesonic</a>
-      <a href="/tools/midjourney.html">Midjourney</a>
-      <a href="/tools/grammarly.html">Grammarly</a>
-    </div>
-    <div class="footer-col">
-      <h4>Categories</h4>
-      <a href="/ai-writing-tools-marketers.html">AI Writing</a>
-      <a href="/ai-seo-tools.html">SEO Tools</a>
-      <a href="/ai-video-marketing-tools.html">Video Tools</a>
-      <a href="/ai-bookkeeping-tools.html">Accounting</a>
-      <a href="/free-ai-tools-list.html">Free Tools</a>
-    </div>
-    <div class="footer-col">
-      <h4>Resources</h4>
-      <a href="/comparisons.html">Comparisons</a>
-      <a href="/best-ai-tools.html">Best AI Tools</a>
-      <a href="/sitemap-page.html">All Tools (Sitemap)</a>
-      <a href="/submit.html">Submit a Tool</a>
-      <a href="/advertise.html">Advertise</a>
-      <a href="/privacy.html">Privacy Policy</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 AIToolVillage.com · All rights reserved</span>
-    <span>Built for professionals who want to work smarter with AI</span>
-  </div>
+  <p>© 2026 AIToolVillage.com — Discover the Best AI Tools</p>
 </footer>
-<script>
-function doSearch(){var q=document.getElementById('searchInput').value.trim();if(q)window.location.href='/best-ai-tools.html?q='+encodeURIComponent(q);}
-function goSearch(t){window.location.href='/best-ai-tools.html?q='+encodeURIComponent(t);}
-</script>
+
 </body>
 </html>
