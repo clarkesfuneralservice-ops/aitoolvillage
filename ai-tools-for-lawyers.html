@@ -14,16 +14,16 @@
 </script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:'Outfit',sans-serif;background:#f9f6f0;color:#1c1a14;font-size:15px;line-height:1.65}
-a{color:inherit;text-decoration:none}
+a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:rgba(61,90,62,.15)}
 :root{--soil:#1c1a14;--moss:#3d5a3e;--wheat:#c8a96e;--parchment:#ede7d9;--stone:#9e9585;--mist:#f9f6f0;--leaf:#4a7c59;--border:#ddd5c4}
 nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:52px;background:rgba(249,246,240,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
 .logo{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--soil)}
 .logo span{color:var(--wheat)}
 .nav-links{display:flex;gap:20px}
 .nav-links a{font-size:.8rem;color:var(--stone);font-weight:500}
-.btn-cta{background:var(--moss);color:white;padding:7px 14px;border-radius:6px;font-size:.77rem;font-weight:600}
+.btn-cta{background:var(--moss);color:white;padding:7px 14px;border-radius:6px;font-size:.77rem;font-weight:600;touch-action:manipulation}
 .page-hero{background:linear-gradient(160deg,#1c1a14 0%,#2d3a1e 100%);padding:40px 20px 36px;text-align:center}
 .eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;color:var(--wheat);font-weight:600;text-transform:uppercase;letter-spacing:.08em;background:rgba(255,255,255,.08);padding:5px 12px;border-radius:20px;margin-bottom:14px}
 .page-hero h1{font-family:'Playfair Display',serif;font-size:2rem;color:white;line-height:1.2;max-width:720px;margin:0 auto 10px}
@@ -36,27 +36,27 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .intro-box{background:white;border:1.5px solid var(--border);border-radius:12px;padding:20px;margin-bottom:28px;font-size:.88rem;color:#444;line-height:1.8}
 .section-title{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--soil);margin-bottom:18px;padding-bottom:8px;border-bottom:2px solid var(--border)}
 .tools-list{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
-.tool-card{background:white;border:1.5px solid var(--border);border-radius:12px;padding:16px 20px;display:grid;grid-template-columns:36px 1fr auto;gap:14px;align-items:center;transition:border-color .18s}
+.tool-card{background:white;border:1.5px solid var(--border);border-radius:12px;padding:16px 20px;display:grid;grid-template-columns:36px 1fr auto;gap:14px;align-items:center;transition:border-color .18s;touch-action:manipulation}
 .tool-card:hover{border-color:var(--moss)}
 .tool-num{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--wheat);text-align:center}
-.tool-info .name{font-size:.95rem;font-weight:700;color:var(--soil);margin-bottom:2px;display:flex;align-items:center;gap:6px}
+.tool-info .name{font-size:.95rem;font-weight:700;color:var(--soil);margin-bottom:2px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .tool-info .badge{display:inline-block;font-size:.67rem;color:var(--moss);background:#eef5ee;padding:2px 7px;border-radius:4px;font-weight:600}
 .tool-info .desc{font-size:.81rem;color:#555;line-height:1.55;margin-top:4px}
 .tool-info .price{font-size:.76rem;color:var(--stone);margin-top:3px}
-.try-btn{display:inline-block;background:var(--moss);color:white;padding:7px 14px;border-radius:7px;font-size:.76rem;font-weight:600;white-space:nowrap}
+.try-btn{display:inline-block;background:var(--moss);color:white;padding:7px 14px;border-radius:7px;font-size:.76rem;font-weight:600;white-space:nowrap;touch-action:manipulation}
 .try-btn:hover{background:var(--leaf)}
 .cta-banner{background:linear-gradient(135deg,var(--soil),#2a3d1c);border-radius:14px;padding:24px;text-align:center;margin-bottom:32px}
 .cta-banner h3{font-family:'Playfair Display',serif;color:white;font-size:1.1rem;margin-bottom:8px}
 .cta-banner p{font-size:.82rem;color:rgba(255,255,255,.55);margin-bottom:14px}
-.cta-banner a{display:inline-block;background:var(--wheat);color:var(--soil);font-weight:700;padding:10px 24px;border-radius:8px;font-size:.88rem}
+.cta-banner a{display:inline-block;background:var(--wheat);color:var(--soil);font-weight:700;padding:10px 24px;border-radius:8px;font-size:.88rem;touch-action:manipulation}
 .faq-item{border:1.5px solid var(--border);border-radius:10px;margin-bottom:10px;background:white;overflow:hidden}
-.faq-q{width:100%;text-align:left;padding:13px 16px;font-size:.87rem;font-weight:600;color:var(--soil);background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q{width:100%;text-align:left;padding:13px 16px;font-size:.87rem;font-weight:600;color:var(--soil);background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;touch-action:manipulation}
 .faq-q span{color:var(--moss);font-size:1.1rem;transition:transform .2s}
 .faq-item.open .faq-q span{transform:rotate(45deg)}
 .faq-a{display:none;padding:0 16px 13px;font-size:.82rem;color:#555;line-height:1.7}
 .faq-item.open .faq-a{display:block}
 .related-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.rel-card{background:white;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;display:block;transition:all .18s}
+.rel-card{background:white;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;display:block;transition:all .18s;touch-action:manipulation}
 .rel-card:hover{border-color:var(--moss);transform:translateY(-2px)}
 .rel-title{font-size:.85rem;font-weight:700;color:var(--soil);margin-bottom:3px}
 .rel-arrow{font-size:.78rem;color:var(--moss)}
@@ -66,8 +66,8 @@ footer{background:#141210;color:rgba(255,255,255,.4);padding:28px 20px 20px;marg
 @media(max-width:768px){
   .nav-links{display:none}
   .page-hero h1{font-size:1.5rem}
-  .tool-card{grid-template-columns:32px 1fr}
-  .try-btn{display:none}
+  .tool-card{grid-template-columns:32px 1fr auto}
+  .try-btn{display:inline-block;padding:8px 10px;font-size:.74rem}
   .related-grid{grid-template-columns:1fr}
 }
 </style>
@@ -83,142 +83,48 @@ footer{background:#141210;color:rgba(255,255,255,.4);padding:28px 20px 20px;marg
   </div>
   <a href="/best-ai-tools.html" class="btn-cta">Browse All Tools</a>
 </nav>
-
 <div class="page-hero">
   <div class="eyebrow">⚖️ Legal Professionals · 2026</div>
   <h1>Best AI Tools for Lawyers (2026)</h1>
   <p class="hero-sub">Reviewed and ranked — find the right AI tools for your workflow and budget.</p>
 </div>
-
 <div class="wrap">
   <div class="breadcrumb"><a href="/">AIToolVillage</a> › <a href="/best-ai-tools.html">Best AI Tools</a> › Best AI Tools for Lawyers (2026)</div>
   <div class="disclaimer">ℹ️ <strong>Affiliate disclosure:</strong> Some links on this page are affiliate links. We may earn a commission at no extra cost to you.</div>
   <div class="intro-box">AI is transforming legal practice — from contract review that takes minutes instead of hours to legal research that surfaces relevant cases automatically. These AI tools for lawyers cover every part of the legal workflow, whether you're a solo practitioner or part of a large firm.</div>
-
   <h2 class="section-title">Best AI Tools for Legal Professionals — Ranked</h2>
   <div class="tools-list">
-    <div class="tool-card">
-      <div class="tool-num">1</div>
-      <div class="tool-info">
-        <div class="name">⚖️ Harvey AI <span class="badge">Best overall AI for lawyers</span></div>
-        <div class="desc">GPT-4 built for law — used by top firms for contract drafting, legal research and due diligence.</div>
-        <div class="price">💰 Custom pricing</div>
-      </div>
-      <a href="/tools/harvey-ai.html" class="try-btn">View →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-num">2</div>
-      <div class="tool-info">
-        <div class="name">📋 Clio <span class="badge">Best for law firm management</span></div>
-        <div class="desc">The #1 legal practice management platform — time tracking, billing, client portal and AI drafting.</div>
-        <div class="price">💰 From $49/mo</div>
-      </div>
-      <a href="/tools/clio.html" class="try-btn">View →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-num">3</div>
-      <div class="tool-info">
-        <div class="name">📚 Lexis+ AI <span class="badge">Best for legal research</span></div>
-        <div class="desc">AI-powered legal research from LexisNexis — finds relevant cases and statutes instantly.</div>
-        <div class="price">💰 Custom pricing</div>
-      </div>
-      <a href="/tools/lexis-ai.html" class="try-btn">View →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-num">4</div>
-      <div class="tool-info">
-        <div class="name">🔍 Westlaw AI <span class="badge">Best for case law research</span></div>
-        <div class="desc">Thomson Reuters AI research tool — the gold standard for comprehensive legal research.</div>
-        <div class="price">💰 Custom pricing</div>
-      </div>
-      <a href="/tools/westlaw-ai.html" class="try-btn">View →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-num">5</div>
-      <div class="tool-info">
-        <div class="name">📄 ContractPodAi <span class="badge">Best for contract lifecycle management</span></div>
-        <div class="desc">End-to-end AI contract management — drafting, review, negotiation and storage in one platform.</div>
-        <div class="price">💰 Custom pricing</div>
-      </div>
-      <a href="/tools/contractpodai.html" class="try-btn">View →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-num">6</div>
-      <div class="tool-info">
-        <div class="name">✍️ Spellbook <span class="badge">Best AI for contract drafting</span></div>
-        <div class="desc">GPT-4 powered contract drafting inside Microsoft Word — suggests clauses and reviews contracts.</div>
-        <div class="price">💰 From $99/mo</div>
-      </div>
-      <a href="/tools/spellbook.html" class="try-btn">View →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-num">7</div>
-      <div class="tool-info">
-        <div class="name">📝 Briefpoint <span class="badge">Best for legal brief drafting</span></div>
-        <div class="desc">Automates the most time-consuming parts of brief writing — discovery responses and motions.</div>
-        <div class="price">💰 From $89/mo</div>
-      </div>
-      <a href="/tools/briefpoint.html" class="try-btn">View →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-num">8</div>
-      <div class="tool-info">
-        <div class="name">🗂️ CaseText <span class="badge">Best for litigation support</span></div>
-        <div class="desc">AI legal research and brief drafting — acquired by Thomson Reuters for its powerful AI.</div>
-        <div class="price">💰 Custom pricing</div>
-      </div>
-      <a href="/tools/casetext.html" class="try-btn">View →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-num">9</div>
-      <div class="tool-info">
-        <div class="name">🔗 Ironclad <span class="badge">Best for in-house legal teams</span></div>
-        <div class="desc">Contract workflow automation for in-house counsel — speeds up contracting by 80%.</div>
-        <div class="price">💰 Custom pricing</div>
-      </div>
-      <a href="/tools/ironclad.html" class="try-btn">View →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-num">10</div>
-      <div class="tool-info">
-        <div class="name">🤖 Kira Systems <span class="badge">Best for due diligence</span></div>
-        <div class="desc">AI contract analysis for M&A due diligence — extracts key provisions from thousands of documents.</div>
-        <div class="price">💰 Custom pricing</div>
-      </div>
-      <a href="/tools/kira-systems.html" class="try-btn">View →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-num">11</div>
-      <div class="tool-info">
-        <div class="name">🧠 Chatgpt <span class="badge">Best free AI writing assistant for lawyers</span></div>
-        <div class="desc">Drafts letters, summarises documents and explains legal concepts — free and immediately useful.</div>
-        <div class="price">💰 Free / $20/mo</div>
-      </div>
-      <a href="/tools/chatgpt.html" class="try-btn">View →</a>
-    </div>
-    <div class="tool-card">
-      <div class="tool-num">12</div>
-      <div class="tool-info">
-        <div class="name">📗 Grammarly <span class="badge">Best for legal writing quality</span></div>
-        <div class="desc">Grammar, clarity and tone checking for all legal documents — essential for professional writing.</div>
-        <div class="price">💰 Free / $12/mo</div>
-      </div>
-      <a href="/tools/grammarly.html" class="try-btn">View →</a>
-    </div></div>
-
+    <a href="/tools/harvey-ai.html" class="tool-card"><div class="tool-num">1</div><div class="tool-info"><div class="name">⚖️ Harvey AI <span class="badge">Best overall AI for lawyers</span></div><div class="desc">GPT-4 built for law — used by top firms for contract drafting, legal research and due diligence.</div><div class="price">💰 Custom pricing</div></div><span class="try-btn">View →</span></a>
+    <a href="/tools/clio.html" class="tool-card"><div class="tool-num">2</div><div class="tool-info"><div class="name">📋 Clio <span class="badge">Best for law firm management</span></div><div class="desc">The #1 legal practice management platform — time tracking, billing, client portal and AI drafting.</div><div class="price">💰 From $49/mo</div></div><span class="try-btn">View →</span></a>
+    <a href="/tools/lexis-ai.html" class="tool-card"><div class="tool-num">3</div><div class="tool-info"><div class="name">📚 Lexis+ AI <span class="badge">Best for legal research</span></div><div class="desc">AI-powered legal research from LexisNexis — finds relevant cases and statutes instantly.</div><div class="price">💰 Custom pricing</div></div><span class="try-btn">View →</span></a>
+    <a href="/tools/westlaw-ai.html" class="tool-card"><div class="tool-num">4</div><div class="tool-info"><div class="name">🔍 Westlaw AI <span class="badge">Best for case law research</span></div><div class="desc">Thomson Reuters AI research tool — the gold standard for comprehensive legal research.</div><div class="price">💰 Custom pricing</div></div><span class="try-btn">View →</span></a>
+    <a href="/tools/contractpodai.html" class="tool-card"><div class="tool-num">5</div><div class="tool-info"><div class="name">📄 ContractPodAi <span class="badge">Best for contract lifecycle management</span></div><div class="desc">End-to-end AI contract management — drafting, review, negotiation and storage in one platform.</div><div class="price">💰 Custom pricing</div></div><span class="try-btn">View →</span></a>
+    <a href="/tools/spellbook.html" class="tool-card"><div class="tool-num">6</div><div class="tool-info"><div class="name">✍️ Spellbook <span class="badge">Best AI for contract drafting</span></div><div class="desc">GPT-4 powered contract drafting inside Microsoft Word — suggests clauses and reviews contracts.</div><div class="price">💰 From $99/mo</div></div><span class="try-btn">View →</span></a>
+    <a href="/tools/briefpoint.html" class="tool-card"><div class="tool-num">7</div><div class="tool-info"><div class="name">📝 Briefpoint <span class="badge">Best for legal brief drafting</span></div><div class="desc">Automates the most time-consuming parts of brief writing — discovery responses and motions.</div><div class="price">💰 From $89/mo</div></div><span class="try-btn">View →</span></a>
+    <a href="/tools/casetext.html" class="tool-card"><div class="tool-num">8</div><div class="tool-info"><div class="name">🗂️ CaseText <span class="badge">Best for litigation support</span></div><div class="desc">AI legal research and brief drafting — acquired by Thomson Reuters for its powerful AI.</div><div class="price">💰 Custom pricing</div></div><span class="try-btn">View →</span></a>
+    <a href="/tools/ironclad.html" class="tool-card"><div class="tool-num">9</div><div class="tool-info"><div class="name">🔗 Ironclad <span class="badge">Best for in-house legal teams</span></div><div class="desc">Contract workflow automation for in-house counsel — speeds up contracting by 80%.</div><div class="price">💰 Custom pricing</div></div><span class="try-btn">View →</span></a>
+    <a href="/tools/kira-systems.html" class="tool-card"><div class="tool-num">10</div><div class="tool-info"><div class="name">🤖 Kira Systems <span class="badge">Best for due diligence</span></div><div class="desc">AI contract analysis for M&A due diligence — extracts key provisions from thousands of documents.</div><div class="price">💰 Custom pricing</div></div><span class="try-btn">View →</span></a>
+    <a href="/tools/chatgpt.html" class="tool-card"><div class="tool-num">11</div><div class="tool-info"><div class="name">🧠 ChatGPT <span class="badge">Best free AI writing assistant for lawyers</span></div><div class="desc">Drafts letters, summarises documents and explains legal concepts — free and immediately useful.</div><div class="price">💰 Free / $20/mo</div></div><span class="try-btn">View →</span></a>
+    <a href="/tools/grammarly.html" class="tool-card"><div class="tool-num">12</div><div class="tool-info"><div class="name">📗 Grammarly <span class="badge">Best for legal writing quality</span></div><div class="desc">Grammar, clarity and tone checking for all legal documents — essential for professional writing.</div><div class="price">💰 Free / $12/mo</div></div><span class="try-btn">View →</span></a>
+  </div>
   <div class="cta-banner">
     <h3>⭐ Try Writesonic Free</h3>
-    <p>Try Writesonic Free — draft legal letters, emails and documents faster with AI.</p>
+    <p>Draft legal letters, emails and documents faster with AI.</p>
     <a href="https://writesonic.com?ref=aitoolvillage" target="_blank" rel="noopener">Get Started Free →</a>
   </div>
-
   <h2 class="section-title">Frequently Asked Questions</h2>
-  <div class="faq-item"><button class="faq-q">What is the best AI tool for lawyers? <span>+</span></button><div class="faq-a">Harvey AI and Clio are the top picks for law firms. Harvey AI handles research and drafting while Clio manages the full practice. For solo practitioners, Spellbook and ChatGPT are more affordable starting points.</div></div><div class="faq-item"><button class="faq-q">Can AI replace lawyers? <span>+</span></button><div class="faq-a">No — AI tools assist lawyers by automating repetitive tasks like document review and research. Legal judgment, client relationships and courtroom advocacy still require human expertise.</div></div><div class="faq-item"><button class="faq-q">Is it ethical for lawyers to use AI? <span>+</span></button><div class="faq-a">Yes — most bar associations permit AI use in legal practice. Lawyers must verify AI output for accuracy and maintain professional responsibility for all work product.</div></div><div class="faq-item"><button class="faq-q">What AI tools do law firms use? <span>+</span></button><div class="faq-a">Large firms use Harvey AI, Kira Systems and Westlaw AI for research and due diligence. Mid-size firms commonly use Clio, Spellbook and CaseText for everyday practice management and drafting.</div></div>
-
+  <div class="faq-item"><button class="faq-q">What is the best AI tool for lawyers? <span>+</span></button><div class="faq-a">Harvey AI and Clio are the top picks for law firms. Harvey AI handles research and drafting while Clio manages the full practice. For solo practitioners, Spellbook and ChatGPT are more affordable starting points.</div></div>
+  <div class="faq-item"><button class="faq-q">Can AI replace lawyers? <span>+</span></button><div class="faq-a">No — AI tools assist lawyers by automating repetitive tasks like document review and research. Legal judgment, client relationships and courtroom advocacy still require human expertise.</div></div>
+  <div class="faq-item"><button class="faq-q">Is it ethical for lawyers to use AI? <span>+</span></button><div class="faq-a">Yes — most bar associations permit AI use in legal practice. Lawyers must verify AI output for accuracy and maintain professional responsibility for all work product.</div></div>
+  <div class="faq-item"><button class="faq-q">What AI tools do law firms use? <span>+</span></button><div class="faq-a">Large firms use Harvey AI, Kira Systems and Westlaw AI for research and due diligence. Mid-size firms commonly use Clio, Spellbook and CaseText for everyday practice management and drafting.</div></div>
   <h2 class="section-title" style="margin-top:32px">Related Pages</h2>
-  <div class="related-grid"><a href="/ai-tools-for-accountants.html" class="rel-card"><div class="rel-title">Ai Tools For Accountants</div><div class="rel-arrow">View page →</div></a><a href="/ai-tools-for-small-business.html" class="rel-card"><div class="rel-title">Ai Tools For Small Business</div><div class="rel-arrow">View page →</div></a><a href="/ai-tools-for-freelancers.html" class="rel-card"><div class="rel-title">Ai Tools For Freelancers</div><div class="rel-arrow">View page →</div></a><a href="/chatgpt-alternatives.html" class="rel-card"><div class="rel-title">Chatgpt Alternatives</div><div class="rel-arrow">View page →</div></a></div>
+  <div class="related-grid">
+    <a href="/ai-tools-accountants.html" class="rel-card"><div class="rel-title">AI Tools for Accountants</div><div class="rel-arrow">View page →</div></a>
+    <a href="/best-ai-tools-small-business.html" class="rel-card"><div class="rel-title">AI Tools for Small Business</div><div class="rel-arrow">View page →</div></a>
+    <a href="/ai-tools-for-freelancers.html" class="rel-card"><div class="rel-title">AI Tools for Freelancers</div><div class="rel-arrow">View page →</div></a>
+    <a href="/ai-tools-for-hr-teams.html" class="rel-card"><div class="rel-title">AI Tools for HR Teams</div><div class="rel-arrow">View page →</div></a>
+  </div>
 </div>
-
 <footer>
   <div class="footer-inner">
     <span style="font-family:'Playfair Display',serif;color:rgba(255,255,255,.6)">🌿 AIToolVillage</span>
@@ -230,8 +136,6 @@ footer{background:#141210;color:rgba(255,255,255,.4);padding:28px 20px 20px;marg
     </div>
   </div>
 </footer>
-<script>
-document.querySelectorAll('.faq-q').forEach(b=>b.addEventListener('click',()=>b.parentElement.classList.toggle('open')));
-</script>
+<script>document.querySelectorAll('.faq-q').forEach(b=>b.addEventListener('click',()=>b.parentElement.classList.toggle('open')));</script>
 </body>
 </html>
