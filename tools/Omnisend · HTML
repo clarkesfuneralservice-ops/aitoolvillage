@@ -3,76 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Omnisend review 2026 — best email and SMS marketing for ecommerce. Cheaper than Klaviyo, pre-built automations and free plan available.">
-<title>Omnisend Review (2026) — Ecommerce Email & SMS | AIToolVillage</title>
+<meta name="description" content="Omnisend review 2026 — best email and SMS marketing platform for ecommerce. AI product recommendations, cart abandonment flows and automation for online stores.">
+<title>Omnisend Review (2026) — Best Email & SMS Marketing for Ecommerce | AIToolVillage</title>
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <link rel="canonical" href="https://aitoolvillage.com/tools/omnisend.html">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Outfit:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:'Outfit',sans-serif;background:#f8f5ef;color:#1a1814;font-size:15px;line-height:1.65}
-a{color:inherit;text-decoration:none}
+a{color:inherit;text-decoration:none;-webkit-tap-highlight-color:rgba(58,92,59,.15)}
 :root{--soil:#1a1814;--moss:#3a5c3b;--wheat:#c4a45e;--parchment:#f8f5ef;--stone:#8a8070;--leaf:#4a7c59;--border:#ddd5c0}
 nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:54px;background:rgba(26,24,20,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
 .logo{font-family:'Playfair Display',serif;font-size:1.05rem;color:white}.logo span{color:var(--wheat)}
 .nav-links{display:flex;gap:6px}.nav-links a{font-size:.78rem;color:rgba(255,255,255,.5);padding:4px 9px;border-radius:5px;transition:color .15s}.nav-links a:hover{color:white}
-.btn-try{background:var(--moss);color:white;padding:7px 16px;border-radius:6px;font-size:.78rem;font-weight:700}
-.hero{background:linear-gradient(160deg,#1a1814,#2d3a1e);padding:42px 24px 38px;text-align:center}
-.hero-cat{display:inline-block;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--wheat);background:rgba(196,164,94,.15);border:1px solid rgba(196,164,94,.3);padding:4px 12px;border-radius:16px;margin-bottom:14px}
+.btn-try{background:var(--moss);color:white;padding:7px 16px;border-radius:6px;font-size:.78rem;font-weight:700;touch-action:manipulation}
+.hero{background:linear-gradient(160deg,#1a1814,#2d3a1e);padding:40px 24px 36px;text-align:center}
+.hero-cat{display:inline-block;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--wheat);background:rgba(196,164,94,.15);border:1px solid rgba(196,164,94,.25);padding:4px 12px;border-radius:16px;margin-bottom:14px}
 .hero h1{font-family:'Playfair Display',serif;font-size:2rem;color:white;margin-bottom:6px;line-height:1.1}
-.hero-tagline{font-size:.9rem;color:rgba(255,255,255,.45);margin-bottom:22px;max-width:560px;margin-left:auto;margin-right:auto}
+.hero-tagline{font-size:.9rem;color:rgba(255,255,255,.45);margin-bottom:22px}
 .hero-meta{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
 .hmeta{font-size:.8rem;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:5px}.hmeta strong{color:rgba(255,255,255,.8)}
 .hero-rating{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);padding:6px 14px;border-radius:20px;font-size:.8rem;color:rgba(255,255,255,.6)}
-.stars{color:var(--wheat)}
+.hero-rating .stars{color:var(--wheat)}
 .wrap{max-width:880px;margin:0 auto;padding:28px 20px 64px}
 .breadcrumb{font-size:.73rem;color:var(--stone);margin-bottom:20px}.breadcrumb a{color:var(--moss)}
 .layout{display:grid;grid-template-columns:1fr 260px;gap:20px;align-items:start}
 .card{background:white;border:1.5px solid var(--border);border-radius:12px;padding:22px;margin-bottom:18px}
 .card-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--soil);margin-bottom:14px}
-.prose p{font-size:.87rem;color:#444;line-height:1.75;margin-bottom:12px}.prose p:last-child{margin-bottom:0}
-.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.feat-item{background:var(--parchment);border:1.5px solid var(--border);border-radius:10px;padding:14px}
-.feat-icon{font-size:1.3rem;margin-bottom:6px}.feat-name{font-size:.84rem;font-weight:700;color:var(--soil);margin-bottom:4px}
-.feat-desc{font-size:.77rem;color:#555;line-height:1.5}
+.prose{font-size:.87rem;color:#444;line-height:1.75}.prose p{margin-bottom:12px}.prose p:last-child{margin-bottom:0}
+.tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
+.tag{font-size:.7rem;font-weight:600;color:var(--moss);background:#eef5ee;padding:3px 9px;border-radius:4px}
 .pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.pros{background:#f0f7f0;border:1px solid #c8e0c8;border-radius:8px;padding:14px}
-.cons{background:#fdf5f5;border:1px solid #e8caca;border-radius:8px;padding:14px}
+.pros,.cons{border-radius:8px;padding:14px}
+.pros{background:#f0f7f0;border:1px solid #c8e0c8}.cons{background:#fdf5f5;border:1px solid #e8caca}
 .pc-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:9px}
 .pros .pc-title{color:var(--moss)}.cons .pc-title{color:#b04040}
 .pc-item{font-size:.8rem;line-height:1.5;padding:4px 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;gap:7px}.pc-item:last-child{border-bottom:none}
 .pros .pc-item::before{content:"✓";color:var(--moss);font-weight:700;flex-shrink:0}
 .cons .pc-item::before{content:"✗";color:#b04040;font-weight:700;flex-shrink:0}
+.pricing-table{width:100%;border-collapse:collapse;font-size:.83rem}
+.pricing-table th{text-align:left;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--stone);padding:8px 0;border-bottom:1.5px solid var(--border)}
+.pricing-table td{padding:10px 0;border-bottom:1px solid #ede8dc;vertical-align:top}
+.pricing-table tr:last-child td{border-bottom:none}
+.pricing-table td:first-child{font-weight:600;color:var(--soil);width:30%}
+.pricing-table td:nth-child(2){width:25%;color:var(--moss);font-weight:600}
 .faq-item{border:1.5px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden}
-.faq-q{width:100%;text-align:left;padding:13px 16px;font-size:.86rem;font-weight:600;color:var(--soil);background:white;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-q{width:100%;text-align:left;padding:13px 16px;font-size:.86rem;font-weight:600;color:var(--soil);background:white;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;touch-action:manipulation}
 .faq-icon{color:var(--moss);font-size:1rem;flex-shrink:0;transition:transform .2s}
 .faq-item.open .faq-icon{transform:rotate(45deg)}
 .faq-a{display:none;padding:0 16px 13px;font-size:.82rem;color:#555;line-height:1.65;background:white}
 .faq-item.open .faq-a{display:block}
 .alts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.alt-card{background:white;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;transition:all .18s}
+.alt-card{background:white;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;transition:all .18s;touch-action:manipulation}
 .alt-card:hover{border-color:var(--moss);transform:translateY(-2px)}
 .alt-name{font-size:.9rem;font-weight:700;color:var(--soil);margin-bottom:3px}
 .alt-link{font-size:.77rem;color:var(--moss);font-weight:600}
 .sidebar-card{background:white;border:1.5px solid var(--border);border-radius:12px;padding:18px;margin-bottom:14px}
 .sidebar-card h4{font-size:.82rem;font-weight:700;color:var(--soil);margin-bottom:12px}
 .info-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:.8rem}.info-row:last-child{border-bottom:none}
-.info-label{color:var(--stone);font-weight:500}.info-val{color:var(--soil);font-weight:600;text-align:right;max-width:58%}
-.score-box{background:#eef5ee;border:1.5px solid #c8e0c8;border-radius:10px;padding:14px;text-align:center;margin-bottom:14px}
-.score-num{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--moss);font-weight:700;line-height:1}
-.score-label{font-size:.73rem;color:var(--stone);margin-top:3px}
-.verdict-box{background:#fff9ee;border:1.5px solid #e8d5a0;border-radius:10px;padding:16px;margin-bottom:14px}
-.verdict-box h4{font-size:.82rem;font-weight:700;color:#8a6a20;margin-bottom:7px}
-.verdict-box p{font-size:.79rem;color:#665a30;line-height:1.55}
+.info-label{color:var(--stone);font-weight:500}.info-val{color:var(--soil);font-weight:600;text-align:right;max-width:55%}
 .cta-card{background:linear-gradient(160deg,#1a1814,#2d3a1e);border-radius:12px;padding:20px;text-align:center}
 .cta-card h4{font-family:'Playfair Display',serif;color:white;font-size:1rem;margin-bottom:7px}
 .cta-card p{font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:14px;line-height:1.5}
-.cta-card a{display:block;background:var(--wheat);color:var(--soil);font-weight:700;padding:10px;border-radius:8px;font-size:.86rem}
-.sb-link{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:.8rem;color:var(--soil);transition:color .15s}.sb-link:last-child{border-bottom:none}.sb-link:hover{color:var(--moss)}
+.cta-card a{display:block;background:var(--wheat);color:var(--soil);font-weight:700;padding:10px;border-radius:8px;font-size:.86rem;touch-action:manipulation}
+.score-box{background:#f0f7f0;border:1.5px solid #c8e0c8;border-radius:10px;padding:14px;text-align:center;margin-bottom:14px}
+.score-num{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--moss);font-weight:700;line-height:1}
+.score-label{font-size:.73rem;color:var(--stone);margin-top:3px}
 footer{background:#111009;color:rgba(255,255,255,.3);padding:22px 24px;text-align:center;font-size:.75rem}
 footer a{color:rgba(255,255,255,.3);margin:0 9px}
-@media(max-width:720px){.layout{grid-template-columns:1fr}.nav-links{display:none}.pros-cons{grid-template-columns:1fr}.features-grid{grid-template-columns:1fr}.alts-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.layout{grid-template-columns:1fr}.nav-links{display:none}.pros-cons{grid-template-columns:1fr}.alts-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -86,60 +87,67 @@ footer a{color:rgba(255,255,255,.3);margin:0 9px}
   <a href="https://omnisend.com" target="_blank" rel="noopener" class="btn-try">Try Omnisend →</a>
 </nav>
 <div class="hero">
-  <div class="hero-cat">🛒 Ecommerce AI · Email & SMS</div>
+  <div class="hero-cat">Email Marketing · Ecommerce</div>
   <h1>Omnisend Review (2026)</h1>
-  <div class="hero-tagline">Email, SMS and push notifications built for ecommerce — at a lower price than Klaviyo</div>
+  <div class="hero-tagline">Email and SMS marketing automation built specifically for ecommerce brands</div>
   <div class="hero-meta">
-    <div class="hmeta">💰 <strong>Free up to 250 contacts</strong></div>
-    <div class="hmeta">✅ <strong>Free plan available</strong></div>
-    <div class="hmeta">👥 <strong>Ecommerce stores, Shopify brands</strong></div>
+    <div class="hmeta">💰 <strong>Free / From $16/mo</strong></div>
+    <div class="hmeta">✅ <strong>Free plan — 500 emails/mo</strong></div>
   </div>
-  <div class="hero-rating"><span class="stars">★★★★</span><span>4.4 / 5 · AIToolVillage Score</span></div>
+  <div class="hero-rating"><span class="stars">★★★★½</span><span>4.5 / 5 · AIToolVillage Score</span></div>
 </div>
 <div class="wrap">
-  <div class="breadcrumb"><a href="/">AIToolVillage</a> › <a href="/ai-tools-for-ecommerce.html">AI for Ecommerce</a> › Omnisend Review</div>
+  <div class="breadcrumb"><a href="/">AIToolVillage</a> › <a href="/ai-tools-for-ecommerce.html">Ecommerce AI</a> › Omnisend Review</div>
   <div class="layout">
     <div class="main">
-      <div class="card"><div class="card-title">What is Omnisend?</div><div class="prose"><p>Omnisend is an email and SMS marketing platform built specifically for ecommerce — it's the most popular Klaviyo alternative, offering similar ecommerce-focused features at a significantly lower price point. Used by 100,000+ ecommerce brands including those on Shopify, WooCommerce and BigCommerce.</p><p>Its pre-built automation workflows cover all the key ecommerce scenarios — abandoned cart, welcome series, post-purchase, browse abandonment, win-back and cross-sell — and can be activated in minutes without custom configuration. Unlike Mailchimp, every automation is built with ecommerce revenue in mind.</p><p>Omnisend's channel mixing is a standout feature — you can combine email, SMS and web push notifications in the same automation workflow, reaching customers on whichever channel they're most responsive to. Its free plan is generous and the paid plans are typically 30-50% cheaper than equivalent Klaviyo plans.</p></div></div>
-      <div class="card"><div class="card-title">Key Features</div><div class="features-grid"><div class="feat-item"><div class="feat-icon">🛒</div><div class="feat-name">Ecommerce Automations</div><div class="feat-desc">Pre-built abandoned cart, welcome, post-purchase and win-back workflows — activate in minutes, not hours.</div></div><div class="feat-item"><div class="feat-icon">📱</div><div class="feat-name">Email + SMS + Push</div><div class="feat-desc">Combine email, SMS and web push in one automation workflow — reach customers on their preferred channel.</div></div><div class="feat-item"><div class="feat-icon">🎯</div><div class="feat-name">Segmentation</div><div class="feat-desc">Segment by purchase history, browsing behaviour, engagement and 50+ ecommerce-specific data points.</div></div><div class="feat-item"><div class="feat-icon">🤖</div><div class="feat-name">AI Content Tools</div><div class="feat-desc">AI-generated subject lines, send time optimisation and product recommendations personalised per subscriber.</div></div><div class="feat-item"><div class="feat-icon">📊</div><div class="feat-name">Revenue Reporting</div><div class="feat-desc">Direct revenue attribution per campaign, flow and channel — see exactly what each email and SMS earns.</div></div><div class="feat-item"><div class="feat-icon">🔗</div><div class="feat-name">Shopify Integration</div><div class="feat-desc">Deep native Shopify sync — products, orders and customer data updated in real time.</div></div></div></div>
+      <div class="card">
+        <div class="card-title">What is Omnisend?</div>
+        <div class="prose"><p>Omnisend is an email and SMS marketing platform built specifically for ecommerce — it's a strong Klaviyo alternative that offers most of the same core features at a lower price point. Used by 100,000+ ecommerce brands, Omnisend focuses on automation flows that recover revenue and drive repeat purchases: cart abandonment, browse abandonment, post-purchase sequences and win-back campaigns.</p><p>Its AI product recommender automatically inserts personalised product suggestions into emails based on each customer's browsing and purchase history — without manual segment building. This powers the kind of personalised marketing that was previously only available to enterprise brands with dedicated data teams.</p><p>Omnisend's unified messaging approach lets you send email, SMS and push notifications from the same automation workflow — so a cart abandonment sequence can start with an email, follow up with an SMS and finish with a push notification, all triggered by the same event and managed in one place.</p></div>
+        <div class="tags"><span class="tag">Email Marketing</span><span class="tag">SMS Marketing</span><span class="tag">Ecommerce</span></div>
+      </div>
       <div class="card">
         <div class="card-title">Pros & Cons</div>
         <div class="pros-cons">
-          <div class="pros"><div class="pc-title">What we love</div><div class="pc-item">30-50% cheaper than Klaviyo for same features</div><div class="pc-item">Email + SMS + push in one platform</div><div class="pc-item">Excellent pre-built ecommerce automations</div><div class="pc-item">Generous free plan</div><div class="pc-item">Easy setup — pre-built workflows ready to go</div></div>
-          <div class="cons"><div class="pc-title">Watch out for</div><div class="pc-item">Less powerful segmentation than Klaviyo</div><div class="pc-item">Smaller integration library</div><div class="pc-item">Predictive analytics less advanced than Klaviyo</div><div class="pc-item">Smaller community and ecosystem</div></div>
+          <div class="pros"><div class="pc-title">What we love</div><div class="pc-item">Purpose-built for ecommerce — not a generic email tool</div><div class="pc-item">Email + SMS + push notifications in one workflow</div><div class="pc-item">AI product recommendations built in</div><div class="pc-item">Strong free plan — 500 emails/month free</div><div class="pc-item">More affordable than Klaviyo at equivalent feature set</div></div>
+          <div class="cons"><div class="pc-title">Watch out for</div><div class="pc-item">Less powerful segmentation than Klaviyo at scale</div><div class="pc-item">SMS availability limited in some countries</div><div class="pc-item">Reporting less detailed than Klaviyo for large lists</div><div class="pc-item">Design editor less flexible than some competitors</div></div>
         </div>
       </div>
-      <div class="card"><div class="card-title">Frequently Asked Questions</div><div class="faq-item"><button class="faq-q">Is Omnisend better than Klaviyo? <span class="faq-icon">+</span></button><div class="faq-a">For most small and mid-size ecommerce brands, Omnisend delivers 80-90% of Klaviyo's functionality at a lower price — making it the better value choice. Klaviyo edges ahead for advanced segmentation, predictive analytics and brands that need maximum customisation. If you're spending over $50K/month on email marketing or have a large, complex list, Klaviyo's power justifies the premium. For most stores, Omnisend is excellent.</div></div><div class="faq-item"><button class="faq-q">Does Omnisend have a free plan? <span class="faq-icon">+</span></button><div class="faq-a">Yes — Omnisend's free plan supports up to 250 contacts and 500 emails/month, plus up to 60 SMS credits. It includes pre-built automations, templates and basic segmentation. The free plan is enough to set up abandoned cart and welcome flows before upgrading. Paid plans start at $16/month.</div></div><div class="faq-item"><button class="faq-q">Does Omnisend work with Shopify? <span class="faq-icon">+</span></button><div class="faq-a">Yes — Omnisend has a deep native Shopify integration that syncs all customer, order and product data in real time. It's one of the top-rated email apps in the Shopify App Store. The integration enables product recommendation blocks, purchase-triggered automations and revenue attribution tracking automatically once connected.</div></div></div>
+      <div class="card">
+        <div class="card-title">Pricing (2026)</div>
+        <table class="pricing-table">
+          <thead><tr><th>Plan</th><th>Price</th><th>What's included</th></tr></thead>
+          <tbody><tr><td>Free</td><td>$0/mo</td><td>500 emails/month, 250 contacts, basic automation</td></tr><tr><td>Standard</td><td>From $16/mo</td><td>Email marketing, all automation flows, 24/7 support</td></tr><tr><td>Pro</td><td>From $59/mo</td><td>Unlimited emails, SMS, advanced reporting, priority support</td></tr><tr><td>Enterprise</td><td>Custom</td><td>Dedicated support, custom IP, SLA, migration assistance</td></tr></tbody>
+        </table>
+      </div>
+      <div class="card-title" style="font-family:'Playfair Display',serif;font-size:1.1rem;margin:4px 0 12px">Frequently Asked Questions</div>
+      <div class="faq-item"><button class="faq-q">Omnisend vs Klaviyo — which is better? <span class="faq-icon">+</span></button><div class="faq-a">Klaviyo is more powerful for large lists with complex segmentation needs — it's the industry standard for serious ecommerce email marketing. Omnisend is better value for small-to-mid size stores and offers a stronger free plan. Most stores under 10,000 contacts get equal results from Omnisend at a lower cost. The main Klaviyo advantages at scale are deeper data integrations and more granular segmentation.</div></div><div class="faq-item"><button class="faq-q">Is Omnisend really free? <span class="faq-icon">+</span></button><div class="faq-a">Yes — Omnisend's free plan includes 500 emails per month to up to 250 contacts, access to all automation templates and 24/7 support. It's enough to set up your core ecommerce flows (welcome, cart abandonment, post-purchase) before upgrading. The paid plan starts at $16/month for up to 500 contacts.</div></div><div class="faq-item"><button class="faq-q">Does Omnisend integrate with Shopify? <span class="faq-icon">+</span></button><div class="faq-a">Yes — Omnisend has a native Shopify integration that syncs your product catalogue, customer data and order history automatically. It also integrates with WooCommerce, BigCommerce, Magento and most other major ecommerce platforms. The Shopify integration enables automated cart abandonment, browse abandonment and post-purchase flows without any custom development.</div></div>
       <br>
       <div class="card-title" style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:12px">Compare Alternatives</div>
-      <div class="alts-grid"><a href="/tools/klaviyo.html" class="alt-card"><div class="alt-name">Klaviyo</div><div class="alt-link">Read review →</div></a><a href="/tools/mailchimp.html" class="alt-card"><div class="alt-name">Mailchimp</div><div class="alt-link">Read review →</div></a><a href="/tools/activecampaign.html" class="alt-card"><div class="alt-name">ActiveCampaign</div><div class="alt-link">Read review →</div></a></div>
+      <div class="alts-grid"><a href="/tools/klaviyo.html" class="alt-card"><div class="alt-name">Klaviyo</div><div class="alt-link">Read review →</div></a><a href="/tools/activecampaign.html" class="alt-card"><div class="alt-name">ActiveCampaign</div><div class="alt-link">Read review →</div></a><a href="/tools/mailchimp.html" class="alt-card"><div class="alt-name">Mailchimp</div><div class="alt-link">Read review →</div></a></div>
     </div>
     <div class="sidebar">
       <div class="score-box">
-        <div class="score-num">4.4</div>
-        <div class="stars" style="font-size:1.1rem;margin:4px 0">★★★★</div>
+        <div class="score-num">4.5</div>
+        <div class="stars" style="color:var(--wheat);font-size:1.1rem;margin:4px 0">★★★★½</div>
         <div class="score-label">AIToolVillage Score</div>
       </div>
-      <div class="verdict-box"><h4>⚡ Our Verdict</h4><p>The best Klaviyo alternative for budget-conscious ecommerce brands — combines email, SMS and push at a lower price with excellent pre-built automations.</p></div>
       <div class="sidebar-card">
         <h4>Quick Facts</h4>
-        <div class="info-row"><span class="info-label">Best for</span><span class="info-val">Ecommerce stores, Shopify brands</span></div>
-        <div class="info-row"><span class="info-label">Pricing</span><span class="info-val">Free up to 250 contacts</span></div>
-        <div class="info-row"><span class="info-label">Free plan</span><span class="info-val">Free plan available</span></div>
+        <div class="info-row"><span class="info-label">Best for</span><span class="info-val">Ecommerce stores, Shopify brands, DTC businesses</span></div>
+        <div class="info-row"><span class="info-label">Free option</span><span class="info-val" style="color:var(--moss)">Free plan — 500 emails/mo</span></div>
+        <div class="info-row"><span class="info-label">Starting price</span><span class="info-val">Free / From $16/mo</span></div>
         <div class="info-row"><span class="info-label">Founded</span><span class="info-val">2014</span></div>
       </div>
       <div class="cta-card">
-        <h4>Try Omnisend</h4>
-        <p>Omnisend combines email, SMS and web push in one platform with pre-built ecommerce automations that take minutes to set up.</p>
+        <h4>Try Omnisend Today</h4>
+        <p>Email and SMS automation for ecommerce — free plan available, no credit card required.</p>
         <a href="https://omnisend.com" target="_blank" rel="noopener">Visit Omnisend →</a>
       </div>
-      <div class="sidebar-card"><h4>📂 Related</h4><a href="/tools/klaviyo.html" class="sb-link">Klaviyo Review <span style="color:var(--stone)">→</span></a><a href="/tools/mailchimp.html" class="sb-link">Mailchimp Review <span style="color:var(--stone)">→</span></a><a href="/ai-tools-for-ecommerce.html" class="sb-link">AI for Ecommerce <span style="color:var(--stone)">→</span></a></div>
     </div>
   </div>
 </div>
 <footer>
-  <a href="/">Home</a><a href="/ai-tools-for-ecommerce.html">AI for Ecommerce</a>
-  <a href="/best-ai-tools.html">Best Tools</a><a href="/privacy.html">Privacy</a>
+  <a href="/">Home</a><a href="/ai-tools-for-ecommerce.html">Ecommerce AI</a><a href="/best-ai-tools.html">Best Tools</a><a href="/privacy.html">Privacy</a>
   <br><br>© 2026 AIToolVillage.com
 </footer>
 <script>document.querySelectorAll('.faq-q').forEach(b=>b.addEventListener('click',()=>b.parentElement.classList.toggle('open')));</script>
