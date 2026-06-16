@@ -16,12 +16,12 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
+          ref: main
 
-      - name: Pull latest changes
+      - name: Setup git
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
-          git pull --rebase origin main
 
       - name: Run canonical fix script
         run: |
@@ -35,41 +35,29 @@ jobs:
           for fname in sorted(os.listdir(tools_dir)):
               if not fname.endswith('.html'):
                   continue
-
               fpath = os.path.join(tools_dir, fname)
               with open(fpath, 'r', encoding='utf-8') as f:
                   content = f.read()
-
               original = content
 
               def fix_link(m):
-                  prefix = m.group(1)
-                  slug = m.group(2)
-                  quote = m.group(3)
-                  if not slug.endswith('.html'):
-                      return f'{prefix}{slug}.html{quote}'
-                  return m.group(0)
+                  prefix, slug, quote = m.group(1), m.group(2), m.group(3)
+                  return f'{prefix}{slug}.html{quote}' if not slug.endswith('.html') else m.group(0)
 
               content = re.sub(
                   r'(<link[^>]*rel=["\']canonical["\'][^>]*href=["\']https://aitoolvillage\.com/tools/)([\w\-]+)(["\'])',
-                  fix_link, content
-              )
+                  fix_link, content)
               content = re.sub(
                   r'(<link[^>]*href=["\']https://aitoolvillage\.com/tools/)([\w\-]+)(["\'][^>]*rel=["\']canonical["\'])',
-                  fix_link, content
-              )
+                  fix_link, content)
 
               def fix_yaml(m):
-                  prefix = m.group(1)
-                  slug = m.group(2)
-                  if not slug.endswith('.html'):
-                      return f'{prefix}{slug}.html'
-                  return m.group(0)
+                  prefix, slug = m.group(1), m.group(2)
+                  return f'{prefix}{slug}.html' if not slug.endswith('.html') else m.group(0)
 
               content = re.sub(
                   r'(canonical:\s*https://aitoolvillage\.com/tools/)([\w\-]+)(?![\w\-\.])',
-                  fix_yaml, content
-              )
+                  fix_yaml, content)
 
               if content != original:
                   with open(fpath, 'w', encoding='utf-8') as f:
@@ -79,46 +67,39 @@ jobs:
               else:
                   skipped += 1
 
-          print(f'\nDone: {fixed} files fixed, {skipped} files unchanged')
+          print(f'Done: {fixed} fixed, {skipped} unchanged')
           EOF
 
       - name: Fix index.html canonical
         run: |
           python3 << 'EOF'
           import os, re
-
-          for fname in ['index.html']:
-              if not os.path.exists(fname):
-                  print(f'Not found: {fname}')
-                  continue
-              with open(fname, 'r', encoding='utf-8') as f:
+          if os.path.exists('index.html'):
+              with open('index.html', 'r') as f:
                   content = f.read()
               original = content
-
               content = re.sub(
                   r'(<link[^>]*rel=["\']canonical["\'][^>]*href=["\'])https://aitoolvillage\.com/index\.html(["\'])',
-                  r'\1https://aitoolvillage.com/\2', content
-              )
+                  r'\1https://aitoolvillage.com/\2', content)
               content = re.sub(
                   r'canonical:\s*https://aitoolvillage\.com/index\.html',
-                  'canonical: https://aitoolvillage.com/', content
-              )
-
+                  'canonical: https://aitoolvillage.com/', content)
               if content != original:
-                  with open(fname, 'w', encoding='utf-8') as f:
+                  with open('index.html', 'w') as f:
                       f.write(content)
-                  print(f'FIXED: {fname}')
+                  print('FIXED: index.html')
               else:
-                  print(f'No change needed: {fname}')
+                  print('No change: index.html')
           EOF
 
-      - name: Commit and push fixes
+      - name: Commit and push
         run: |
           git add -A
           if git diff --staged --quiet; then
-            echo "No changes to commit — all canonicals already correct"
+            echo "Nothing to commit — canonicals already fixed"
           else
-            git commit -m "fix: add .html to canonical tags on tool pages"
-            git push origin main
-            echo "Changes pushed successfully"
+            git commit -m "fix: canonical tags .html on tool pages"
+            git push --force-with-lease origin main
+            echo "Pushed successfully"
           fi
+
