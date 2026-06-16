@@ -1,0 +1,124 @@
+name: Fix Missing .html in Canonical Tags
+
+on:
+  workflow_dispatch:  # Manual trigger only — click "Run workflow" in GitHub Actions tab
+
+jobs:
+  fix-canonicals:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run canonical fix script
+        run: |
+          python3 << 'EOF'
+          import os, re
+
+          tools_dir = 'tools'
+          fixed = 0
+          skipped = 0
+          fixed_files = []
+
+          for fname in sorted(os.listdir(tools_dir)):
+              if not fname.endswith('.html'):
+                  continue
+
+              fpath = os.path.join(tools_dir, fname)
+              with open(fpath, 'r', encoding='utf-8') as f:
+                  content = f.read()
+
+              original = content
+
+              # Fix: <link rel="canonical" href="https://aitoolvillage.com/tools/SLUG">
+              # where SLUG is missing .html
+              def fix_link_canonical(m):
+                  prefix = m.group(1)
+                  slug = m.group(2)
+                  quote = m.group(3)
+                  if not slug.endswith('.html'):
+                      return f'{prefix}{slug}.html{quote}'
+                  return m.group(0)
+
+              content = re.sub(
+                  r'(<link[^>]*rel=["\']canonical["\'][^>]*href=["\']https://aitoolvillage\.com/tools/)([\w\-]+)(["\'])',
+                  fix_link_canonical,
+                  content
+              )
+
+              # Also handle reversed attribute order: href before rel
+              content = re.sub(
+                  r'(<link[^>]*href=["\']https://aitoolvillage\.com/tools/)([\w\-]+)(["\'][^>]*rel=["\']canonical["\'])',
+                  fix_link_canonical,
+                  content
+              )
+
+              # Fix YAML-style canonical (older pages built differently)
+              # canonical: https://aitoolvillage.com/tools/SLUG  (no .html)
+              def fix_yaml_canonical(m):
+                  prefix = m.group(1)
+                  slug = m.group(2)
+                  if not slug.endswith('.html'):
+                      return f'{prefix}{slug}.html'
+                  return m.group(0)
+
+              content = re.sub(
+                  r'(canonical:\s*https://aitoolvillage\.com/tools/)([\w\-]+)(?![\w\-\.])',
+                  fix_yaml_canonical,
+                  content
+              )
+
+              if content != original:
+                  with open(fpath, 'w', encoding='utf-8') as f:
+                      f.write(content)
+                  print(f'✅ Fixed: {fname}')
+                  fixed_files.append(fname)
+                  fixed += 1
+              else:
+                  skipped += 1
+
+          print(f'\nSummary: fixed {fixed} files, skipped {skipped} files')
+          EOF
+
+      - name: Fix index.html canonical
+        run: |
+          python3 << 'EOF'
+          import re
+
+          for fname in ['index.html', 'about.html', 'privacy.html', 'terms.html']:
+              if not __import__('os').path.exists(fname):
+                  continue
+              with open(fname, 'r', encoding='utf-8') as f:
+                  content = f.read()
+              original = content
+
+              # index.html canonical should point to / not /index.html
+              if fname == 'index.html':
+                  content = re.sub(
+                      r'(<link[^>]*rel=["\']canonical["\'][^>]*href=["\'])https://aitoolvillage\.com/index\.html(["\'])',
+                      r'\1https://aitoolvillage.com/\2',
+                      content
+                  )
+                  content = re.sub(
+                      r'canonical:\s*https://aitoolvillage\.com/index\.html',
+                      'canonical: https://aitoolvillage.com/',
+                      content
+                  )
+
+              if content != original:
+                  with open(fname, 'w', encoding='utf-8') as f:
+                      f.write(content)
+                  print(f'✅ Fixed: {fname}')
+              else:
+                  print(f'⚪ No change needed: {fname}')
+          EOF
+
+      - name: Commit fixes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "fix: add .html to canonical tags across all tool pages"
+          git push
+          echo "✅ Changes committed and pushed"
