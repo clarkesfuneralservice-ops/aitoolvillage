@@ -15,6 +15,13 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Pull latest changes
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git pull --rebase origin main
 
       - name: Run canonical fix script
         run: |
@@ -35,7 +42,6 @@ jobs:
 
               original = content
 
-              # Fix <link rel="canonical" href="...SLUG"> missing .html
               def fix_link(m):
                   prefix = m.group(1)
                   slug = m.group(2)
@@ -53,7 +59,6 @@ jobs:
                   fix_link, content
               )
 
-              # Fix YAML-style: canonical: https://...com/tools/SLUG (no .html)
               def fix_yaml(m):
                   prefix = m.group(1)
                   slug = m.group(2)
@@ -90,7 +95,6 @@ jobs:
                   content = f.read()
               original = content
 
-              # canonical should be / not /index.html
               content = re.sub(
                   r'(<link[^>]*rel=["\']canonical["\'][^>]*href=["\'])https://aitoolvillage\.com/index\.html(["\'])',
                   r'\1https://aitoolvillage.com/\2', content
@@ -110,13 +114,11 @@ jobs:
 
       - name: Commit and push fixes
         run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "actions@github.com"
           git add -A
           if git diff --staged --quiet; then
             echo "No changes to commit — all canonicals already correct"
           else
             git commit -m "fix: add .html to canonical tags on tool pages"
-            git push
+            git push origin main
             echo "Changes pushed successfully"
           fi
