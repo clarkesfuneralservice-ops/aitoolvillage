@@ -1,0 +1,107 @@
+name: Inject HTML Canonical Tags
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inject:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Inject canonical tags into old-template pages
+        run: |
+          python3 << 'EOF'
+          import os, re
+
+          tools_dir = 'tools'
+          fixed = 0
+          skipped = 0
+
+          for fname in sorted(os.listdir(tools_dir)):
+              if not fname.endswith('.html'):
+                  continue
+
+              fpath = os.path.join(tools_dir, fname)
+              with open(fpath, 'r', encoding='utf-8') as f:
+                  content = f.read()
+
+              # Skip files that already have HTML canonical tag
+              if re.search(r'<link[^>]*rel=["\']canonical["\']', content, re.I):
+                  skipped += 1
+                  continue
+
+              # Only process files with YAML front matter (old template)
+              if not content.strip().startswith('---'):
+                  skipped += 1
+                  continue
+
+              # Extract slug from filename
+              slug = fname.replace('.html', '')
+
+              # Extract canonical URL from YAML if present, else build it
+              yaml_match = re.search(r'canonical:\s*(https://aitoolvillage\.com/tools/[\w\-]+(?:\.html)?)', content)
+              if yaml_match:
+                  canon_url = yaml_match.group(1)
+                  if not canon_url.endswith('.html'):
+                      canon_url += '.html'
+              else:
+                  canon_url = f'https://aitoolvillage.com/tools/{slug}.html'
+
+              canonical_tag = f'<link rel="canonical" href="{canon_url}">\n'
+
+              # Find the closing </head> or first nav/body tag to inject before
+              # Strategy: inject after the YAML block ends (after second ---)
+              yaml_end = content.find('---', 3)
+              if yaml_end == -1:
+                  skipped += 1
+                  continue
+
+              # Find <nav or <body after YAML block
+              after_yaml = content[yaml_end+3:]
+              nav_pos = after_yaml.lower().find('<nav')
+              body_pos = after_yaml.lower().find('<body')
+              head_pos = after_yaml.lower().find('</head>')
+
+              inject_at = None
+              if head_pos != -1:
+                  inject_at = yaml_end + 3 + head_pos
+                  new_content = content[:inject_at] + '\n' + canonical_tag + content[inject_at:]
+              elif nav_pos != -1:
+                  inject_at = yaml_end + 3 + nav_pos
+                  new_content = content[:inject_at] + canonical_tag + content[inject_at:]
+              elif body_pos != -1:
+                  inject_at = yaml_end + 3 + body_pos
+                  new_content = content[:inject_at] + canonical_tag + content[inject_at:]
+              else:
+                  # Prepend canonical after YAML block
+                  inject_at = yaml_end + 3
+                  new_content = content[:inject_at] + '\n' + canonical_tag + content[inject_at:]
+
+              with open(fpath, 'w', encoding='utf-8') as f:
+                  f.write(new_content)
+              print(f'FIXED: {fname} → {canon_url}')
+              fixed += 1
+
+          print(f'\nDone: {fixed} files updated, {skipped} files skipped (already correct)')
+          EOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git pull --rebase origin main || true
+          git add -A
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "fix: inject HTML canonical tags into old-template tool pages"
+            git push origin main
+            echo "Done"
+          fi
