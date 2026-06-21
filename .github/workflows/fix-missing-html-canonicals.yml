@@ -1,0 +1,74 @@
+name: Fix Canonicals Missing .html Extension
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Fix canonicals missing .html
+        run: |
+          python3 << 'EOF'
+          import os, re
+
+          tools_dir = 'tools'
+          fixed = 0
+          skipped = 0
+
+          # Known affected slugs from GSC report — but we scan all files to be safe
+          for fname in sorted(os.listdir(tools_dir)):
+              if not fname.endswith('.html'):
+                  continue
+
+              fpath = os.path.join(tools_dir, fname)
+              with open(fpath, 'r', encoding='utf-8') as f:
+                  content = f.read()
+
+              original = content
+              slug = fname[:-5]  # remove .html
+
+              # Fix YAML-style: canonical: https://aitoolvillage.com/tools/SLUG (exact slug match, no .html)
+              pattern = rf'(canonical:\s*https://aitoolvillage\.com/tools/{re.escape(slug)})(\s|$)'
+              def repl(m):
+                  return f'{m.group(1)}.html{m.group(2)}'
+              content = re.sub(pattern, repl, content, flags=re.MULTILINE)
+
+              # Fix HTML-style: <link rel="canonical" href="...SLUG"> (exact slug match, no .html)
+              pattern2 = rf'(<link[^>]*rel=["\']canonical["\'][^>]*href=["\']https://aitoolvillage\.com/tools/{re.escape(slug)})(["\'])'
+              def repl2(m):
+                  return f'{m.group(1)}.html{m.group(2)}'
+              content = re.sub(pattern2, repl2, content)
+
+              if content != original:
+                  with open(fpath, 'w', encoding='utf-8') as f:
+                      f.write(content)
+                  print(f'FIXED: {fname}')
+                  fixed += 1
+              else:
+                  skipped += 1
+
+          print(f'\nDone: {fixed} fixed, {skipped} unchanged')
+          EOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git pull --rebase origin main || true
+          git add -A
+          if git diff --staged --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "fix: append .html to canonical URLs missing the extension"
+            git push origin main
+            echo "Done"
+          fi
