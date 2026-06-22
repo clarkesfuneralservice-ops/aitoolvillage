@@ -1,0 +1,101 @@
+name: Submit URLs to IndexNow (Bing/Yandex)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'full = submit entire sitemap, recent = submit only files changed in last commit'
+        required: true
+        default: 'recent'
+        type: choice
+        options:
+          - recent
+          - full
+  push:
+    branches: [main]
+    paths:
+      - '**.html'
+      - 'sitemap.xml'
+
+permissions:
+  contents: read
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Submit changed URLs to IndexNow
+        run: |
+          python3 << 'EOF'
+          import subprocess, json, urllib.request, os, re
+
+          KEY = "0d706b31a903fb2636fe92444626c5f5"
+          HOST = "aitoolvillage.com"
+          KEY_LOCATION = f"https://{HOST}/{KEY}.txt"
+          ENDPOINT = "https://api.indexnow.org/indexnow"
+
+          mode = os.environ.get("MODE", "recent")
+
+          urls = []
+
+          if mode == "full":
+              # Parse sitemap.xml for all URLs
+              if os.path.exists("sitemap.xml"):
+                  with open("sitemap.xml", "r", encoding="utf-8") as f:
+                      content = f.read()
+                  urls = re.findall(r"<loc>(.*?)</loc>", content)
+                  print(f"Found {len(urls)} URLs in sitemap.xml")
+          else:
+              # Get files changed in the last commit
+              result = subprocess.run(
+                  ["git", "diff", "--name-only", "HEAD~1", "HEAD"],
+                  capture_output=True, text=True
+              )
+              changed_files = [f for f in result.stdout.strip().split("\n") if f.endswith(".html")]
+              for f in changed_files:
+                  if f == "index.html":
+                      urls.append(f"https://{HOST}/")
+                  else:
+                      urls.append(f"https://{HOST}/{f}")
+              print(f"Found {len(changed_files)} changed HTML files")
+
+          if not urls:
+              print("No URLs to submit")
+              exit(0)
+
+          # IndexNow allows up to 10,000 URLs per request
+          batch = urls[:10000]
+
+          payload = {
+              "host": HOST,
+              "key": KEY,
+              "keyLocation": KEY_LOCATION,
+              "urlList": batch
+          }
+
+          data = json.dumps(payload).encode("utf-8")
+          req = urllib.request.Request(
+              ENDPOINT,
+              data=data,
+              headers={"Content-Type": "application/json; charset=utf-8"},
+              method="POST"
+          )
+
+          try:
+              with urllib.request.urlopen(req, timeout=15) as resp:
+                  print(f"✅ Submitted {len(batch)} URLs — status {resp.status}")
+          except urllib.error.HTTPError as e:
+              print(f"Response status: {e.code}")
+              print(f"Response body: {e.read().decode()}")
+              # IndexNow returns 200 or 202 for success; some codes are still OK
+              if e.code in (200, 202):
+                  print("✅ Submission accepted")
+              else:
+                  print("⚠️  Submission may have failed — check key file is accessible")
+          EOF
+        env:
+          MODE: ${{ github.event.inputs.mode || 'recent' }}
